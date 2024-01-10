@@ -1,0 +1,34 @@
+.center-container{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 400px;
+        
+    padding-bottom: 20px;
+}
+
+.form-container{
+    width: 50%;
+    background-color :black;
+    height: 350px;
+}
+.form-hold{
+    padding: 20px;
+}
+.error-message {
+    color: white;
+    font-size: 30px;
+    text-align: center;
+  }
+  label{
+    display: flex;
+  }
+  input{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 10px;
+  }
+  .main-sign{
+    text-align: center;
+  }

@@ -1,0 +1,26 @@
+.large{
+    margin-top: 50px;
+    display: flex;
+    width: 50%;
+    padding: 10px 10px;
+    justify-content: center;
+    border-radius: 20px;
+}
+.large p{
+    font-size: 30px;
+    font-weight: bold;
+    padding-top: 50px;
+    text-align: center;
+}
+.icon{
+    position: relative;
+    top: 40px;
+    width: 10%;
+    height: 100px;
+    /* justify-self: center; */
+    /* align-self: center; */
+}
+
+.home-body{
+    background-color: white ;
+}

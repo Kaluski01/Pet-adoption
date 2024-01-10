@@ -1,0 +1,26 @@
+section{
+       display: flex;
+       justify-content: center;
+       /* align-self: center; */
+}
+.first{
+    color: white;
+}
+.dog-list{
+    color: black;
+}
+.dogs{
+    /* background-color: whitesmoke; */
+}
+.adopt{
+    width: 30%;
+    border-radius: 50px;
+}
+.adopt:hover{
+    background-color: black;
+    color: white;
+}
+
+.first{
+    color: gold;
+}

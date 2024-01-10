@@ -1,0 +1,82 @@
+import React from 'react';
+import './own.css'
+import { Container, Row, Col } from 'react-bootstrap';
+import Card from 'react-bootstrap/Card';
+import Button from 'react-bootstrap/Button';
+import image1 from '../assests/dogs.avif'
+import image2 from '../assests/catss.webp'
+import image3 from '../assests/fun.webp'
+import image4 from '../assests/well.webp'
+import Footer from '../footer/footer';
+const EducationalContentCard = () => {
+  return (
+  <>
+        <div className="essentianls mt-1  ">
+
+        <Container fluid className=''>
+   <h1 className='pet-h1 mt-5'>Pet Training</h1>
+  <Row className='custom-row mt-4'>
+    <Col className='custom-col'>
+        <Card className='paw-card'>
+          <Card.Img className='kkk' style={{ width: '100%' }}  src={image1} />
+          <Card.Body>
+            <Card.Title>Educational Content</Card.Title>
+            <Card.Text className='text'>
+              Discover valuable insights on pet care, training, and more. Learn how to provide the best for your furry friend.
+            </Card.Text>
+            <Button variant="primary" href="https://www.greensboroncvet.com/site/friendly-animal-clinic-blog/2022/06/15/wellness-tips-for-pets" target="_blank">
+              Read More
+            </Button>
+          </Card.Body>
+        </Card >
+        {/* Repeat the structure for the other cards with lg={6} */}
+        {/* second card */}
+        <Card className='paw-card'>
+          <Card.Img style={{ width: '100%', height: '350px' }}  src={image4} />
+          <Card.Body>
+            <Card.Title>Health and Wellness</Card.Title>
+            <Card.Text className='text'>
+              Explore articles on maintaining your pet's health and ensuring their overall well-being. Your guide to a happy, healthy pet.
+            </Card.Text>
+            <Button variant="primary" href="https://www.greensboroncvet.com/site/friendly-animal-clinic-blog/2022/06/15/wellness-tips-for-pets" target="_blank">
+              Read More
+            </Button>
+          </Card.Body>
+        </Card>
+        {/* third card */}
+        <Card className='paw-card'>
+          <Card.Img style={{ width: '100%', height: '350px' }}  src={image2} />
+          <Card.Body>
+            <Card.Title>Training and Behavior</Card.Title>
+            <Card.Text className='text'>
+              Master the art of training and understand your pet's behavior. Build a strong bond through effective training techniques.
+            </Card.Text>
+            <Button variant="primary" href="https://www.diyk9.com/" target="_blank">
+              Read More
+            </Button>
+          </Card.Body>
+        </Card>
+        {/* fourth card */}
+        <Card className='paw-card'>
+          <Card.Img style={{ width: '100%', height: '300px' }}  src={image3} />
+          <Card.Body>
+            <Card.Title>Pet-Friendly Activities</Card.Title>
+            <Card.Text className='text'>
+              Explore exciting activities to enjoy with your pet. Create lasting memories through fun and engaging experiences.
+            </Card.Text>
+            <Button variant="primary" href="https://www.helpanimals.co.uk/post/44-fun-activities-to-do-with-your-dog" target="_blank">
+              Read More
+            </Button>
+          </Card.Body>
+        </Card>
+    </Col>
+  </Row>
+</Container>
+        </div>
+        <Footer/>
+  </>
+
+  );
+};
+
+export default EducationalContentCard;

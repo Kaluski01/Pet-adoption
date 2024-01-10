@@ -1,0 +1,19 @@
+.Carousel{
+    width: 10px;
+    /* background-color: #6504B5; */
+    height: 500px;
+}
+.testimonials{
+    color: black;
+}
+.test{
+    width: 50%;   
+    background-color: white;
+    /* height: 500px; */
+}
+image{
+    width: 0%;
+}
+.test{
+    color: goldenrod;
+}
