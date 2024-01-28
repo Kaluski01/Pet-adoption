@@ -10,10 +10,10 @@ export default function Footer() {
   return (
     <div className='container-fluid' style={{backgroundColor: 'black'}}>
         <div className="row">
-            <div className="col">
+            <div className="col w-100">
                 <h2 className='my-4'><img style={{width:'50px', height:'50px'}} src={logo} alt="" />Pet Finder</h2>
                 <hr />
-                <div className='d-flex flex-wrap col-lg-12 justify-content-around bro'>
+                <div className='d-flex col-lg-12 col-12 justify-content-around gap-5  w-100'>
                     <ul className=''>
                     <h3>Useful links</h3>
                     <li>Contact us</li>

@@ -4,13 +4,13 @@ import IMG2 from '../assests/dog 1.png';
 import './home.css';
 import Card from 'react-bootstrap/Card';
 import TestimonialCards from '../body/carousel';
-import Footer from '../footer/footer'
+import Footer from '../footer/footer';
 import Pets from './pet';
 import { Link } from 'react-router-dom';
 
 export default function Home() {
   const [pets, setPets] = useState([]);
-  console.log(pets)
+
   useEffect(() => {
     try {
       const storedPets = localStorage.getItem('pets');
@@ -56,31 +56,32 @@ export default function Home() {
           </div>
         </div>
       </div>
-        {/* Display pets informati  on from local storage */}
-        <div className='container-fluid mt-5' style={{color:'black'}}>  
-  <h2 className='text-center'>Recently Added Pets</h2>
-  <div className='row d-flex justify-content-center'>
-    {pets.map((pet, index) => (
-      <div key={index} className='col-lg-4 col-sm-12'>
-          <Link style={{ textDecoration: 'none' }}to={`/Storedpets/${encodeURIComponent(pet.name)}`}>
-          <Card>
-            <Card.Body>
-              <Card.Img variant="top" src={pet.image} alt={pet.name} />
-              <Card.Title>{pet.name}</Card.Title>
-              <Card.Text>Description: {pet.description}</Card.Text>
-              <Card.Text>Age: {pet.Age}</Card.Text>
-            </Card.Body>
-          </Card>
-        </Link>
-      </div>
-    ))}
-  </div>
-        </div>
 
-        <Pets numberOfDogs={10} showFooter={false} />
-         <Pets numberOfCats={100} showFooter={false} />
-        <TestimonialCards/>
-        <Footer/>
+      {/* Display pets information from local storage */}
+      <div className='container-fluid mt-5' style={{ color: 'black' }}>
+        <h2 className='text-center'>Recently Added Pets</h2>
+        <div className='row d-flex justify-content-center'>
+          {pets.map((pet, index) => (
+            <div key={index} className='col-lg-4 col-sm-12'>
+              <Link style={{ textDecoration: 'none' }} to={`/Storedpets/${encodeURIComponent(pet.name)}`}>
+                <Card>
+                  <Card.Body>
+                    <Card.Img variant="top" src={pet.image} alt={pet.name} />
+                    <Card.Title>{pet.name}</Card.Title>
+                    <Card.Text>Description: {pet.description}</Card.Text>
+                    <Card.Text>Age: {pet.Age}</Card.Text>
+                  </Card.Body>
+                </Card>
+              </Link>
+            </div>
+          ))}
+        </div>
+      </div>
+
+      <Pets numberOfDogs={10} showFooter={false} />
+      <Pets numberOfCats={100} showFooter={false} />
+      <TestimonialCards />
+      <Footer />
     </>
   );
 }

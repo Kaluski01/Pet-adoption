@@ -8,7 +8,7 @@ import image4 from '../assests/we.jpg';
 
 const TestimonialCard = ({ name, content, image }) => {
   return (
-    <Card className="testimonial-card" style={{ height: '450px', border:'12px solid black' }}>
+    <Card className="testimonial-card" style={{ height: '450px'}}>
       {image && <Card.Img className="card-image" style={{ height: '250px' }} src={image} alt={`image of ${name}`} />}
       <Card.Body>
         <Card.Title>{name}</Card.Title>
@@ -37,10 +37,10 @@ const TestimonialCards = () => {
   }, [testimonials.length]);
 
   return (
-    <div className="container-fluid bg-dark mb-5">
+    <div className="container-fluid bg-dark mb-5 p-5">
       <h1 className="test text-center">Testimonials</h1>
       <div className="row">
-        <div className="col-lg-8 col-12 mx-auto">
+        <div className="col-lg-8 col-12 mx-auto mt-5">
           <Carousel controls={false} interval={10000} activeIndex={activeIndex} onSelect={() => {}}>
             {testimonials.map((testimonial, index) => (
               <Carousel.Item key={index} className="d-flex align-items-center justify-content-center">
