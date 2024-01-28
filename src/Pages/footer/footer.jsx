@@ -13,15 +13,15 @@ export default function Footer() {
             <div className="col">
                 <h2 className='my-4'><img style={{width:'50px', height:'50px'}} src={logo} alt="" />Pet Finder</h2>
                 <hr />
-                <div className='d-flex flex-wrap col-lg-12 col-12 justify-content-around'>
-                    <ul>
+                <div className='d-flex flex-wrap col-lg-12 justify-content-around bro'>
+                    <ul className=''>
                     <h3>Useful links</h3>
                     <li>Contact us</li>
                     <li>Donate</li>
                     <li>Rehoming</li>
                     <li>Privacy</li>
                     </ul>
-                    <div className='w-50'>
+                    <div className='w-50 king'>
                     <h5>Sign up for our newsletter</h5>
                     <p className='p'>We'll send you monthly emails, packed with info about our work and pupdates about some of our favourite furry friends.</p>
                     <Link to='/signup/signup'><button className='sign'>Sign up</button></Link>
@@ -29,7 +29,7 @@ export default function Footer() {
                 </div>
                 <hr />
                 <p style={{textAlign:'center', borderBottom:'1px solid white'}}>Contact: nzedivine@gmail.com</p>
-                 <div className="d-flex gap-5 flex-wrap  col-lg-12 col-12 justify-content-around">
+                 <div className="d-flex gap-5 col-lg-12 justify-content-around">
                  <div className="icons">
                         <img className='logo' src={image1} alt="" />
                         <img className='logo' src={image2} alt="" />

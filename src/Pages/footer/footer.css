@@ -1,7 +1,7 @@
 .container-fluid{
-    width: 100%;
+    width: 80%;
     color: gold;
-    height: 600px;
+    height: 850px;
 }
 
 li{
@@ -40,3 +40,39 @@ li{
     background-color: white;
     border-radius: 10px;
 }
+
+@media (max-width: 767px) {
+    .icons{
+        display: flex;
+        flex-direction: column  ;
+        
+    }
+    .bro{
+        width: 340px;
+        display:flex;
+        /* flex-wrap: wrap; */
+        flex-direction: column;
+    }
+    .bro ul{
+        width: 50%;
+    }
+    .bros{
+        width: 100%;
+    }
+    .h{
+        display: none;
+    }
+    hr{
+        width: 100%;
+    }
+    .king{
+        width: 100%;
+    }
+    .king h5{
+        width: 100%;
+    }
+    .king p{
+        font-size: 15px;
+        width: 100%;
+    }
+  }

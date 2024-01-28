@@ -48,3 +48,13 @@ article p{
 .dog{
     padding-top: 50px;
 }
+.dog-card {
+    transition: transform 0.3s, background-color 0.3s;
+  }
+  
+  .dog-card:hover {
+    transform: translateY(-10px);
+    background-color:#7C7D9F; 
+    color: white;
+  }
+  

@@ -1,0 +1,43 @@
+service cloud.firestore {
+  match /databases/{database}/documents {
+   {
+  "rules": {
+    ".read": "true",
+    ".write": "auth != null",
+    
+    "users": {
+      "$uid": {
+        ".read": "$uid === auth.uid",
+        ".write": "$uid === auth.uid",
+        "profile": {
+          ".validate": "newData.child('name').isString() && newData.child('email').isString() && newData.child('type').isString()"
+        }
+      }
+    },
+    
+    "forum": {
+      ".read": "true",
+      ".write": "auth != null",
+      
+      "posts": {
+        "$postId": {
+          ".read": "true",
+          ".write": "auth != null",
+          ".validate": "newData.child('content').isString() && newData.child('userId') === auth.uid"
+        }
+      }
+    },
+    
+    "pets": {
+      ".read": "true",
+      
+      "$petId": {
+        ".write": "auth != null",
+        ".validate": "newData.child('name').isString() && newData.child('type').isString() && newData.child('userId') === auth.uid"
+      }
+    }
+  }
+}
+
+  }
+}

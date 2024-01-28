@@ -1,71 +1,86 @@
-import React, { useState, useEffect } from 'react';
-import IMG from '../assests/paw-removebg-preview.png';
+import React, { useEffect, useState } from 'react';
+import IMG from '../assests/mdi_paw.svg';
+import IMG2 from '../assests/dog 1.png';
 import './home.css';
-import Signup from '../sign up/signup';
-// import { Carousel } from 'react-bootstrap';
-// import MyCarousel from '../body/carousel';
+import Card from 'react-bootstrap/Card';
 import TestimonialCards from '../body/carousel';
-import Footer from '../footer/footer';
+import Footer from '../footer/footer'
+import Pets from './pet';
+import { Link } from 'react-router-dom';
 
 export default function Home() {
-  const id = 'BIZiWPLqX';
-  const Api = `https://api.thedogapi.com/v1/images/${id}`;
-  const [img, setImg] = useState(null);
-  const [error, setError] = useState(null);
-
+  const [pets, setPets] = useState([]);
+  console.log(pets)
   useEffect(() => {
-    fetch(Api)
-      .then((response) => {
-        if (!response.ok) {
-          throw new Error(`HTTP error! status: ${response.status}`);
-        }
-        return response.json();
-      })
-      .then((data) => {
-        setImg(data);
-      })
-      .catch((error) => {
-        setError(error.message);
-      });
-  }, [Api]);
-
-  const containerStyle = {
-    position: 'relative',
-    width: '100%',
-    // height: `${img?.height}px`, // Set the container height dynamically
-    // padding:`${(img?.height / img?.width)}`, // Set the aspect ratio dynamically
-    paddingTop:`10px`,
-    paddingLeft: `5px`,
-    paddingRight: `5px`,
-  };
-
-  const backgroundImage = {
-    backgroundImage: `url(${img?.url})`,
-    backgroundSize: 'cover',
-    backgroundPosition: 'center top',
-    width: '100%',
-    height: '600px',
-  };
+    try {
+      const storedPets = localStorage.getItem('pets');
+      if (storedPets) {
+        setPets(JSON.parse(storedPets));
+      }
+    } catch (error) {
+      console.error('Error loading pets from local storage:', error);
+    }
+  }, []);
 
   return (
-      <>
-          <div className='home-body'>
-          <div className=''>
-      {error && <p>Error: {error}</p>}
-      {img && (
-        <div style={containerStyle}>
-          <div className='large' style={backgroundImage}>
-            <p>Your Favourite Pet Store</p>
-            <img src={IMG} className='icon' alt='Icon' />
+    <>
+      <div className='home-bodies'>
+        <div className='large'>
+          <p>Your Favorite Pet Store</p>
+          <img src={IMG} className='icon' alt='Icon' />
+        </div>
+        <div className='contained'>
+          <div className='con ms-3'>
+            <h1 className='home-h'>Get your family a new member.</h1>
+            <p>
+              Open your doors and hearts to pets in need of a home, and they
+              will be thankful to you for the rest of their lives.
+            </p>
+          </div>
+          <div className='contianeds'>
+            <img src={IMG2} alt='' />
+            <div>
+              <Card className='lll'>
+                <Card.Body className='home-texts'>
+                  <Card.Title>800+</Card.Title>
+                  <Card.Title>500+</Card.Title>
+                  <Card.Title>450+</Card.Title>
+                  <div className='home-textss'>
+                    <Card.Text>Adopted last year</Card.Text>
+                    <Card.Text>Rescued</Card.Text>
+                    <Card.Text>Waiting for a home</Card.Text>
+                  </div>
+                </Card.Body>
+              </Card>
+            </div>
           </div>
         </div>
-      )}
       </div>
-    {/* <Signup/> */}
-    <TestimonialCards/>
-    <Footer/>
-          </div>
-      </>
+        {/* Display pets informati  on from local storage */}
+        <div className='container-fluid mt-5' style={{color:'black'}}>  
+  <h2 className='text-center'>Recently Added Pets</h2>
+  <div className='row d-flex justify-content-center'>
+    {pets.map((pet, index) => (
+      <div key={index} className='col-lg-4 col-sm-12'>
+          <Link style={{ textDecoration: 'none' }}to={`/Storedpets/${encodeURIComponent(pet.name)}`}>
+          <Card>
+            <Card.Body>
+              <Card.Img variant="top" src={pet.image} alt={pet.name} />
+              <Card.Title>{pet.name}</Card.Title>
+              <Card.Text>Description: {pet.description}</Card.Text>
+              <Card.Text>Age: {pet.Age}</Card.Text>
+            </Card.Body>
+          </Card>
+        </Link>
+      </div>
+    ))}
+  </div>
+        </div>
 
+        <Pets numberOfDogs={10} showFooter={false} />
+         <Pets numberOfCats={100} showFooter={false} />
+        <TestimonialCards/>
+        <Footer/>
+    </>
   );
 }

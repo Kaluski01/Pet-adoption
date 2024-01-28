@@ -1,121 +1,56 @@
-import React, { useState } from 'react';
-import './signup.css';
+import React, { useState, useEffect } from 'react';
+import { Link } from 'react-router-dom';
+import { Button, Card } from 'react-bootstrap';
 
-export default function Signup() {
-  const [firstname, setFirstName] = useState('');
-  const [number, setNumber] = useState('');
-  const [email, setEmail] = useState('');
-  const [error, setError] = useState('');
-  const [address, setAddress] =useState('')
-    const[password, setPassword]= useState('')
+const SignupPage = () => {
+  const [isSellerSignedIn, setIsSellerSignedIn] = useState(false);
 
-
-  const handleSubmit = (e) => {
-    e.preventDefault();
-
-
-    setTimeout(() => {
-        setError('');
-      }, 1000);
-
-    // Check if required fields are filled
-    setError('');
-    setFirstName('');
-    setNumber('');
-    setEmail('');
-    setAddress('');
-    setPassword('')
-
-    if (!firstname || !number || !email || !address ||!password) {
-      alert('Please fill in all required fields.');
-    } else {
-      // Clear error message if all fields are filled
-      setError('Thank You for joining us');
+  // Check the local storage when the component mounts
+  useEffect(() => {
+    const storedUser = JSON.parse(localStorage.getItem('user'));
+    if (storedUser) {
+      // Check additional conditions if needed
+      // For now, assume the user is signed in as a seller
+      setIsSellerSignedIn(true);
     }
-  };
+  }, []);
 
-  const handleChange = (e) => {
-    const { name, value } = e.target;
+  return (
+    <div>
+      <h1 className='main-sign' style={{ position: 'relative', top: '50px', marginTop: '20px', fontSize:'25px' }}>Let us know who you are !! </h1>
+      <div className="center-container ms-5">
+        <div className='role-selection d-flex flex-wrap gap-5'>
+          {isSellerSignedIn ? (
+            <Card className="text-center">
+              <Card.Body>
+                <Link to="/Sellerdash">
+                  <Button variant="primary" block>Add Pet</Button>
+                </Link>
+              </Card.Body>
+            </Card>
+          ) : (
+            <Card className="text-center">
+              <Card.Body>
+                <Link to="/seller">
+                  <Button variant="primary" block>
+                    Sign Up as Pet Seller
+                  </Button>
+                </Link>
+              </Card.Body>
+            </Card>
+          )}
 
-    // Use the input's name attribute to determine which state to update
-    if (name === 'name') {
-      setFirstName(value);
-    } else if (name === 'number') {
-      setNumber(value);
-    } else if (name === 'email') {
-      setEmail(value);
-    }else if(name === 'address'){
-            setAddress(value);
-      }else if(name === 'password'){
-            setPassword(value)
-      }
-    }
-    return (
-        <>
-          <h1 className='main-sign'>Sign up</h1>
-          <div className="center-container mx-auto">
-            <div className='form-container'>
-              {error && <p className="error-message">{error}</p>}
-              <form className='form-hold' onSubmit={handleSubmit}>
-                <label style={{color:'white'}}>
-                  Enter your name:
-                  <input
-                    type="text"
-                    name="name"
-                    value={firstname}
-                    onChange={handleChange}
-                  />
-                </label>
-                <br />
-                <label style={{color:'white'}}>
-                  Phone number:
-                  <input
-                    type="number"
-                    name="number"
-                    value={number}
-                    onChange={handleChange}
-                  />
-                </label>
-                <br />
-                <label style={{color:'white'}}>
-                  Please enter your email:
-                  <input
-                    type="email"
-                    name="email"
-                    value={email}
-                    onChange={handleChange}
-                  />
-                </label>
-                <br />
-                <label style={{color:'white'}}>
-                    Adress:
-                  <input
-                    type="text"
-                    name="address"
-                    value ={address}
-                    onChange={handleChange}
-                  />
-                </label>
-                <br />
-                <label style={{color:'white'}}>
-                    password:
-                  <input
-                    type="password"
-                    name="password"
-                    // required
-                    value ={password}
-                    onChange={handleChange}
-                  />
-                </label>
-                <br />
-                <button  className='btn btn-primary mt-3' type="submit" value="Submit">Submit</button>
-                <p className='error-message'>{setError}</p>
-              </form>
-            </div>
-          </div>
-        </>
-      );
-  };
+          <Card className="text-center">
+            <Card.Body>
+              <Link to="/adopter">
+                <Button variant="primary" block>Sign Up as Pet Adopter</Button>
+              </Link>
+            </Card.Body>
+          </Card>
+        </div>
+      </div>
+    </div>
+  );
+};
 
-  
-  
+export default SignupPage;

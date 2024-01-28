@@ -15,6 +15,9 @@ export function BasicExample() {
             <Nav.Link as={Link} to="/">
               Home
             </Nav.Link>
+            <Nav.Link as={Link} to="/about">
+              About us
+            </Nav.Link>
             <NavDropdown title="PETS" id="basic-nav-dropdown">
               <NavDropdown.Item as={Link} to="/dogs">
                 Dogs

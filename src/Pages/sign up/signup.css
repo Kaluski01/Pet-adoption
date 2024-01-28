@@ -8,9 +8,10 @@
 }
 
 .form-container{
+  margin-top: 100px;
     width: 50%;
-    background-color :black;
-    height: 350px;
+    background-color :#7C7D9F;
+    height: 400px;
 }
 .form-hold{
     padding: 20px;
@@ -32,3 +33,23 @@
   .main-sign{
     text-align: center;
   }
+
+  .welcome-message{
+    text-align: center;
+    color: white;
+    font-size: 50px;
+  }
+
+  @media (max-width: 767px) {
+    .form-container{
+       /* height: ; */
+       display: flex;
+       flex-wrap: wrap;
+       flex-direction: column;
+       background-color:#7C7D9F;
+       width: 100%;
+    }
+    .center-container{
+      padding-bottom: px;
+    }
+     }

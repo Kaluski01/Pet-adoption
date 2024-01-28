@@ -7,3 +7,14 @@
     height: 300px;
     width: 100%;
 }
+
+.cat-card {
+    transition: transform 0.3s, background-color 0.3s;
+  }
+  
+  .cat-card:hover {
+    transform: translateY(-10px);
+    background-color:#7C7D9F; 
+    color: white;
+  }
+  
