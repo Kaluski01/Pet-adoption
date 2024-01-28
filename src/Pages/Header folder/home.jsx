@@ -22,6 +22,20 @@ export default function Home() {
     }
   }, []);
 
+  // Function to add a new pet
+  const addNewPet = (newPet) => {
+    // Update the local state
+    setPets((prevPets) => [newPet, ...prevPets]);
+
+    // Update the local storage
+    try {
+      const updatedPets = JSON.stringify([newPet, ...pets]);
+      localStorage.setItem('pets', updatedPets);
+    } catch (error) {
+      console.error('Error updating pets in local storage:', error);
+    }
+  };
+
   return (
     <>
       <div className='home-bodies'>
@@ -58,8 +72,8 @@ export default function Home() {
       </div>
 
       {/* Display pets information from local storage */}
-      <div className='container-fluid mt-5' style={{ color: 'black' }}>
-        <h2 className='text-center'>Recently Added Pets</h2>
+      <div className='container-fluid mt-5 w-100' style={{ color: 'black' }}>
+        {pets.length > 0 && <h2 className='text-center'>Recently Added Pets</h2>}
         <div className='row d-flex justify-content-center'>
           {pets.map((pet, index) => (
             <div key={index} className='col-lg-4 col-sm-12'>
@@ -76,12 +90,11 @@ export default function Home() {
             </div>
           ))}
         </div>
+        <Pets numberOfDogs={10} showFooter={false} addNewPet={addNewPet} />
+        <Pets numberOfCats={100} showFooter={false} addNewPet={addNewPet} />
+        <TestimonialCards />
+        <Footer />
       </div>
-
-      <Pets numberOfDogs={10} showFooter={false} />
-      <Pets numberOfCats={100} showFooter={false} />
-      <TestimonialCards />
-      <Footer />
     </>
   );
 }

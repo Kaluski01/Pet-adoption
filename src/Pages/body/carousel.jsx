@@ -37,7 +37,7 @@ const TestimonialCards = () => {
   }, [testimonials.length]);
 
   return (
-    <div className="container-fluid bg-dark mb-5 p-5">
+    <div className="container-fluid bg-dark mb-5 p-5" style={{paddingBottom:'50px'}}>
       <h1 className="test text-center">Testimonials</h1>
       <div className="row">
         <div className="col-lg-8 col-12 mx-auto mt-5">
