@@ -37,10 +37,10 @@ const TestimonialCards = () => {
   }, [testimonials.length]);
 
   return (
-    <div className="container-fluid bg-dark mb-5 p-5" style={{paddingBottom:'50px'}}>
+    <div className="container-fluid bg-dark mb-5 w-100 p-5" style={{paddingBottom:'50px'}}>
       <h1 className="test text-center">Testimonials</h1>
       <div className="row">
-        <div className="col-lg-8 col-12 mx-auto mt-5">
+        <div className="col-lg-7 col-12 mx-auto mt-5">
           <Carousel controls={false} interval={10000} activeIndex={activeIndex} onSelect={() => {}}>
             {testimonials.map((testimonial, index) => (
               <Carousel.Item key={index} className="d-flex align-items-center justify-content-center">

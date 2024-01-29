@@ -20,7 +20,7 @@ const EducationalContentCard = () => {
               {/* first card */}
               <Card className='paw-card'>
                 <Card.Img className='kkk' style={{ width: '100%' }} src={image1} />
-                <Card.Body>
+                <Card.Body className='gap-5'>
                   <Card.Title>Educational Content</Card.Title>
                   <Card.Text className='text'>
                     Discover valuable insights on pet care, training, and more. Learn how to provide the best for your furry friend.
@@ -33,8 +33,8 @@ const EducationalContentCard = () => {
               {/* Repeat the structure for the other cards with lg={6} */}
               {/* second card */}
               <Card className='paw-card'>
-                <Card.Img style={{ width: '100%', height: '350px' }} src={image4} />
-                <Card.Body>
+                <Card.Img style={{ width: '100%', height: '400px' }} src={image4} />
+                <Card.Body className='gap-5'>
                   <Card.Title>Health and Wellness</Card.Title>
                   <Card.Text className='text'>
                     Explore articles on maintaining your pet's health and ensuring their overall well-being. Your guide to a happy, healthy pet.

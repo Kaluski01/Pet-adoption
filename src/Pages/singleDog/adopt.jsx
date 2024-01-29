@@ -98,7 +98,20 @@ export default function DogCard({ showDogCard, setShowDogCard }) {
               <br />
               <label>
                 If yes, how many?
-                <input type="number" name="number" required />
+                <select name="number" required>
+                  <option value="Pick a number" className='w-50'>Choose</option>
+                  <option value="1">1</option>
+                  <option value="2">2</option>
+                  <option value="3">3</option>
+                  <option value="4">4</option>
+                  <option value="5">5</option>
+                  <option value="6">6</option>
+                  <option value="7">7</option>
+                  <option value="8">8</option>
+                  <option value="9">9</option>
+                  <option value="10">10</option>
+                  {/* Add more options as needed */}
+                </select>
               </label>
               <br />
               <label>

@@ -1,11 +1,12 @@
 import React from 'react';
 // import IMG from '../assets/catss.png';
 import './about.css';
+import Footer from '../footer/footer';
 
 export default function About() {
   return (
     <>
-      <div className="container-fluid">
+      <div className="container w-100">
         <div className="row">
           <div className="col-lg-12 col-12">
             <div className='first text-center'>
@@ -27,6 +28,7 @@ export default function About() {
           </div>
         </div>
       </div>
+      <Footer/>
     </>
   );
 }

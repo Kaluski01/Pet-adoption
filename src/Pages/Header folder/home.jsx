@@ -6,6 +6,7 @@ import Card from 'react-bootstrap/Card';
 import TestimonialCards from '../body/carousel';
 import Footer from '../footer/footer';
 import Pets from './pet';
+import SellerDash from '../seller dashboard/sellerdash'; 
 import { Link } from 'react-router-dom';
 
 export default function Home() {
@@ -91,10 +92,11 @@ export default function Home() {
           ))}
         </div>
       </div>
+      {/* <SellerDash addNewPet={addNewPet} /> */}
       <Pets numberOfDogs={10} showFooter={false} addNewPet={addNewPet} />
-        <Pets numberOfCats={100} showFooter={false} addNewPet={addNewPet} />
+      <Pets numberOfCats={100} showFooter={false} addNewPet={addNewPet} />
       <TestimonialCards />
-        <Footer />
+      <Footer />
     </>
   );
 }
