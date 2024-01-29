@@ -16,8 +16,6 @@
     padding-bottom: 200px;
 }
 .paw-card{
-    /* width: 100%; */
-    /* gap: 10px; */
     height: 500px;
 }
 .kkk{
@@ -27,8 +25,9 @@
     .custom-col{
         display:  flex;
         flex-wrap: wrap;
-        width: 50%;
-        /* height: 50px; */
+        width: 60%;
+        gap: 10px;
+        height: 150px;
  }
  .kkk{
     height: 200px;

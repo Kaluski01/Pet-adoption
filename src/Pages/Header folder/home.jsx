@@ -90,11 +90,11 @@ export default function Home() {
             </div>
           ))}
         </div>
-        <Pets numberOfDogs={10} showFooter={false} addNewPet={addNewPet} />
-        <Pets numberOfCats={100} showFooter={false} addNewPet={addNewPet} />
-        <TestimonialCards />
-        <Footer />
       </div>
+      <Pets numberOfDogs={10} showFooter={false} addNewPet={addNewPet} />
+        <Pets numberOfCats={100} showFooter={false} addNewPet={addNewPet} />
+      <TestimonialCards />
+        <Footer />
     </>
   );
 }
