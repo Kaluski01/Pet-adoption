@@ -6,7 +6,7 @@ import Card from 'react-bootstrap/Card';
 import TestimonialCards from '../body/carousel';
 import Footer from '../footer/footer';
 import Pets from './pet';
-import SellerDash from '../seller dashboard/sellerdash'; 
+// import SellerDash from '../seller dashboard/sellerdash'; 
 import { Link } from 'react-router-dom';
 
 export default function Home() {
