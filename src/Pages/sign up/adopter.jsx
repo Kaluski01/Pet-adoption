@@ -110,13 +110,13 @@ export default function AdopterSignUp() {
           {error && <p className="error-message">{error}</p>}
           {spinner && <Spinner animation="border" variant='primary' className="mt-3" />}
           {showWelcomeMessage && (
-            <p className="welcome-message">Thank you for joining us</p>
+            <p className="welcome-message" style={{fontSize:'20px'}}>Thank you for joining us</p>
           )}
           {!showWelcomeMessage && (
-            <form className='form-hold' onSubmit={handleSubmit}>
-              <label style={{ color: 'white' }}>
+            <form className='form-hold w-100 gap-5' onSubmit={handleSubmit}>
+              <label style={{ color: 'white', width:'100%' }}>
                 Enter your name:
-                <input
+                <input style={{width:'50%'}}
                   type="text"
                   name="name"
                   value={firstname}
@@ -134,9 +134,9 @@ export default function AdopterSignUp() {
                 />
               </label>
               <br />
-              <label style={{ color: 'white' }}>
+              <label style={{ color: 'white', width:'100%' }}>
                 Please enter your email:
-                <input
+                <input style={{width:'40%'}}
                   type="email"
                   name="email"
                   value={email}

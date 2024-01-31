@@ -55,7 +55,7 @@ export default function Home() {
           <div className='contianeds'>
             <img src={IMG2} alt='' />
             <div>
-              <Card className='lll'>
+              <Card className='lll col-12'>
                 <Card.Body className='home-texts'>
                   <Card.Title>800+</Card.Title>
                   <Card.Title>500+</Card.Title>
@@ -77,7 +77,7 @@ export default function Home() {
         {pets.length > 0 && <h2 className='text-center'>Recently Added Pets</h2>}
         <div className='row d-flex justify-content-center'>
           {pets.map((pet, index) => (
-            <div key={index} className='col-lg-4 col-sm-12'>
+            <div key={index} className='col-lg-4 col-10 mt-4'>
               <Link style={{ textDecoration: 'none' }} to={`/Storedpets/${encodeURIComponent(pet.name)}`}>
                 <Card>
                   <Card.Body>

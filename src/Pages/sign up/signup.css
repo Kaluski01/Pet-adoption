@@ -11,10 +11,14 @@
   margin-top: 100px;
     width: 50%;
     background-color :#7C7D9F;
-    height: 400px;
+    height: 500px;
 }
 .form-hold{
-    padding: 20px;
+  margin-top: 20px;
+    padding: 30px;
+    /* display: flex; */
+    /* flex-wrap: wrap; */
+    /* gap: 20px; */
 }
 .error-message {
     color: white;

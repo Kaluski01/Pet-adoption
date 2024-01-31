@@ -6,8 +6,8 @@ import Footer from '../footer/footer';
 export default function About() {
   return (
     <>
-      <div className="container w-100">
-        <div className="row">
+      <div className="">
+        <div className="">
           <div className="col-lg-12 col-12">
             <div className='first text-center'>
               <div className='first-texts'>
@@ -16,7 +16,7 @@ export default function About() {
                 PET FINDER is a trusted platform that brings together reliable sellers and caring adopters. Our mission is to facilitate responsible pet ownership and provide a secure space for finding your perfect furry friend.</p>
               </div>
             </div>
-            <div style={{ color: 'black' }}>
+            <div style={{ color: 'black',marginTop:'30px' }}>
               <h2>Key Features:</h2>
               <h4>Paw-ssentials:</h4>
               <p>Our educational platform dedicated to teaching proper pet ownership. Explore a wealth of resources to ensure a happy and healthy life for your pets.</p>
