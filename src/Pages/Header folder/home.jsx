@@ -5,8 +5,8 @@ import './home.css';
 import Card from 'react-bootstrap/Card';
 import TestimonialCards from '../body/carousel';
 import Footer from '../footer/footer';
+import Storycard from '../../story-card/Storycard';
 import Pets from './pet';
-// import SellerDash from '../seller dashboard/sellerdash'; 
 import { Link } from 'react-router-dom';
 
 export default function Home() {
@@ -71,10 +71,10 @@ export default function Home() {
           </div>
         </div>
       </div>
-
+    
       {/* Display pets information from local storage */}
-      <div className='container-fluid mt-5 w-100' style={{ color: 'black' }}>
-        {pets.length > 0 && <h2 className='text-center'>Recently Added Pets</h2>}
+      <div className='container-fluid mt-5 w-100' style={{ color: 'black', height:'500px', backgroundColor:'#EFEEF1'}}>
+        {pets.length > 0 && <h2 className='text-center'>Pets Available for Adoption</h2>}
         <div className='row d-flex justify-content-center'>
           {pets.map((pet, index) => (
             <div key={index} className='col-lg-4 col-10 mt-4'>
@@ -93,6 +93,9 @@ export default function Home() {
         </div>
       </div>
       {/* <SellerDash addNewPet={addNewPet} /> */}
+      <div className='w-50'>
+     <Storycard/>
+     </div>
       <Pets numberOfDogs={10} showFooter={false} addNewPet={addNewPet} />
       <Pets numberOfCats={100} showFooter={false} addNewPet={addNewPet} />
       <TestimonialCards />
