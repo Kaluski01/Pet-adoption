@@ -57,7 +57,7 @@ export default function Cat({ numberOfCat,showFooter = true }) {
               {cat?.map((catData) => (
                 <Col key={catData.id} md={4} lg={4} sm={12} className="mb-4 mt-5">
                   {catData.breeds?.[0]?.name && (
-                    <Link to={`/${catData.id}`} className='link'>
+                    <Link to={`/${catData.name}/${catData.id}`} className='link'>
                       <Card style={{ height: '400px' }} className='cat-card'>
                         <Card.Img variant="" style={{ height: '300px' }} src={catData.url} alt={`Dog ${catData.id}`} className="img-fluids" />
                         <Card.Body>

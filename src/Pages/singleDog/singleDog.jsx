@@ -68,8 +68,8 @@ export default function SingleDog() {
           <div className="col-lg-12 mb-5">
             {dog ? (
               <div className='mt-3 p-5 mb-5 w-100 d-flex flex-wrap'>
-                <img src={dog.url} alt={dog.id} className="img-fluid w-75 h-50" />
-                <div className='w-100'>
+                <img src={dog.url} alt={dog.id} className="img-fluid w-100 h-50" />
+                <div className='w-100 col-12'>
                   <h2>{dog.breeds?.[0]?.name}</h2>
                   <ul className=''>
                     <li className='dog-list'>Bred For: {dog.breeds?.[0]?.bred_for}</li>

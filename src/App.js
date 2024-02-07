@@ -57,7 +57,7 @@ function App() {
           <Route path="/dogs/:name/:id" element={<SingleDog />} />
           <Route path="/Storedpets/:name" element={<Storedpets />} />
           <Route path="/:name" element={<SingleDog />} />
-          <Route path="/cats/:id" element={<SingleCat />} />
+          <Route path="/:id" element={<SingleCat />} />
           <Route path="signup/signup" element={<SignupPage />} />
           <Route path="/seller" element={<Seller />} />
           <Route path="/adopter" element={<Adopter />} />

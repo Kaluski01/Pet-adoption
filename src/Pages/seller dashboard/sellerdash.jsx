@@ -1,11 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-// import Container from 'react-bootstrap/Container';
-// import Nav from 'react-bootstrap/Nav';
-// import Navbar from 'react-bootstrap/Navbar';
-// import NavDropdown from 'react-bootstrap/NavDropdown';
 import Spinner from 'react-bootstrap/Spinner';
-// import { Link } from 'react-router-dom'; // Import Link from react-router-dom
 import './sellerdash.css';
 
 const SellerDash = () => {
@@ -18,13 +13,15 @@ const SellerDash = () => {
   const [petWeight, setPetWeight] = useState('');
   const [PetHeight, setPetHeight] = useState('');
   const [price, setPrice] = useState('');
-  const [, setPets] = useState([]);
+  const [sex, setSex] = useState('');
+  const [specie, setSpecie] = useState('');
+  const [ownername, setOwnerName] = useState('');
+  const [ownerphone, setOwnerPhone] = useState('');
   const [spinner, setSpinner] = useState(false);
   const [success, setSuccess] = useState(false);
-  const [ownername, setOwnerName] = useState('')
-  const [ownerphone, setOwnerPhone] =useState('')
+
   const handleAddPet = async () => {
-    if (!petName || !petAge || !petWeight || !PetHeight || !petImage || !price|| !ownername||! ownerphone) {
+    if (!petName || !petAge || !petWeight || !PetHeight || !petImage || !price || !ownername || !ownerphone || !sex || !specie) {
       alert('Please fill in all the fields before adding a pet.');
       return;
     }
@@ -40,7 +37,9 @@ const SellerDash = () => {
       height: PetHeight,
       price: price,
       ownername: ownername,
-      ownerphone: ownerphone
+      ownerphone: ownerphone,
+      sex: sex,
+      specie: specie
     };
 
     // Get the existing pets from local storage
@@ -49,19 +48,6 @@ const SellerDash = () => {
 
     // Update the pets array with the new pet
     const updatedPets = [...existingPets, newPet];
-    setPets(updatedPets);
-
-    // Clear the form fields
-    setPetName('');
-    setPetDescription('');
-    setPetImage('');
-    setAge('');
-    setPetWeight('');
-    setPetHeight('');
-    setPrice('');
-    setOwnerName('')
-    setOwnerPhone('')
-    // Store the updated pets array in localStorage
     localStorage.setItem('pets', JSON.stringify(updatedPets));
 
     // Redirect to the pet details route with the pet name as a parameter
@@ -109,113 +95,176 @@ const SellerDash = () => {
   }, [success]);
 
   return (
-    <>
-      {spinner && <Spinner animation="grow" />}
-      <div className="mt-5">
-        <div style={{height: '500px' }}>
-          <h1 style={{ color: 'gray', marginTop:"30px", fontSize:'25px'}}>Please post a pet and write some info</h1>
-          {/* Form for adding pet information */}
-          <form style={{marginLeft:'20px', paddingBottom:'20px'}}>
-            <label>
-              Pet Name:
+    <div className="container mt-5 p-5 bg-dark">
+      <div className="card">
+        <div className="card-body">
+          <h1 className="card-title" style={{ color: 'gray', fontSize: '20px' }}>Please post a pet and write some info</h1>
+          <form>
+            <div className="form-group">
+              <label>Pet Name:</label>
               <input
                 type="text"
+                className="form-control"
                 value={petName}
                 onChange={(e) => setPetName(e.target.value)}
               />
-            </label>
-            <br />
-            <label>
-              Age:
+            </div>
+            <div className="form-group">
+              <label>Age:</label>
               <input
                 type="text"
+                className="form-control"
                 name="Age"
                 value={petAge}
                 onChange={(e) => setAge(e.target.value)}
               />
-            </label>
+            </div>
+            <div className="form-group">
+              <label>Sex:</label>
+              <div>
+                <label>
+                  <input
+                    type="radio"
+                    name="sex"
+                    value="male"
+                    checked={sex === "male"}
+                    onChange={(e) => setSex(e.target.value)}
+                  /> Male
+                </label>
+                <label>
+                  <input
+                    type="radio"
+                    name="sex"
+                    value="female"
+                    checked={sex === "female"}
+                    onChange={(e) => setSex(e.target.value)}
+                  /> Female
+                </label>
+              </div>
+            </div>
             <br />
-            <label>
-              Weight:
+            <div className="form-group">
+              <label>Species:</label>
+              <div>
+                <label>
+                  <input
+                    type="radio"
+                    name="specie"
+                    value="dog"
+                    checked={specie === "dog"}
+                    onChange={(e) => setSpecie(e.target.value)}
+                  /> Dog
+                </label>
+                <label>
+                  <input
+                    type="radio"
+                    name="specie"
+                    value="cat"
+                    checked={specie === "cat"}
+                    onChange={(e) => setSpecie(e.target.value)}
+                  /> Cat
+                </label>
+                <label>
+                  <input
+                    type="radio"
+                    name="specie"
+                    value="other"
+                    checked={specie === "other"}
+                    onChange={(e) => setSpecie(e.target.value)}
+                  /> Other
+                </label>
+              </div>
+            </div>
+            <br />
+            <div className="form-group">
+              <label>Weight:</label>
               <input
                 type="text"
+                className="form-control"
                 name="weight"
                 value={petWeight}
                 onChange={(e) => setPetWeight(e.target.value)}
               />
-            </label>
+            </div>
             <br />
-            <label>
-              Height:
+            <div className="form-group">
+              <label>Height:</label>
               <input
                 type="text"
+                className="form-control"
                 name="height"
                 value={PetHeight}
                 onChange={(e) => setPetHeight(e.target.value)}
               />
-            </label>
+            </div>
             <br />
-            <label>
-              Pet Description:
+            <div className="form-group">
+              <label>Pet Description:</label>
               <textarea
+                className="form-control"
                 value={petDescription}
                 onChange={(e) => setPetDescription(e.target.value)}
               />
-            </label>
+            </div>
             <br />
-            <label>
-              Price rate:
+            <div className="form-group">
+              <label>Price rate:</label>
               <input
                 type="text"
+                className="form-control"
                 name="price"
                 value={price}
                 onChange={(e) => setPrice(e.target.value)}
               />
-            </label>
+            </div>
             <br />
-            <label>
-              Pet Image URL:
+            <div className="form-group">
+              <label>Pet Image URL:</label>
               <input
                 type="file"
+                className="form-control-file"
                 accept="image/*"
                 onChange={handleImageChange}
               />
-            </label>
-            {petImage && (
-              <div>
-                <p>Image Preview:</p>
-                <img src={petImage} alt="Pet Preview" style={{ width: '20%', height: '200px' }} />
-              </div>
-            )}
+              {petImage && (
+                <div className='mt-2'>
+                  <p>Image Preview:</p>
+                  <img src={petImage} alt="Pet Preview" style={{ width: '20%', height: '200px' }} />
+                </div>
+              )}
+            </div>
             <br />
-            <label>
-              Owner name:
+            <div className="form-group">
+              <label>Owner name:</label>
               <input
                 type="text"
+                className="form-control"
                 name="owner"
                 value={ownername}
                 onChange={(e) => setOwnerName(e.target.value)}
               />
-            </label>
+            </div>
             <br />
-            <label>
-              Owner Phone:
+            <div className="form-group">
+              <label>Owner Phone:</label>
               <input
                 type="number"
+                className="form-control"
                 name="ownerphone"
                 value={ownerphone}
                 onChange={(e) => setOwnerPhone(e.target.value)}
               />
-            </label>
+            </div>
             <br />
-            <button type="button" onClick={handleAddPet}>
+            <button type="button" className="btn btn-primary" onClick={handleAddPet}>
               Add pet
             </button>
             {success && <p style={{ color: 'green' }}>Info added</p>}
           </form>
+          {spinner && <Spinner animation="grow" />}
         </div>
       </div>
-    </>
+    </div>
   );
 };
 

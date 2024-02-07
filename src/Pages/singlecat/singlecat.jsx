@@ -50,7 +50,7 @@ export default function SingleCat() {
       <div className='container mx-auto'>
       <div className="row">
         <div className="col-lg-12">
-          <h1 className='first'>{cat?.breeds?.[0]?.name}</h1>
+          <h1 className='mt-5' style={{color:'black'}}>{cat?.breeds?.[0]?.name}</h1>
           {cat ? (
             <div className='cat-details py-5  w-100 d-flex flex-wrap'>
               <img src={cat.url} alt={cat.id} className=" w-75" style={{height:'350px'}} />
