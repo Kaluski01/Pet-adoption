@@ -8,14 +8,15 @@
 }
 
 .form-container{
-  margin-top: 100px;
+  margin-top: 150px;
     width: 50%;
     background-color :#7C7D9F;
     height: 500px;
 }
 .form-hold{
-  margin-top: 20px;
+  /* margin-top: 50px; */
     padding: 30px;
+    border-radius: 20px;
     /* display: flex; */
     /* flex-wrap: wrap; */
     /* gap: 20px; */

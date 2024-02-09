@@ -9,11 +9,13 @@ import Cat from './Pages/cat folder/cat';
 import Own from './Pages/ownership/own';
 import Search from './Pages/searchbar/search';
 import About from './Pages/Header folder/about';
-import Sellerdash from './Pages/seller dashboard/sellerdash';
+import Sellerdash from './Pages/sellerdashboard/sellerdash'
 import SignupPage from './Pages/sign up/signup';
 import Seller from './Pages/sign up/seller';
 import Adopter from './Pages/sign up/adopter';
 import Storedpets from './Pages/Header folder/Storedpets';
+import Login from './Pages/sign up/Login';
+import Addpet from './Pages/sellerdashboard/Addpet';
 
 function App() {
   const [pets, setPets] = useState([]);
@@ -64,7 +66,9 @@ function App() {
           <Route path="Dog" element={<Dog />} />
           <Route path="Cat" element={<Cat />} />
           <Route path="Search" element={<Search />} />
-          <Route path="/sellerdash" element={<Sellerdash addNewPet={addNewPet} />} />
+          <Route path='/sellerdashboard/sellerdash' element={<Sellerdash addNewPet={addNewPet} />} />
+          <Route path='/Login' element={<Login/>}/>
+          <Route path='/sellerdashboard/Addpet' element={<Addpet/>}/>
         </Routes>
       </BrowserRouter>
     </>

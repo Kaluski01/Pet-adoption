@@ -73,7 +73,7 @@ export default function Home() {
       </div>
     
       {/* Display pets information from local storage */}
-      <div className='container-fluid mt-5 w-100' style={{ color: 'black', height:'500px', backgroundColor:'#EFEEF1'}}>
+      <div className='container-fluid mt-5 w-100' style={{ color: 'black'}}>
         {pets.length > 0 && <h2 className='text-center'>Pets Available for Adoption</h2>}
         <div className='row d-flex justify-content-center'>
           {pets.map((pet, index) => (

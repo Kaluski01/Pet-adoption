@@ -42,7 +42,8 @@ export default function DogCard({ showDogCard, setShowDogCard }) {
 
       if (matchingAdopter) {
         // Set welcome message
-        setWelcomeMessage(`Thank you for choosing this website, ${matchingAdopter.name}!`);
+        setWelcomeMessage(`Thank you for choosing our website. We appreciate your interest in adopting a pet. Rest assured, we'll review your application promptly and get back to you shortly. In the meantime, feel free to explore our pet listings and keep in touch with the seller using the contact information provided on the pet details page. We look forward to connecting with you further.  ${matchingAdopter.name}`);
+
 
         // Handle adoption submission logic here
         setFormCompleted(true);

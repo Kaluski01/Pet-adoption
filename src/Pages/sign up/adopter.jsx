@@ -1,25 +1,8 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import Spinner from 'react-bootstrap/Spinner';
-import { initializeApp } from 'firebase/app';
-import 'firebase/auth';
+import Toast from 'react-bootstrap/Toast'; // Add this import
 import './signup.css';
-
-const firebaseConfig = {
-  apiKey: "AIzaSyA8R-6JStMc680KVXXQ_XGSRche5OQUtl4",
-  authDomain: "pet-adoption-project-99a08.firebaseapp.com",
-  projectId: "pet-adoption-project-99a08",
-  storageBucket: "pet-adoption-project-99a08.appspot.com",
-  messagingSenderId: "226601747265",
-  appId: "1:226601747265:web:24326e722ad314f751d7c0",
-  measurementId: "G-WJRCH01VP2"
-};
-// Initialize Firebase
-initializeApp(firebaseConfig);
-
-// ... (imports remain the same)
-
-// ... (other imports remain the same)
 
 export default function AdopterSignUp() {
   const [firstname, setFirstName] = useState('');
@@ -39,11 +22,7 @@ export default function AdopterSignUp() {
     setTimeout(() => {
       if (!firstname || !number || !email || !address || !password) {
         setError('Please fill in all required fields.');
-
-        // Clear the error message after 5 seconds
-        setTimeout(() => {
-          setError('');
-        }, 5000);
+        setSpinner(false);
       } else {
         setError('');
 
@@ -110,7 +89,12 @@ export default function AdopterSignUp() {
           {error && <p className="error-message">{error}</p>}
           {spinner && <Spinner animation="border" variant='primary' className="mt-3" />}
           {showWelcomeMessage && (
-            <p className="welcome-message" style={{fontSize:'20px'}}>Thank you for joining us</p>
+            <Toast className='w-100' onClose={() => setShowWelcomeMessage(false)} show={showWelcomeMessage} autohide>
+              <Toast.Header>
+                <strong className="me-auto">Success</strong>
+              </Toast.Header>
+              <Toast.Body>Thank you for signing up! <Link to='/'><button className='btn btn-primary'>Ok</button></Link></Toast.Body>
+            </Toast>
           )}
           {!showWelcomeMessage && (
             <form className='form-hold w-100 gap-5' onSubmit={handleSubmit}>
@@ -163,10 +147,9 @@ export default function AdopterSignUp() {
                   onChange={handleChange}
                 />
               </label>
-              
               <br />
               <Link to="/signup/signup">
-              <button className='btn btn-primary mt-3 me-4'>
+                <button className='btn btn-primary mt-3 me-4'>
                   Back
                 </button>
               </Link>
@@ -175,9 +158,9 @@ export default function AdopterSignUp() {
                   Submit
                 </button>
               )}
-             
             </form>
           )}
+                   <Link to='/Login'><p style={{color:'white', textDecoration:'none'}}>Already have an account? <button className='btn btn-primary'> Log-in</button></p></Link>
         </div>
       </div>
     </>

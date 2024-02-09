@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, } from 'react';
 import Spinner from 'react-bootstrap/Spinner';
 import { Link, useNavigate } from 'react-router-dom';
 import './seller.css';
@@ -14,15 +14,6 @@ const Seller = () => {
   const [spinner, setSpinner] = useState(false);
   const [acceptance, setAcceptance]=useState(false)
   const [showWelcomeMessage, setShowWelcomeMessage] = useState(false);
-
-  // Check for an existing user in local storage when the component mounts
-  useEffect(() => {
-    const storedUser = JSON.parse(localStorage.getItem('user'));
-    if (storedUser) {
-      navigate('/sellerdash', { state: { firstname: storedUser.firstname } });
-    }
-  }, [navigate]);
-
   const handleSubmit = (e) => {
     e.preventDefault();
     setSpinner(true);
@@ -63,7 +54,7 @@ const Seller = () => {
         setTimeout(() => {
           setShowWelcomeMessage(false);
           // Redirect to the seller dashboard using navigate
-          navigate('/sellerdash', { state: { firstname } });
+          navigate('/sellerdashboard/sellerdash', { state: { firstname } });
         }, 2000);
       }
 
@@ -172,7 +163,10 @@ const Seller = () => {
                     Submit
                   </button>
                 )}
+                <br />
               </div>
+              <br />
+              <Link to='/Login'><p style={{color:'white', textDecoration:'none'}}>Already have an account? <button className='btn btn-primary'> Log-in</button></p></Link>
             </form>
           )}
         </div>
