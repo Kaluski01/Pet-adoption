@@ -8,8 +8,8 @@ export default function Sellerdash() {
   // const navigate = useNavigate();
 
   return (
-    <div className='bg-dark' style={{height:'500px', color:'white', marginTop:'55px'}}>
-      <h1>Welcome to your Dashboard, {firstname}!</h1>
+    <div className='bg-dark' style={{height:'500px', color:'white', marginTop:'60px'}}>
+      <h5>Welcome to your Dashboard, {firstname}!</h5>
         <div className="container">
           <div className="row">
             <div className="col-lg-12">

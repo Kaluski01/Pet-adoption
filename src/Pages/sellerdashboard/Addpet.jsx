@@ -116,7 +116,7 @@ const Addpet = () => {
   }, [success]);
 
   return (
-    <div className="container mt-5 p-5 bg-dark">
+    <div className="container mt-5 p-4 bg-dark">
       <div className="card">
         <div className="card-body">
           {success ? (
