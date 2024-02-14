@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import Home from './Pages/Header folder/home';
-import { BasicExample } from './Pages/Header folder/navbar';
+import BasicExample  from './Pages/Header folder/navbar';
 import Dog from './Pages/dog folder/dog';
 import SingleDog from './Pages/singleDog/singleDog';
 import SingleCat from './Pages/singlecat/singlecat';
@@ -16,6 +16,22 @@ import Adopter from './Pages/sign up/adopter';
 import Storedpets from './Pages/Header folder/Storedpets';
 import Login from './Pages/sign up/Login';
 import Addpet from './Pages/sellerdashboard/Addpet';
+const createHost = require('cross-domain-storage/host');
+const createGuest = require('cross-domain-storage/guest'); // Import createGuest
+
+const storageHost = createHost([
+  {
+      origin: 'http://pet-adoption-seven.vercel.app',
+      allowedMethods: ['get', 'set', 'remove'],
+  },
+  {
+      origin: 'http://pet-adoption-seven.vercel.app',
+      allowedMethods: ['get'],
+  },
+]);
+
+// Create a guest to communicate with the host
+const storageGuest = createGuest('http://pet-adoption-seven.vercel.app');
 
 function App() {
   const [pets, setPets] = useState([]);
@@ -44,6 +60,9 @@ function App() {
     } catch (error) {
       console.error('Error updating pets in local storage:', error);
     }
+
+    // Update the remote storage via guest
+    storageGuest.setItem('pets', [newPet, ...pets]);
   };
 
   return (

@@ -2,7 +2,7 @@ import { Container, Nav, Navbar, NavDropdown } from 'react-bootstrap';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import { Link } from 'react-router-dom';
 
-export function BasicExample() {
+export default function BasicExample() {
   return (
     <Navbar expand="lg" bg="light"  data-bs-theme="dark" className="bg-body-tertiary fixed-top" >
       <Container>

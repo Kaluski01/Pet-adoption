@@ -25,7 +25,7 @@ const PetCard = () => {
       <div className="card-body">
         <h5 className="card-title">Total Pets Added</h5>
         <p className="card-text">{addedPets.length}</p>
-        <ul>
+        <ul className='bg-dark'>
           {addedPets.map((pet, index) => (
             <li key={index}>{pet.name}</li>
           ))}

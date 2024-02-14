@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { useParams } from 'react-router-dom';
+import { useParams,Link } from 'react-router-dom';
 import DogCard from '../singleDog/adopt';
 export default function StoredPets() {
   const { name } = useParams();
@@ -41,9 +41,14 @@ export default function StoredPets() {
             <p>Pet not found.</p>
           )}
         </div>
-        <button className='adopt' onClick={handleAdoptClick}>
+                <div>
+                <Link to='/'>
+            <button className='adopt'>Back</button>
+        </Link>
+                <button className='adopt' onClick={handleAdoptClick}>
                     Adopt me!
-        </button>
+                </button>
+                </div>
         <DogCard showDogCard={showDogCard} setShowDogCard={setShowDogCard} />
       </div>
     </div>
