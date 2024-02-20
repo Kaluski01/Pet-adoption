@@ -18,8 +18,8 @@ const StoryCard = () => {
 
     return (
         <div className="container"> {/* Center the card using Bootstrap */}
-            <div className="row">
-                <div className="col"> {/* Make the card span full width on small screens */}
+            <div className="row justify-content-center"> {/* Center the card on small screens */}
+                <div className="col-md-8"> {/* Make the card span full width on small screens */}
                     <div className="card small-card"> {/* Apply small-card class for smaller size */}
                         <div className="card-body">
                             <img src={IMG} alt="" />

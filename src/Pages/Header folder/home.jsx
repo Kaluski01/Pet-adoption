@@ -92,10 +92,15 @@ export default function Home() {
           ))}
         </div>
       </div>
-      {/* <SellerDash addNewPet={addNewPet} /> */}
-      <div className='w-50'>
-     <Storycard/>
-     </div>
+
+      <div className='container-fluid mt-5 w-100'>
+        <div className='row d-flex justify-content-center'>
+          <div className='col-lg-8 col-12'>
+            <Storycard/>
+          </div>
+        </div>
+      </div>
+
       <Pets numberOfDogs={10} showFooter={false} addNewPet={addNewPet} />
       <Pets numberOfCats={100} showFooter={false} addNewPet={addNewPet} />
       <TestimonialCards />

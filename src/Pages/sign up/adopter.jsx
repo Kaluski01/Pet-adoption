@@ -87,7 +87,6 @@ export default function AdopterSignUp() {
       <div className="center-container mx-auto">
         <div className='form-container'>
           {error && <p className="error-message">{error}</p>}
-          {spinner && <Spinner animation="border" variant='primary' className="mt-3" />}
           {showWelcomeMessage && (
             <Toast className='w-100' onClose={() => setShowWelcomeMessage(false)} show={showWelcomeMessage} autohide>
               <Toast.Header>
@@ -147,6 +146,7 @@ export default function AdopterSignUp() {
                   onChange={handleChange}
                 />
               </label>
+              {spinner && <Spinner animation="border" variant='primary' className="mt-3" />}
               <br />
               <Link to="/signup/signup">
                 <button className='btn btn-primary mt-3 me-4'>

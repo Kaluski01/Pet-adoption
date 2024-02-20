@@ -25,17 +25,7 @@ function App() {
 
   // Fetch pet information from local storage on app load
   useEffect(() => {
-    try {
-      const storedPets = localStorage.getItem('pets');
-      if (storedPets) {
-        setPets(JSON.parse(storedPets));
-      }
-    } catch (error) {
-      console.error('Error loading pets from local storage:', error);
-    }
-
-    // Listen for changes in the local storage
-    window.addEventListener('storage', (event) => {
+    const handleStorageChange = (event) => {
       if (event.key === 'pets') {
         try {
           const storedPets = event.newValue;
@@ -46,8 +36,17 @@ function App() {
           console.error('Error loading pets from local storage:', error);
         }
       }
-    });
-  }, []);
+    };
+  
+    // Listen for changes in the local storage
+    window.addEventListener('storage', handleStorageChange);
+  
+    // Clean up the event listener when the component unmounts
+    return () => {
+      window.removeEventListener('storage', handleStorageChange);
+    };
+  }, []); // Empty dependency array to ensure this effect runs only once
+  
 
   // Function to add a new pet
   const addNewPet = (newPet) => {

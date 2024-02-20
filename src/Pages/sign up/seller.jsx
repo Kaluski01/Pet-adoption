@@ -88,10 +88,6 @@ const Seller = () => {
       <div className="center-container mx-auto">
         <div className='form-container' style={{color:'white'}}>
           {error && <p className="error-message">{error}</p>}
-          {spinner && <Spinner animation="border" variant='primary' className="mt-3" />}
-          {showWelcomeMessage && (
-            <p className="welcome-message">Thank you for joining us</p>
-          )}
           {!showWelcomeMessage && (
             <form className='form-hold' onSubmit={handleSubmit}>
               <label style={{ color: 'white' }}>
@@ -154,6 +150,10 @@ const Seller = () => {
               I understand and accept that my phone number may be shared with potential adopters.
        
               </label>
+              {spinner && <Spinner animation="border" variant='primary' className="mt-3" />}
+          {showWelcomeMessage && (
+            <p className="welcome-message">Thank you for joining us</p>
+          )}
               <div className='d-flex gap-5 align-items-center'>
                 <Link to='/signup/signup'>
                   <button className='btn btn-primary mt-3' type="button">Back</button>
