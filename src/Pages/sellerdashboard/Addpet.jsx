@@ -115,17 +115,21 @@ const Addpet = () => {
     return () => clearTimeout(timeout);
   }, [success]);
 
+  const handleToastClose = () => {
+    setSuccess(false);
+  };
+
   return (
     <div className="container mt-5 p-4 bg-dark">
       <div className="card">
         <div className="card-body">
           {success ? (
-            <Toast>
-              <Toast.Header>
-                <strong className="me-auto">{firstname}</strong>
-              </Toast.Header>
-              <Toast.Body>We have successfully added your pet. It can now be seen by possible adopters</Toast.Body>
-            </Toast>
+               <Toast onClose={handleToastClose} show={success} className="position-absolute top-250 start-50 translate-middle">
+               <Toast.Header>
+                 <strong className="me-auto">{firstname}</strong>
+               </Toast.Header>
+               <Toast.Body>We have successfully added your pet. It can now be seen by possible adopters</Toast.Body>
+             </Toast>
           ) : (
             <form>
               <h1 className="card-title" style={{ color: 'gray', fontSize: '20px' }}>Please post a pet and write some info</h1>

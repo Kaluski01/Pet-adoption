@@ -27,7 +27,7 @@ const firebaseConfig = {
   measurementId: "G-WJRCH01VP2"
 };
 
-firebase.initializeApp(firebaseConfig) 
+// firebase.initializeApp(firebaseConfig) 
 
 function App() {
   const [pets, setPets] = useState([]);
@@ -57,7 +57,7 @@ function App() {
           <Route path="/dogs/:name/:id" element={<SingleDog />} />
           <Route path="/Storedpets/:name" element={<Storedpets pets={pets} />} />
           <Route path="/:name" element={<SingleDog />} />
-          <Route path="/:id" element={<SingleCat />} />
+          <Route path="/:name/:id" element={<SingleCat />} />
           <Route path="signup/signup" element={<SignupPage />} />
           <Route path="/seller" element={<Seller />} />
           <Route path="/adopter" element={<Adopter />} />

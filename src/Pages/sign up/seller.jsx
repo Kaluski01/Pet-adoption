@@ -1,4 +1,4 @@
-import React, { useState, } from 'react';
+import React, { useState } from 'react';
 import Spinner from 'react-bootstrap/Spinner';
 import { Link, useNavigate } from 'react-router-dom';
 import './seller.css';
@@ -12,24 +12,23 @@ const Seller = () => {
   const [address, setAddress] = useState('');
   const [password, setPassword] = useState('');
   const [spinner, setSpinner] = useState(false);
-  const [acceptance, setAcceptance]=useState(false)
+  const [acceptance, setAcceptance] = useState(false);
   const [showWelcomeMessage, setShowWelcomeMessage] = useState(false);
+
   const handleSubmit = (e) => {
     e.preventDefault();
     setSpinner(true);
 
     setTimeout(() => {
-      if (!firstname || !number || !email || !address || !password||!acceptance) {
+      if (!firstname || !number || !email || !address || !password || !acceptance) {
         setError('Please fill in all required fields.');
 
-        // Clear the error message after 5 seconds
         setTimeout(() => {
           setError('');
         }, 5000);
       } else {
         setError('');
 
-        // Store data in localStorage
         const user = {
           firstname,
           number,
@@ -40,33 +39,27 @@ const Seller = () => {
         };
         localStorage.setItem('user', JSON.stringify(user));
 
-        // Clear form fields after successful submission
         setFirstName('');
         setNumber('');
         setEmail('');
         setAddress('');
         setPassword('');
-        setAcceptance('')
-        // Display the welcome message
+        setAcceptance('');
         setShowWelcomeMessage(true);
 
-        // Reset the welcome message after 5 seconds and navigate to the seller dashboard
         setTimeout(() => {
           setShowWelcomeMessage(false);
-          // Redirect to the seller dashboard using navigate
           navigate('/sellerdashboard/sellerdash', { state: { firstname } });
-        }, 2000);
+        }, 5000);
       }
 
-      // Always set spinner to false after submission attempt
       setSpinner(false);
     }, 1000);
   };
 
   const handleChange = (e) => {
     const { name, value, checked } = e.target;
-    // const {name,}
-    // Use the input's name attribute to determine which state to update
+
     if (name === 'name') {
       setFirstName(value);
     } else if (name === 'number') {
@@ -77,96 +70,99 @@ const Seller = () => {
       setAddress(value);
     } else if (name === 'password') {
       setPassword(value);
-    }else if(name === 'acceptance'){
-      setAcceptance(checked)
+    } else if (name === 'acceptance') {
+      setAcceptance(checked);
     }
   };
 
   return (
     <>
-      <h1 className='main-sign'>Sign up</h1>
+      <h1 className='main-sign mb-4'>Sign up</h1>
       <div className="center-container mx-auto">
-        <div className='form-container' style={{color:'white'}}>
+        <div className='form-container'>
           {error && <p className="error-message">{error}</p>}
           {!showWelcomeMessage && (
             <form className='form-hold' onSubmit={handleSubmit}>
-              <label style={{ color: 'white' }}>
+              <label>
                 Enter your name:
                 <input
                   type="text"
+                  className="form-control"
                   name="name"
                   value={firstname}
                   onChange={handleChange}
                 />
               </label>
               <br />
-              <label style={{ color: 'white' }}>
+              <label>
                 Phone number:
                 <input
                   type="number"
+                  className="form-control"
                   name="number"
                   value={number}
                   onChange={handleChange}
                 />
               </label>
               <br />
-              <label style={{ color: 'white' }}>
+              <label>
                 Please enter your email:
                 <input
                   type="email"
+                  className="form-control"
                   name="email"
                   value={email}
                   onChange={handleChange}
                 />
               </label>
               <br />
-              <label style={{ color: 'white' }}>
+              <label>
                 Address:
                 <input
                   type="text"
+                  className="form-control"
                   name="address"
                   value={address}
                   onChange={handleChange}
                 />
               </label>
               <br />
-              <label style={{ color: 'white' }}>
+              <label>
                 Password:
                 <input
                   type="password"
+                  className="form-control"
                   name="password"
                   value={password}
                   onChange={handleChange}
                 />
               </label>
               <br />
-              <label className='d-flex justify-content-between gap-3'>
-                    <input
-                type="checkbox"
-                name='acceptance'
-                checked={acceptance}
-                onChange={handleChange}
-              />
-              I understand and accept that my phone number may be shared with potential adopters.
-       
-              </label>
+              <div className="form-check">
+                <input
+                  type="checkbox"
+                  className="form-check-input"
+                  name="acceptance"
+                  checked={acceptance}
+                  onChange={handleChange}
+                />
+                <label className="form-check-label">I understand and accept that my phone number may be shared with potential adopters.</label>
+              </div>
               {spinner && <Spinner animation="border" variant='primary' className="mt-3" />}
-          {showWelcomeMessage && (
-            <p className="welcome-message">Thank you for joining us</p>
-          )}
-              <div className='d-flex gap-5 align-items-center'>
+              {showWelcomeMessage && (
+                <p className="welcome-message">Thank you for joining us</p>
+              )}
+              <div className='d-flex justify-content-between mt-3'>
                 <Link to='/signup/signup'>
-                  <button className='btn btn-primary mt-3' type="button">Back</button>
+                  <button className='btn btn-primary' type="button">Back</button>
                 </Link>
                 {!error && !spinner && !showWelcomeMessage && (
-                  <button className='btn btn-primary mt-3' type="submit" value="Submit">
+                  <button className='btn btn-primary' type="submit" value="Submit">
                     Submit
                   </button>
                 )}
-                <br />
               </div>
-              <br />
-              <Link to='/Login'><p style={{color:'white', textDecoration:'none'}}>Already have an account? <button className='btn btn-primary'> Log-in</button></p></Link>
+              <Link to='/Login' className="mt-3 d-block" style={{ color: 'white', textDecoration: 'none' }}>Already have an account? <span className='btn btn-link'> Log-in</span></Link>
             </form>
           )}
         </div>
