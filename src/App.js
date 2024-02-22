@@ -1,7 +1,9 @@
-import {useState } from 'react';
+import React, { useState } from 'react';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
+import firebase from 'firebase/compat/app'; // Update import statement
+import 'firebase/compat/firestore';// Import Firestore
 import Home from './Pages/Header folder/home';
-import BasicExample  from './Pages/Header folder/navbar';
+import BasicExample from './Pages/Header folder/navbar';
 import Dog from './Pages/dog folder/dog';
 import SingleDog from './Pages/singleDog/singleDog';
 import SingleCat from './Pages/singlecat/singlecat';
@@ -17,6 +19,7 @@ import Storedpets from './Pages/Header folder/Storedpets';
 import Login from './Pages/sign up/Login';
 import Addpet from './Pages/sellerdashboard/Addpet';
 
+// Initialize Firebase
 const firebaseConfig = {
   apiKey: "AIzaSyA8R-6JStMc680KVXXQ_XGSRche5OQUtl4",
   authDomain: "pet-adoption-project-99a08.firebaseapp.com",
@@ -27,7 +30,7 @@ const firebaseConfig = {
   measurementId: "G-WJRCH01VP2"
 };
 
-// firebase.initializeApp(firebaseConfig) 
+firebase.initializeApp(firebaseConfig);
 
 function App() {
   const [pets, setPets] = useState([]);
@@ -58,15 +61,15 @@ function App() {
           <Route path="/Storedpets/:name" element={<Storedpets pets={pets} />} />
           <Route path="/:name" element={<SingleDog />} />
           <Route path="/:name/:id" element={<SingleCat />} />
-          <Route path="signup/signup" element={<SignupPage />} />
+          <Route path="/signup/signup" element={<SignupPage />} />
           <Route path="/seller" element={<Seller />} />
           <Route path="/adopter" element={<Adopter />} />
           <Route path="Dog" element={<Dog />} />
           <Route path="Cat" element={<Cat />} />
           <Route path="Search" element={<Search />} />
           <Route path='/sellerdashboard/sellerdash' element={<Sellerdash addNewPet={addNewPet} />} />
-          <Route path='/Login' element={<Login/>}/>
-          <Route path='/sellerdashboard/Addpet' element={<Addpet/>}/>
+          <Route path='/Login' element={<Login />} />
+          <Route path='/sellerdashboard/Addpet' element={<Addpet />} />
         </Routes>
       </BrowserRouter>
     </>
@@ -74,4 +77,3 @@ function App() {
 }
 
 export default App;
-

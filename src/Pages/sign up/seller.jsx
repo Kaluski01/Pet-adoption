@@ -18,17 +18,14 @@ const Seller = () => {
   const handleSubmit = (e) => {
     e.preventDefault();
     setSpinner(true);
-
+  
     setTimeout(() => {
       if (!firstname || !number || !email || !address || !password || !acceptance) {
         setError('Please fill in all required fields.');
-
-        setTimeout(() => {
-          setError('');
-        }, 5000);
+        setSpinner(false);
       } else {
         setError('');
-
+  
         const user = {
           firstname,
           number,
@@ -38,24 +35,31 @@ const Seller = () => {
           acceptance,
         };
         localStorage.setItem('user', JSON.stringify(user));
-
+  
+        // Clear form fields after successful submission
         setFirstName('');
         setNumber('');
         setEmail('');
         setAddress('');
         setPassword('');
         setAcceptance('');
+  
+        // Set the welcome message
         setShowWelcomeMessage(true);
-
+  
+        // Reset the welcome message after 5 seconds
         setTimeout(() => {
           setShowWelcomeMessage(false);
+          // setError('Please fill in all required fields.');
           navigate('/sellerdashboard/sellerdash', { state: { firstname } });
-        }, 5000);
+        }, 2000);
       }
-
+  
+      // Always set spinner to false after submission attempt
       setSpinner(false);
     }, 1000);
   };
+  
 
   const handleChange = (e) => {
     const { name, value, checked } = e.target;

@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom';
 
 export default function BasicExample() {
   return (
-    <Navbar expand="lg" bg="light"  data-bs-theme="dark" className="bg-body-tertiary fixed-top" >
+    <Navbar collapseOnSelect expand="lg" bg="light"  data-bs-theme="dark" className="bg-body-tertiary fixed-top" >
       <Container>
         <Navbar.Brand as={Link} to="/">
           PET FINDER

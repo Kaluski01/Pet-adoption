@@ -8,20 +8,12 @@ import Footer from '../footer/footer';
 import Storycard from '../../story-card/Storycard';
 import Pets from './pet';
 import { Link } from 'react-router-dom';
+import firebase from 'firebase/compat/app'; // Import Firebase core module
+import 'firebase/compat/firestore'; // Import Firestore
+import { getDownloadURL, ref } from 'firebase/storage'; // Import Storage functions
 
 export default function Home() {
   const [pets, setPets] = useState([]);
-
-  useEffect(() => {
-    try {
-      const storedPets = localStorage.getItem('pets');
-      if (storedPets) {
-        setPets(JSON.parse(storedPets));
-      }
-    } catch (error) {
-      console.error('Error loading pets from local storage:', error);
-    }
-  }, []);
 
   // Function to add a new pet
   const addNewPet = (newPet) => {
@@ -36,6 +28,27 @@ export default function Home() {
       console.error('Error updating pets in local storage:', error);
     }
   };
+
+  useEffect(() => {
+    const fetchPets = async () => {
+      try {
+        const petsCollection = await firebase.firestore().collection('pets').get();
+        const petsData = await Promise.all(petsCollection.docs.map(async (doc) => {
+          const pet = doc.data();
+          // Get the image URL from Firebase Storage
+          const imageRef = ref(firebase.storage(), `petImages/${doc.id}`);
+          const imageUrl = await getDownloadURL(imageRef);
+          // Add the image URL to the pet data
+          return { ...pet, imageUrl };
+        }));
+        setPets(petsData);
+      } catch (error) {
+        console.error('Error fetching pets:', error);
+      }
+    };
+
+    fetchPets();
+  }, []);
 
   return (
     <>
@@ -71,8 +84,8 @@ export default function Home() {
           </div>
         </div>
       </div>
-    
-      {/* Display pets information from local storage */}
+
+      {/* Display pets information fetched from Firestore */}
       <div className='container-fluid mt-5 w-100' style={{ color: 'black'}}>
         {pets.length > 0 && <h2 className='text-center'>Pets Available for Adoption</h2>}
         <div className='row d-flex justify-content-center'>
@@ -81,10 +94,11 @@ export default function Home() {
               <Link style={{ textDecoration: 'none' }} to={`/Storedpets/${encodeURIComponent(pet.name)}`}>
                 <Card>
                   <Card.Body>
-                    <Card.Img variant="top" src={pet.image} alt={pet.name} />
+                    {/* Use the image URL for the src attribute */}
+                    <Card.Img variant="top" src={pet.imageUrl} alt={pet.name} />
                     <Card.Title>{pet.name}</Card.Title>
                     <Card.Text>Description: {pet.description}</Card.Text>
-                    <Card.Text>Age: {pet.Age}</Card.Text>
+                    <Card.Text>Age: {pet.age}</Card.Text>
                   </Card.Body>
                 </Card>
               </Link>
