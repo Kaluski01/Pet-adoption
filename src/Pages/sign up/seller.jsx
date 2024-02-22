@@ -18,14 +18,19 @@ const Seller = () => {
   const handleSubmit = (e) => {
     e.preventDefault();
     setSpinner(true);
-  
+
     setTimeout(() => {
       if (!firstname || !number || !email || !address || !password || !acceptance) {
         setError('Please fill in all required fields.');
         setSpinner(false);
+
+        // Clear error message after 5 seconds
+        setTimeout(() => {
+          setError('');
+        }, 5000);
       } else {
         setError('');
-  
+
         const user = {
           firstname,
           number,
@@ -35,7 +40,7 @@ const Seller = () => {
           acceptance,
         };
         localStorage.setItem('user', JSON.stringify(user));
-  
+
         // Clear form fields after successful submission
         setFirstName('');
         setNumber('');
@@ -43,23 +48,21 @@ const Seller = () => {
         setAddress('');
         setPassword('');
         setAcceptance('');
-  
+
         // Set the welcome message
         setShowWelcomeMessage(true);
-  
+
         // Reset the welcome message after 5 seconds
         setTimeout(() => {
           setShowWelcomeMessage(false);
-          // setError('Please fill in all required fields.');
           navigate('/sellerdashboard/sellerdash', { state: { firstname } });
         }, 2000);
       }
-  
+
       // Always set spinner to false after submission attempt
       setSpinner(false);
     }, 1000);
   };
-  
 
   const handleChange = (e) => {
     const { name, value, checked } = e.target;
@@ -82,13 +85,17 @@ const Seller = () => {
   return (
     <>
       <h1 className='main-sign mb-4'>Sign up</h1>
-      <div className="center-container mx-auto">
+      <div className="container">
         <div className='form-container'>
-          {error && <p className="error-message">{error}</p>}
+          <div className='error-container'>
+            {error && <p className="error-message">{error}</p>}
+          </div>
           {!showWelcomeMessage && (
             <form className='form-hold' onSubmit={handleSubmit}>
-              <label>
-                Enter your name:
+              <div className="mb-3">
+                <label className="form-label">
+                  Enter your name:
+                </label>
                 <input
                   type="text"
                   className="form-control"
@@ -96,10 +103,11 @@ const Seller = () => {
                   value={firstname}
                   onChange={handleChange}
                 />
-              </label>
-              <br />
-              <label>
-                Phone number:
+              </div>
+              <div className="mb-3">
+                <label className="form-label">
+                  Phone number:
+                </label>
                 <input
                   type="number"
                   className="form-control"
@@ -107,10 +115,11 @@ const Seller = () => {
                   value={number}
                   onChange={handleChange}
                 />
-              </label>
-              <br />
-              <label>
-                Please enter your email:
+              </div>
+              <div className="mb-3">
+                <label className="form-label">
+                  Please enter your email:
+                </label>
                 <input
                   type="email"
                   className="form-control"
@@ -118,10 +127,11 @@ const Seller = () => {
                   value={email}
                   onChange={handleChange}
                 />
-              </label>
-              <br />
-              <label>
-                Address:
+              </div>
+              <div className="mb-3">
+                <label className="form-label">
+                  Address:
+                </label>
                 <input
                   type="text"
                   className="form-control"
@@ -129,10 +139,11 @@ const Seller = () => {
                   value={address}
                   onChange={handleChange}
                 />
-              </label>
-              <br />
-              <label>
-                Password:
+              </div>
+              <div className="mb-3">
+                <label className="form-label">
+                  Password:
+                </label>
                 <input
                   type="password"
                   className="form-control"
@@ -140,9 +151,8 @@ const Seller = () => {
                   value={password}
                   onChange={handleChange}
                 />
-              </label>
-              <br />
-              <div className="form-check">
+              </div>
+              <div className="mb-3 form-check">
                 <input
                   type="checkbox"
                   className="form-check-input"

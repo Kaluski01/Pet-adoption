@@ -1,23 +1,24 @@
-import React, {  useEffect } from 'react';
+import React, { useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { Button, Card } from 'react-bootstrap';
 
 const SignupPage = () => {
-
   useEffect(() => {
+    // Check if user is already signed in
     const storedUser = JSON.parse(localStorage.getItem('user'));
     if (storedUser) {
-      // Check additional conditions if needed
-      // For now, assume the user is signed in as a seller
+      // Implement logic for handling signed-in users
+      // For example:
       // setIsSellerSignedIn(true);
     }
   }, []);
 
   return (
-    <div>
-      <h1 className='main-sign' style={{ position: 'relative', top: '50px', marginTop: '20px', fontSize:'25px' }}>Let us know who you are !! </h1>
-      <div className="center-container ms-5">
-        <div className='role-selection d-flex flex-wrap gap-5'>
+    <div style={{ paddingTop: '150px', marginTop: '20px' }}>
+      <h1 className='main-sign' style={{ fontSize: '25px' }}>Let us know who you are !!</h1>
+      <div className="container">
+        <div className='row'>
+          <div className='col-md-6'>
             <Card className="text-center">
               <Card.Body>
                 <Link to="/seller">
@@ -27,14 +28,18 @@ const SignupPage = () => {
                 </Link>
               </Card.Body>
             </Card>
-
-          <Card className="text-center">
-            <Card.Body>
-              <Link to="/adopter">
-                <Button variant="primary" block>Sign Up as Pet Adopter</Button>
-              </Link>
-            </Card.Body>
-          </Card>
+          </div>
+          <div className='col-md-6'>
+            <Card className="text-center">
+              <Card.Body>
+                <Link to="/adopter">
+                  <Button variant="primary" block>
+                    Sign Up as Pet Adopter
+                  </Button>
+                </Link>
+              </Card.Body>
+            </Card>
+          </div>
         </div>
       </div>
     </div>

@@ -5,6 +5,7 @@ import firebase from 'firebase/compat/app'; // Import Firebase core module
 import 'firebase/compat/firestore'; // Import Firestore
 import 'firebase/compat/storage'; // Import Storage
 import { v4 as uuidv4 } from 'uuid'; // Import uuid
+import { useNavigate } from 'react-router-dom';
 import { ref, uploadBytesResumable } from 'firebase/storage'; // Import storage functions
 // import { useNavigate } from 'react-router-dom'; // Import useNavigate
 import './sellerdash.css';
@@ -34,6 +35,7 @@ const Addpet = () => {
   const [ownerPhone, setOwnerPhone] = useState('');
   const [spinner, setSpinner] = useState(false);
   const [success, setSuccess] = useState(false);
+  const navigate = useNavigate();
   // const navigate = useNavigate(); // Initialize useNavigate
 
   const handleAddPet = async () => {
@@ -99,13 +101,17 @@ const Addpet = () => {
       setPetImage('');
     }
   };
+  const handleClose = () => {
+    // Navigate back to the form page when the toast is closed
+    navigate('/Addpet');
+  };
 
   return (
     <div className="container mt-5 p-4 bg-dark">
       <div className="card">
         <div className="card-body">
           {success ? (
-            <Toast>
+            <Toast onClick={handleClose}>
               <Toast.Header>
                 {/* <strong className="me-auto">{firstname}</strong> */}
               </Toast.Header>
