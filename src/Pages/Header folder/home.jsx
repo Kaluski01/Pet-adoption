@@ -35,9 +35,8 @@ export default function Home() {
         const petsCollection = await firebase.firestore().collection('pets').get();
         const petsData = await Promise.all(petsCollection.docs.map(async (doc) => {
           const pet = doc.data();
-          // Get the image URL from Firebase Storage
-          const imageRef = ref(firebase.storage(), `petImages/${doc.id}`);
-          const imageUrl = await getDownloadURL(imageRef);
+          // Get the image URL from Firebase Storage using the pet's ID as the filename
+          const imageUrl = await getDownloadURL(ref(firebase.storage(), `petImages/${pet.id}`));
           // Add the image URL to the pet data
           return { ...pet, imageUrl };
         }));
@@ -46,6 +45,7 @@ export default function Home() {
         console.error('Error fetching pets:', error);
       }
     };
+    
 
     fetchPets();
   }, []);
