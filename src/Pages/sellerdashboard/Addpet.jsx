@@ -103,7 +103,7 @@ const Addpet = () => {
   };
   const handleClose = () => {
     // Navigate back to the form page when the toast is closed
-    navigate('/Addpet');
+    navigate('/Addpet.');
   };
 
   return (

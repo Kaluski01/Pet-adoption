@@ -87,9 +87,7 @@ const Seller = () => {
       <h1 className='main-sign mb-4'>Sign up</h1>
       <div className="container">
         <div className='form-container'>
-          <div className='error-container'>
             {error && <p className="error-message">{error}</p>}
-          </div>
           {!showWelcomeMessage && (
             <form className='form-hold' onSubmit={handleSubmit}>
               <div className="mb-3">

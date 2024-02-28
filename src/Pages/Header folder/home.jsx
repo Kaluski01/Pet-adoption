@@ -1,33 +1,22 @@
 import React, { useEffect, useState } from 'react';
-import IMG from '../assests/mdi_paw.svg';
-import IMG2 from '../assests/dog 1.png';
+import Spinner from 'react-bootstrap/Spinner';
+import { Link } from 'react-router-dom';
 import './home.css';
 import Card from 'react-bootstrap/Card';
+import firebase from 'firebase/compat/app';
+import 'firebase/compat/firestore';
+import { getDownloadURL, ref } from 'firebase/storage';
+import IMG from '../assests/mdi_paw.svg';
+import IMG2 from '../assests/dog 1.png';
 import TestimonialCards from '../body/carousel';
 import Footer from '../footer/footer';
 import Storycard from '../../story-card/Storycard';
 import Pets from './pet';
-import { Link } from 'react-router-dom';
-import firebase from 'firebase/compat/app'; // Import Firebase core module
-import 'firebase/compat/firestore'; // Import Firestore
-import { getDownloadURL, ref } from 'firebase/storage'; // Import Storage functions
 
 export default function Home() {
   const [pets, setPets] = useState([]);
-
-  // Function to add a new pet
-  const addNewPet = (newPet) => {
-    // Update the local state
-    setPets((prevPets) => [newPet, ...prevPets]);
-
-    // Update the local storage
-    try {
-      const updatedPets = JSON.stringify([newPet, ...pets]);
-      localStorage.setItem('pets', updatedPets);
-    } catch (error) {
-      console.error('Error updating pets in local storage:', error);
-    }
-  };
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState('');
 
   useEffect(() => {
     const fetchPets = async () => {
@@ -35,20 +24,30 @@ export default function Home() {
         const petsCollection = await firebase.firestore().collection('pets').get();
         const petsData = await Promise.all(petsCollection.docs.map(async (doc) => {
           const pet = doc.data();
-          // Get the image URL from Firebase Storage using the pet's ID as the filename
           const imageUrl = await getDownloadURL(ref(firebase.storage(), `petImages/${pet.id}`));
-          // Add the image URL to the pet data
           return { ...pet, imageUrl };
         }));
         setPets(petsData);
+        setLoading(false);
       } catch (error) {
         console.error('Error fetching pets:', error);
+        setError('Please check your internet connection.');
+        setLoading(false);
       }
     };
-    
 
     fetchPets();
   }, []);
+
+  useEffect(() => {
+    const timeout = setTimeout(() => {
+      if (loading) {
+        setError('Please check your internet connection.');
+      }
+    }, 8000);
+
+    return () => clearTimeout(timeout);
+  }, [loading]);
 
   return (
     <>
@@ -85,38 +84,50 @@ export default function Home() {
         </div>
       </div>
 
-      {/* Display pets information fetched from Firestore */}
-      <div className='container-fluid mt-5 w-100' style={{ color: 'black'}}>
-        {pets.length > 0 && <h2 className='text-center'>Pets Available for Adoption</h2>}
-        <div className='row d-flex justify-content-center'>
-          {pets.map((pet, index) => (
-            <div key={index} className='col-lg-4 col-10 mt-4'>
-              <Link style={{ textDecoration: 'none' }} to={`/Storedpets/${encodeURIComponent(pet.name)}`}>
-                <Card>
-                  <Card.Body>
-                    {/* Use the image URL for the src attribute */}
-                    <Card.Img variant="top" src={pet.imageUrl} alt={pet.name} />
-                    <Card.Title>{pet.name}</Card.Title>
-                    <Card.Text>Description: {pet.description}</Card.Text>
-                    <Card.Text>Age: {pet.age}</Card.Text>
-                  </Card.Body>
-                </Card>
-              </Link>
-            </div>
-          ))}
+      {loading && (
+        <div className='text-center'>
+          <Spinner animation='border' variant='primary' />
         </div>
-      </div>
+      )}
+
+      {!loading && error && (
+        <div className='text-center mt-3'>
+          <p>{error}</p>
+        </div>
+      )}
+
+      {!loading && !error && (
+        <div className='container-fluid mt-5 w-100' style={{ color: 'black' }}>
+          {pets.length > 0 && <h2 className='text-center'>Pets Available for Adoption</h2>}
+          <div className='row d-flex justify-content-center'>
+            {pets.map((pet, index) => (
+              <div key={index} className='col-lg-4 col-10 mt-4'>
+                <Link style={{ textDecoration: 'none' }} to={`/Storedpets/${encodeURIComponent(pet.name)}`}>
+                  <Card>
+                    <Card.Body>
+                      <Card.Img variant='top' src={pet.imageUrl} alt={pet.name} />
+                      <Card.Title>{pet.name}</Card.Title>
+                      <Card.Text>Description: {pet.description}</Card.Text>
+                      <Card.Text>Age: {pet.age}</Card.Text>
+                    </Card.Body>
+                  </Card>
+                </Link>
+              </div>
+            ))}
+          </div>
+        </div>
+      )}
 
       <div className='container-fluid mt-5 w-100'>
         <div className='row d-flex justify-content-center'>
           <div className='col-lg-8 col-12'>
-            <Storycard/>
+            <Storycard />
           </div>
         </div>
       </div>
 
-      <Pets numberOfDogs={10} showFooter={false} addNewPet={addNewPet} />
-      <Pets numberOfCats={100} showFooter={false} addNewPet={addNewPet} />
+      <Pets numberOfDogs={10} showFooter={false} />
+      <Pets numberOfCats={100} showFooter={false} />
       <TestimonialCards />
       <Footer />
     </>
