@@ -55,10 +55,8 @@ export default function SingleCat() {
             <div className='cat-details py-5  w-100 d-flex flex-wrap'>
               <img src={cat.url} alt={cat.id} className=" w-75" style={{height:'350px'}} />
               <div className=''>
-              {/* <h2>{cat.breeds?.[0]?.name}</h2> */}
               {cat.description && <p>{cat.description}</p>}
               <ul className='cat-li'>
-                {/* <li className='cat-li'>Bred For: {cat.breeds?.[0]?.bred_for}</li> */}
                 <li className='cat-li'>Weight: {cat?.breeds?.[0]?.weight?.metric} Kg</li>
                 <li className='cat-li'>Height: {cat?.breeds?.[0]?.height?.metric || 'not available'}</li>
                 <li className='cat-li'>Lifespan: {cat?.breeds?.[0]?.life_span} Years</li>

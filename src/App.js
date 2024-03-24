@@ -9,7 +9,6 @@ import SingleDog from './Pages/singleDog/singleDog';
 import SingleCat from './Pages/singlecat/singlecat';
 import Cat from './Pages/cat folder/cat';
 import Own from './Pages/ownership/own';
-import Search from './Pages/searchbar/search';
 import About from './Pages/Header folder/about';
 import Sellerdash from './Pages/sellerdashboard/sellerdash'
 import SignupPage from './Pages/sign up/signup';
@@ -65,8 +64,7 @@ function App() {
           <Route path="/seller" element={<Seller />} />
           <Route path="/adopter" element={<Adopter />} />
           <Route path="Dog" element={<Dog />} />
-          <Route path="Cat" element={<Cat />} />
-          <Route path="Search" element={<Search />} />
+          <Route path="Cat" element={<Cat />} /> 
           <Route path='/sellerdashboard/sellerdash' element={<Sellerdash addNewPet={addNewPet} />} />
           <Route path='/Login' element={<Login />} />
           <Route path='/sellerdashboard/Addpet' element={<Addpet />} />

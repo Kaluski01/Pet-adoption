@@ -48,9 +48,11 @@ line-height: normal;
 
 }
 .lll{
-    width: 75%;
-
-    text-align: center;
+    width: 90%;
+    display: flex;
+    flex-wrap: wrap;
+  
+    /* text-align: center; */
 }
 .home-textss{
     width: 100%;
@@ -60,10 +62,10 @@ line-height: normal;
     text-align: center;
     /* flex-direction: column; */
 }.home-texts{
-    /* width: 100%; */
     display: flex;
     flex-wrap: wrap;
-    gap: 30px;
+    gap: 50px;
+    flex-direction: column;
 }
 
 @media (max-width: 767px) {

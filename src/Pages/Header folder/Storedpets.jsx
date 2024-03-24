@@ -4,6 +4,7 @@ import DogCard from '../singleDog/adopt';
 import firebase from 'firebase/compat/app'; // Import Firebase core module
 import 'firebase/compat/firestore'; // Import Firestore
 import { getDownloadURL, ref } from 'firebase/storage'; // Import Storage functions
+import Spinner from 'react-bootstrap/Spinner'
 
 export default function StoredPets() {
   const { name } = useParams();
@@ -56,7 +57,7 @@ export default function StoredPets() {
               {/* Add more details as needed */}
             </div>
           ) : (
-            <p>Pet not found.</p>
+            <p>  <Spinner animation='border' variant='primary' /></p>
           )}
         </div>
         <div>

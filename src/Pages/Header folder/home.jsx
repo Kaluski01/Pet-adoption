@@ -10,7 +10,7 @@ import IMG from '../assests/mdi_paw.svg';
 import IMG2 from '../assests/dog 1.png';
 import TestimonialCards from '../body/carousel';
 import Footer from '../footer/footer';
-import Storycard from '../../story-card/Storycard';
+// import Storycard from '../../story-card/Storycard';
 import Pets from './pet';
 
 export default function Home() {
@@ -67,15 +67,15 @@ export default function Home() {
           <div className='contianeds'>
             <img src={IMG2} alt='' />
             <div>
-              <Card className='lll col-12'>
+              <Card className='lll'>
                 <Card.Body className='home-texts'>
-                  <Card.Title>800+</Card.Title>
+                  {/* <Card.Title>800+</Card.Title>
                   <Card.Title>500+</Card.Title>
-                  <Card.Title>450+</Card.Title>
+                  <Card.Title>450+</Card.Title> */}
                   <div className='home-textss'>
-                    <Card.Text>Adopted last year</Card.Text>
-                    <Card.Text>Rescued</Card.Text>
-                    <Card.Text>Waiting for a home</Card.Text>
+                    <Card.Text>Adopted last year: 800+</Card.Text>
+                    <Card.Text>Rescued: 500+</Card.Text>
+                    <Card.Text>Waiting for a home: 450+</Card.Text>
                   </div>
                 </Card.Body>
               </Card>
@@ -117,14 +117,14 @@ export default function Home() {
           </div>
         </div>
       )}
-
+{/* 
       <div className='container-fluid mt-5 w-100'>
         <div className='row d-flex justify-content-center'>
           <div className='col-lg-8 col-12'>
             <Storycard />
           </div>
         </div>
-      </div>
+      </div> */}
 
       <Pets numberOfDogs={10} showFooter={false} />
       <Pets numberOfCats={100} showFooter={false} />

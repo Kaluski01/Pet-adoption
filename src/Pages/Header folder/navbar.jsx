@@ -32,9 +32,6 @@ export default function BasicExample() {
           <Nav className="ml-auto">
             <Nav.Link as={Link} to='Own'>Paw-ssentials</Nav.Link>
           </Nav>
-          <Nav className="ml-auto">
-            <Nav.Link as={Link} to='Search'>Furry Friends Services</Nav.Link>
-          </Nav>
           </Nav>
         </Navbar.Collapse>
       </Container>
