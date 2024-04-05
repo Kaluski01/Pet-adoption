@@ -1,37 +1,50 @@
 import { Container, Nav, Navbar, NavDropdown } from 'react-bootstrap';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import { Link } from 'react-router-dom';
+import { useState } from 'react';
 
 export default function BasicExample() {
+  const [expanded, setExpanded] = useState(false);
+
+  const handleToggle = () => {
+    setExpanded(!expanded);
+  };
+
+  const handleSelect = () => {
+    setExpanded(false);
+  };
+
   return (
-    <Navbar collapseOnSelect expand="lg" bg="light"  data-bs-theme="dark" className="bg-body-tertiary fixed-top" >
+    <Navbar expanded={expanded} expand="lg" bg="dark" variant="dark" fixed="top">
       <Container>
-        <Navbar.Brand as={Link} to="/">
+        <Navbar.Brand as={Link} to="/" onClick={handleSelect}>
           PET FINDER
         </Navbar.Brand>
-        <Navbar.Toggle aria-controls="basic-navbar-nav" />
+        <Navbar.Toggle aria-controls="basic-navbar-nav" onClick={handleToggle} />
         <Navbar.Collapse id="basic-navbar-nav">
-          <Nav className="mx-auto">
-            <Nav.Link as={Link} to="/">
+          <Nav className="me-auto" onSelect={handleSelect}>
+            <Nav.Link as={Link} to="/" onClick={handleSelect}>
               Home
             </Nav.Link>
-            <Nav.Link as={Link} to="/about">
+            <Nav.Link as={Link} to="/about" onClick={handleSelect}>
               About us
             </Nav.Link>
             <NavDropdown title="PETS" id="basic-nav-dropdown">
-              <NavDropdown.Item as={Link} to="/dogs">
+              <NavDropdown.Item as={Link} to="/dogs" onClick={handleSelect}>
                 Dogs
               </NavDropdown.Item>
-              <NavDropdown.Item as={Link} to="/cat">
+              <NavDropdown.Item as={Link} to="/cats" onClick={handleSelect}>
                 Cats
               </NavDropdown.Item>
             </NavDropdown>
-          <Nav className="ml-auto">
-            <Nav.Link as={Link} to='/signup/signup'>Sign up</Nav.Link>
           </Nav>
-          <Nav className="ml-auto">
-            <Nav.Link as={Link} to='Own'>Paw-ssentials</Nav.Link>
-          </Nav>
+          <Nav onSelect={handleSelect}>
+            <Nav.Link as={Link} onClick={handleSelect}  to='/signup/signup'>
+              Sign up
+            </Nav.Link>
+            <Nav.Link as={Link} onClick={handleSelect} to='Own'>
+              Paw-ssentials
+            </Nav.Link>
           </Nav>
         </Navbar.Collapse>
       </Container>

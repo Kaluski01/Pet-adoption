@@ -1,7 +1,4 @@
 .center-container{
-   
-    /* height: 500px; */
-        
     padding-bottom: 20px;
 }
 
@@ -45,13 +42,8 @@ input{
 
   @media (max-width: 767px) {
     .form-container{
-       /* height: ; */
-       /* display: flex; */
-       /* flex-wrap: wrap; */
-       /* flex-direction: column; */
        background-color:#7C7D9F;
        width: 100%;
-       /* height: 800px; */
     }
     .center-container{
       padding-bottom: px;
