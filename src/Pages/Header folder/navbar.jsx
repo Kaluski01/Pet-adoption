@@ -1,6 +1,7 @@
 import { Container, Nav, Navbar, NavDropdown } from 'react-bootstrap';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import { Link } from 'react-router-dom';
+import './navbar.css'
 import { useState } from 'react';
 
 export default function BasicExample() {
@@ -21,15 +22,15 @@ export default function BasicExample() {
           PET FINDER
         </Navbar.Brand>
         <Navbar.Toggle aria-controls="basic-navbar-nav" onClick={handleToggle} />
-        <Navbar.Collapse id="basic-navbar-nav">
-          <Nav className="me-auto" onSelect={handleSelect}>
+        <Navbar.Collapse className="mx-auto"  id="basic-navbar-nav">
+          <Nav onSelect={handleSelect}>
             <Nav.Link as={Link} to="/" onClick={handleSelect}>
               Home
             </Nav.Link>
             <Nav.Link as={Link} to="/about" onClick={handleSelect}>
               About us
             </Nav.Link>
-            <NavDropdown title="PETS" id="basic-nav-dropdown">
+            <NavDropdown title="PETS" id="basic-nav-dropdown" className="mb-0"> {/* Add mb-0 class */}
               <NavDropdown.Item as={Link} to="/dogs" onClick={handleSelect}>
                 Dogs
               </NavDropdown.Item>
@@ -38,7 +39,7 @@ export default function BasicExample() {
               </NavDropdown.Item>
             </NavDropdown>
           </Nav>
-          <Nav onSelect={handleSelect}>
+          <Nav className="ml-auto" onSelect={handleSelect}>
             <Nav.Link as={Link} onClick={handleSelect}  to='/signup/signup'>
               Sign up
             </Nav.Link>
