@@ -46,7 +46,7 @@ export default function StoredPets() {
           <h1 style={{ color: 'black' }}>Pet Information</h1>
           {selectedPet ? (
             <div>
-              <img src={selectedPet.imageUrl} alt={selectedPet.name} className="img-fluid w-50 h-50" />
+                <div className=''>     <img src={selectedPet.imageUrl} alt={selectedPet.name} className="w-50 h-50" /></div>
               <p>Name: {selectedPet.name}</p>
               <p>Description: {selectedPet.description}</p>
               <p>Age: {selectedPet.age}</p>

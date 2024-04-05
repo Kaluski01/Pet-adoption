@@ -14,33 +14,32 @@ const CAT_API_URL = 'https://api.thecatapi.com/v1/images/search?limit=10';
 export default function Pets({ numberOfDogs, numberOfCats, showFooter = false }) {
   const [dogPets, setDogPets] = useState([]);
   const [catPets, setCatPets] = useState([]);
-  const [loading, setLoading] = useState(true);
+  const [loading, setLoading] = useState(true); // Overall loading state
   const [error, setError] = useState('');
   const [showErrorMessage, setShowErrorMessage] = useState(false);
 
-  const fetchPetData = (apiUrl, numberOfPets, setPetsState) => {
+  useEffect(() => {
+    // Reset loading state when the component mounts
     setLoading(true);
-    const apiKey = apiUrl.includes('thedogapi') ? 'Aaba64b2-6be8-46b0-a7ce-92034a670f0a' : 'live_krqgL373oBzRUWqxu8OEApuXvFP4V283MEvYC8kTqMq4cHr3MsNs5y1QBjqK8K0B';
-    fetch(`${apiUrl}${numberOfPets}&api_key=${apiKey}`)
-      .then((response) => {
+
+    const fetchPetData = async (apiUrl, numberOfPets, setPetsState) => {
+      const apiKey = apiUrl.includes('thedogapi') ? 'Aaba64b2-6be8-46b0-a7ce-92034a670f0a' : 'live_krqgL373oBzRUWqxu8OEApuXvFP4V283MEvYC8kTqMq4cHr3MsNs5y1QBjqK8K0B';
+      try {
+        const response = await fetch(`${apiUrl}${numberOfPets}&api_key=${apiKey}`);
         if (!response.ok) {
           throw new Error(`HTTP error! Status: ${response.status}`);
         }
-        return response.json();
-      })
-      .then((data) => {
+        const data = await response.json();
         const filteredPetData = data.filter((petData) => petData.breeds && petData.breeds.length > 0);
         setPetsState((prevPets) => [...prevPets, ...filteredPetData]);
-        setLoading(false);
-      })
-      .catch((error) => {
+      } catch (error) {
         console.error('There was an error:', error);
-        setLoading(false);
         setError('Please check your internet connection.');
-      });
-  };
+      } finally {
+        setLoading(false); // Set loading to false regardless of success or error
+      }
+    };
 
-  useEffect(() => {
     if (numberOfDogs > 0) {
       fetchPetData(DOG_API_URL, numberOfDogs, setDogPets);
     }
@@ -56,6 +55,7 @@ export default function Pets({ numberOfDogs, numberOfCats, showFooter = false })
     return () => clearTimeout(timeoutId);
   }, [numberOfDogs, numberOfCats]);
 
+
   return (
     <>
       <Container className="mt-4">
@@ -67,7 +67,7 @@ export default function Pets({ numberOfDogs, numberOfCats, showFooter = false })
             <h1 className='pet-h1'>Pick a Companion...</h1>
             <Row>
               {dogPets.slice(0, 5).map((dogData) => (
-                <Col key={dogData.id} md={4} lg={4} sm={5} className="mb-4 mt-5">
+                <Col key={dogData.id} md={4} lg={4} sm={3} className="mb-4 mt-5">
                   {dogData.breeds?.[0]?.name && (
                     <Link to={`/dogs/${(dogData.breeds[0].name)}/${dogData.id}`} className='link'>
                       <Card className="pet-card">
@@ -85,7 +85,7 @@ export default function Pets({ numberOfDogs, numberOfCats, showFooter = false })
                 </Col>
               ))}
               {catPets.slice(0, 5).map((catData) => (
-                <Col key={catData.id} md={4} lg={4} sm={12} className="mb-4 mt-5">
+                <Col key={catData.id} md={4} lg={4} sm={3} className="mb-4 mt-5">
                   {catData.breeds?.[0]?.name && (
                     <Link to={`/cats/${catData.id}`} className='link'>
                       <Card className="pet-card">

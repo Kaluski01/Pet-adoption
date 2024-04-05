@@ -30,7 +30,7 @@ export default function Home() {
         setPets(petsData);
         setLoading(false);
       } catch (error) {
-        console.error('Error fetching pets:', error);
+        // console.error('Error fetching pets:', error);
         setError('Please check your internet connection.');
         setLoading(false);
       }
@@ -95,41 +95,35 @@ export default function Home() {
           <p>{error}</p>
         </div>
       )}
+    {!loading && !error && (
+  <div className='container' style={{ color: 'black' }}>
+  {pets.length > 0 && <h2 className='text-center'>Pets Available for Adoption</h2>}
+  <div className='row justify-content-center'>
+    {pets.map((pet, index) => (
+      <div key={index} className='col-lg-4 col-md-6 col-sm-10 col-11 mt-5'>
+        <Link style={{ textDecoration: 'none' }} to={`/Storedpets/${encodeURIComponent(pet.name)}`}>
+          <Card className='pet-card'>
+            <div className="">
+              <Card.Img variant='top' className='img-fluid' src={pet.imageUrl} alt={pet.name} />
+            </div>
+            <Card.Body>
+              <Card.Title>{pet.name}</Card.Title>
+              <Card.Text>Description: {pet.description}</Card.Text>
+              <Card.Text>Age: {pet.age}</Card.Text>
+            </Card.Body>
+          </Card>
+        </Link>
+      </div>
+    ))}
+  </div>
+</div>
 
-      {!loading && !error && (
-        <div className='container-fluid mt-5 w-100' style={{ color: 'black' }}>
-          {pets.length > 0 && <h2 className='text-center'>Pets Available for Adoption</h2>}
-          <div className='row d-flex justify-content-center'>
-            {pets.map((pet, index) => (
-              <div key={index} className='col-lg-4 col-10 mt-4'>
-                <Link style={{ textDecoration: 'none' }} to={`/Storedpets/${encodeURIComponent(pet.name)}`}>
-                  <Card>
-                    <Card.Body>
-                      <Card.Img variant='top' src={pet.imageUrl} alt={pet.name} />
-                      <Card.Title>{pet.name}</Card.Title>
-                      <Card.Text>Description: {pet.description}</Card.Text>
-                      <Card.Text>Age: {pet.age}</Card.Text>
-                    </Card.Body>
-                  </Card>
-                </Link>
-              </div>
-            ))}
-          </div>
-        </div>
       )}
-{/* 
-      <div className='container-fluid mt-5 w-100'>
-        <div className='row d-flex justify-content-center'>
-          <div className='col-lg-8 col-12'>
-            <Storycard />
-          </div>
-        </div>
-      </div> */}
 
-      <Pets numberOfDogs={10} showFooter={false} />
-      <Pets numberOfCats={100} showFooter={false} />
-      <TestimonialCards />
-      <Footer />
+    <Pets numberOfDogs={10} showFooter={false} />
+  <Pets numberOfCats={100} showFooter={false} />  
+  <TestimonialCards />
+  <Footer />
     </>
   );
 }
