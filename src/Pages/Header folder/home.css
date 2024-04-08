@@ -18,8 +18,6 @@
 }
 
 .home-body{
-    /* background-color:rgba(0, 42, 72, 1); */
-    /* height: 00px; */
     color: white;
 }
 .home-h{
@@ -31,20 +29,19 @@ font-weight: 700;
 line-height: normal;
 }
 .home-bodies{
-    background-color:  rgba(252, 238, 213, 1);
-    border-radius: 20px;
+    background-color:#6B34FF;
+    color: white;
+    /* border-radius: 20px; */
     height: 600px;
 }
 .contained{
-    width: 100%;
+    width: 50%;
     display: flex;
     justify-content: space-between;
     align-items: center;
-    gap: 20px;
-    flex-wrap: wrap;
 }
 .con{
-    width: 30%;
+    width: 100%;
 
 }
 .lll{
@@ -72,6 +69,10 @@ line-height: normal;
     .home-bodies{
         width: 100%;
         height: 750px;
+    }
+    .contained{
+        display: flex;
+        flex-wrap: wrap
     }
         .con{
             width: 100%;

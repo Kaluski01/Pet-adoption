@@ -56,8 +56,8 @@ export default function Home() {
           <p>Your Favorite Pet Store</p>
           <img src={IMG} className='icon' alt='Icon' />
         </div>
-        <div className='contained'>
-          <div className='con ms-3'>
+        <div className='contained container gap-5'>
+          <div className='con ms-3 row'>
             <h1 className='home-h'>Get your family a new member.</h1>
             <p>
               Open your doors and hearts to pets in need of a home, and they
@@ -97,7 +97,7 @@ export default function Home() {
       )}
     {!loading && !error && (
   <div className='container' style={{ color: 'black' }}>
-  {pets.length > 0 && <h2 className='text-center'>Pets Available for Adoption</h2>}
+  {pets.length > 0 && <h2 className='text-center p-5'>Pets Available for Adoption</h2>}
   <div className='row justify-content-center'>
     {pets.map((pet, index) => (
       <div key={index} className='col-lg-4 col-md-6 col-sm-10 col-11 mt-5'>

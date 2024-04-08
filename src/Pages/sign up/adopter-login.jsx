@@ -1,47 +1,51 @@
 import React, { useState } from 'react';
 import Spinner from 'react-bootstrap/Spinner';
 import { Link, useNavigate } from 'react-router-dom';
-import { getAuth, signInWithEmailAndPassword } from 'firebase/auth';
+import Footer from '../footer/footer';
 import './seller.css';
 
 const Login = () => {
   const navigate = useNavigate();
-  const [email, setEmail] = useState('');
+  const [firstname, setFirstName] = useState('');
   const [password, setPassword] = useState('');
   const [acceptance, setAcceptance] = useState(false);
   const [error, setError] = useState('');
   const [spinner, setSpinner] = useState(false);
   const [showWelcomeMessage, setShowWelcomeMessage] = useState(false);
 
-  const auth = getAuth();
-
-  const handleSubmit = async (e) => {
+  const handleSubmit = (e) => {
     e.preventDefault();
     setSpinner(true);
 
-    try {
-      // Sign in with email and password
-      await signInWithEmailAndPassword(auth, email, password);
+    setTimeout(() => {
+      if (!firstname || !password || !acceptance) {
+        setError('Please fill in all required fields.');
+        setSpinner(false);
+      } else {
+        const storedUser = JSON.parse(localStorage.getItem('user'));
 
-      // Clear form fields after successful login
-      setEmail('');
-      setPassword('');
-      setAcceptance('');
-      
-      // Navigate to the dashboard
-      navigate('/sellerdashboard/sellerdash');
-    } catch (error) {
-      setError(error.message);
-    }
+        if (storedUser && storedUser.firstname === firstname && storedUser.password === password) {
+          setError('');
+          localStorage.setItem('user', JSON.stringify(storedUser));
+          setShowWelcomeMessage(true);
 
-    setSpinner(false);
+          setTimeout(() => {
+            setShowWelcomeMessage(false);
+            navigate('/sellerdashboard/sellerdash', { state: { firstname } });
+          }, 2000);
+        } else {
+          setError('Invalid name or password.');
+          setSpinner(false);
+        }
+      }
+    }, 1000);
   };
 
   const handleChange = (e) => {
     const { name, value, checked } = e.target;
 
-    if (name === 'email') {
-      setEmail(value);
+    if (name === 'name') {
+      setFirstName(value);
     } else if (name === 'password') {
       setPassword(value);
     } else if (name === 'acceptance') {
@@ -60,16 +64,16 @@ const Login = () => {
                 {error && <p className="error-message text-center">{error}</p>}
                 {spinner && <Spinner animation="border" variant='primary' className="mt-3" />}
                 {showWelcomeMessage && (
-                  <p className="welcome-message">Welcome, {email}!</p>
+                  <p className="welcome-message">Welcome, {firstname}!</p>
                 )}
                 <form className='form-hold' onSubmit={handleSubmit}>
                   <div className="mb-3">
-                    <label className="form-label" style={{ color: 'white' }}>Enter your email:</label>
+                    <label className="form-label" style={{ color: 'white' }}>Enter your name:</label>
                     <input
-                      type="email"
+                      type="text"
                       className="form-control"
-                      name="email"
-                      value={email}
+                      name="name"
+                      value={firstname}
                       onChange={handleChange}
                     />
                   </div>
@@ -107,6 +111,7 @@ const Login = () => {
           </div>
         </div>
       </div>
+      <Footer />
     </>
   );
 };

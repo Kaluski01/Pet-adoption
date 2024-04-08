@@ -31,7 +31,7 @@ const TestimonialCards = () => {
   useEffect(() => {
     const intervalId = setInterval(() => {
       setActiveIndex((prevIndex) => (prevIndex + 1) % testimonials.length);
-    }, 10000);
+    }, 2000);
 
     return () => clearInterval(intervalId);
   }, [testimonials.length]);

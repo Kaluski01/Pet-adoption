@@ -75,8 +75,8 @@ export default function AdopterSignUp() {
   return (
     <>
       <h1 className='main-sign mb-4'>Sign up as Adopter</h1>
-      <div className="center-container mx-auto">
-        <div className='form-container'>
+      <div className="container">
+        <div className='form-container mb-4'>
           {error && <p className="error-message">{error}</p>}
           {showWelcomeMessage && (
             <Toast className='w-100' onClose={() => setShowWelcomeMessage(false)} show={showWelcomeMessage} autohide>
@@ -88,8 +88,8 @@ export default function AdopterSignUp() {
           )}
           {!showWelcomeMessage && (
             <form className='form-hold' onSubmit={handleSubmit}>
-              <label style={{ color: 'white' }}>
-                Enter your name:
+              <div className="mb-3">
+                <label className="form-label" style={{ color: 'white' }}>Enter your name:</label>
                 <input
                   type="text"
                   className="form-control"
@@ -97,10 +97,9 @@ export default function AdopterSignUp() {
                   value={firstname}
                   onChange={handleChange}
                 />
-              </label>
-              <br />
-              <label style={{ color: 'white' }}>
-                Phone number:
+              </div>
+              <div className="mb-3">
+                <label className="form-label" style={{ color: 'white' }}>Phone number:</label>
                 <input
                   type="number"
                   className="form-control"
@@ -108,10 +107,9 @@ export default function AdopterSignUp() {
                   value={number}
                   onChange={handleChange}
                 />
-              </label>
-              <br />
-              <label style={{ color: 'white' }}>
-                Please enter your email:
+              </div>
+              <div className="mb-3">
+                <label className="form-label" style={{ color: 'white' }}>Please enter your email:</label>
                 <input
                   type="email"
                   className="form-control"
@@ -119,10 +117,9 @@ export default function AdopterSignUp() {
                   value={email}
                   onChange={handleChange}
                 />
-              </label>
-              <br />
-              <label style={{ color: 'white' }}>
-                Address:
+              </div>
+              <div className="mb-3">
+                <label className="form-label" style={{ color: 'white' }}>Address:</label>
                 <input
                   type="text"
                   className="form-control"
@@ -130,10 +127,9 @@ export default function AdopterSignUp() {
                   value={address}
                   onChange={handleChange}
                 />
-              </label>
-              <br />
-              <label style={{ color: 'white' }}>
-                Password:
+              </div>
+              <div className="mb-3">
+                <label className="form-label" style={{ color: 'white' }}>Password:</label>
                 <input
                   type="password"
                   className="form-control"
@@ -141,19 +137,21 @@ export default function AdopterSignUp() {
                   value={password}
                   onChange={handleChange}
                 />
-              </label>
+              </div>
               {spinner && <Spinner animation="border" variant='primary' className="mt-3" />}
-              <br />
-              <Link to="/signup/signup">
-                <button className='btn btn-primary me-4'>
-                  Back
-                </button>
-              </Link>
-              {!error && !spinner && !showWelcomeMessage && (
-                <button className='btn btn-primary' type="submit" value="Submit">
-                  Submit
-                </button>
-              )}
+              <div className="mb-3">
+                <Link to="/signup/signup">
+                  <button className='btn btn-primary me-4'>
+                    Back
+                  </button>
+                </Link>
+                {!error && !spinner && !showWelcomeMessage && (
+                  <button className='btn btn-primary' type="submit" value="Submit">
+                    Submit
+                  </button>
+                )}
+              </div>
+              <Link to='/adopter-login' className="mt-3 d-block" style={{ color: 'white', textDecoration: 'none' }}>Already have an account? <span className='btn btn-link'> Log-in</span></Link>
             </form>
           )}
         </div>
