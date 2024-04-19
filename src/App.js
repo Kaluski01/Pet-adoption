@@ -50,7 +50,7 @@ function App() {
     <>
       <BrowserRouter>
         <BasicExample />
-        <Routes>
+        <Routes  scrollRestoration="manual">
           <Route path="/" element={<Home pets={pets} addNewPet={addNewPet} />} />
           <Route path="/about" element={<About />} />
           <Route path="/dogs" element={<Dog />} />

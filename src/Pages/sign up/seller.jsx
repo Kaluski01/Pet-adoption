@@ -196,7 +196,6 @@ import firebase from 'firebase/compat/app';
 import { createUserWithEmailAndPassword, getAuth } from 'firebase/auth';
 import 'firebase/compat/firestore'; // Import Firestore for Firebase v9
 
-// Initialize Firebase app
 const firebaseConfig = {
   apiKey: "AIzaSyA8R-6JStMc680KVXXQ_XGSRche5OQUtl4",
   authDomain: "pet-adoption-project-99a08.firebaseapp.com",
@@ -210,7 +209,7 @@ initializeApp(firebaseConfig);
 
 const Seller = () => {
   const navigate = useNavigate();
-  const [firstname, setFirstName] = useState('');
+  const [firstName, setFirstName] = useState('');
   const [number, setNumber] = useState('');
   const [email, setEmail] = useState('');
   const [error, setError] = useState('');
@@ -231,15 +230,17 @@ const Seller = () => {
 
       // Store additional user data in Firebase Firestore if needed
       const userData = {
-        firstname,
+        firstName,
         number,
         address,
         acceptance,
+        email,
+        password,
       };
 
       // Here, you would typically store the user data in Firestore
       // For simplicity, this example only logs the user data
-      console.log('User data:', userData);
+      console.log('User data:', userData.firstName);
 
       // Add userData to Firestore
       await firebase.firestore().collection('users').add(userData);
@@ -257,8 +258,10 @@ const Seller = () => {
 
       // Reset the welcome message after 5 seconds
       setTimeout(() => {
-        setShowWelcomeMessage(false);
-        navigate('/sellerdashboard/sellerdash', { state: { firstname } });
+        console.log('stored credentials:',firstName,email)
+        setShowWelcomeMessage(true);
+        navigate('/sellerdashboard/sellerdash', { state: { propsFirstName: firstName } });
+
       }, 2000);
     } catch (error) {
       setError(error.message);
@@ -292,8 +295,8 @@ const Seller = () => {
 
   return (
     <>
-      <h1 className='main-sign mb-4'>Sign up</h1>
-      <div className="container">
+      <div className="container p-4">
+      <h1 className='mt-5'>Sign up as a Seller</h1>
         <div className='form-container mb-4'>
           {error && <p className="error-message">{error}</p>}
           {!showWelcomeMessage && (
@@ -306,7 +309,7 @@ const Seller = () => {
                   type="text"
                   className="form-control"
                   name="name"
-                  value={firstname}
+                  value={firstName}
                   onChange={handleChange}
                 />
               </div>

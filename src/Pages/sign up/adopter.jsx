@@ -74,8 +74,8 @@ export default function AdopterSignUp() {
 
   return (
     <>
-      <h1 className='main-sign mb-4'>Sign up as Adopter</h1>
-      <div className="container">
+      <div className="container p-5">
+      <h1 className='mt-5' style={{}}>Sign up as Adopter</h1>
         <div className='form-container mb-4'>
           {error && <p className="error-message">{error}</p>}
           {showWelcomeMessage && (
@@ -89,7 +89,7 @@ export default function AdopterSignUp() {
           {!showWelcomeMessage && (
             <form className='form-hold' onSubmit={handleSubmit}>
               <div className="mb-3">
-                <label className="form-label" style={{ color: 'white' }}>Enter your name:</label>
+                <label className="form-label" style={{ color: 'black' }}>Enter your name:</label>
                 <input
                   type="text"
                   className="form-control"
@@ -99,7 +99,7 @@ export default function AdopterSignUp() {
                 />
               </div>
               <div className="mb-3">
-                <label className="form-label" style={{ color: 'white' }}>Phone number:</label>
+                <label className="form-label" style={{ color: 'black' }}>Phone number:</label>
                 <input
                   type="number"
                   className="form-control"
@@ -109,7 +109,7 @@ export default function AdopterSignUp() {
                 />
               </div>
               <div className="mb-3">
-                <label className="form-label" style={{ color: 'white' }}>Please enter your email:</label>
+                <label className="form-label" style={{ color: 'black' }}>Please enter your email:</label>
                 <input
                   type="email"
                   className="form-control"
@@ -119,7 +119,7 @@ export default function AdopterSignUp() {
                 />
               </div>
               <div className="mb-3">
-                <label className="form-label" style={{ color: 'white' }}>Address:</label>
+                <label className="form-label" style={{ color: 'black' }}>Address:</label>
                 <input
                   type="text"
                   className="form-control"
@@ -129,7 +129,7 @@ export default function AdopterSignUp() {
                 />
               </div>
               <div className="mb-3">
-                <label className="form-label" style={{ color: 'white' }}>Password:</label>
+                <label className="form-label" style={{ color: 'black' }}>Password:</label>
                 <input
                   type="password"
                   className="form-control"
@@ -151,7 +151,7 @@ export default function AdopterSignUp() {
                   </button>
                 )}
               </div>
-              <Link to='/adopter-login' className="mt-3 d-block" style={{ color: 'white', textDecoration: 'none' }}>Already have an account? <span className='btn btn-link'> Log-in</span></Link>
+              <Link to='/adopter-login' className="mt-3 d-block" style={{ color: 'black', textDecoration: 'none' }}>Already have an account? <span className='btn btn-link'> Log-in</span></Link>
             </form>
           )}
         </div>
