@@ -34,9 +34,6 @@ export default function BasicExample() {
               <NavDropdown.Item as={Link} to="/dogs" onClick={handleSelect}>
                 Dogs
               </NavDropdown.Item>
-              <NavDropdown.Item as={Link} to="/cats" onClick={handleSelect}>
-                Cats
-              </NavDropdown.Item>
             </NavDropdown>
             <Nav.Link as={Link} onClick={handleSelect} to='Own'>
               Paw-ssentials

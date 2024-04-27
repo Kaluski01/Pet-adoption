@@ -4,6 +4,7 @@ import Toast from 'react-bootstrap/Toast';
 import firebase from 'firebase/compat/app';
 import 'firebase/compat/firestore';
 import 'firebase/compat/storage';
+import 'firebase/compat/auth';
 import { v4 as uuidv4 } from 'uuid';
 import { useNavigate } from 'react-router-dom';
 import { getDoc, doc } from 'firebase/firestore';
@@ -268,7 +269,11 @@ const Addpet = ({ updateNumberOfPets }) => { // Receive the updateNumberOfPets f
               <button type="button" className="btn btn-primary" onClick={handleAddPet}>
                 Add Pet
               </button>
-              {/* <Link to={`/sellerdashboard/sellerdash/${userFirstname}`} className="btn btn-primary">Back</Link> */}
+              {/* <Link to={{
+    pathname: "/sellerdashboard/sellerdash",
+    state: { propsFirstName: userFirstname }
+}} className="btn btn-primary">Back</Link> */}
+
 
 
 

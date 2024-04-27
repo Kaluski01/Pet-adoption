@@ -70,7 +70,7 @@ function App() {
           <Route path='/Login' element={<Login />} />
           <Route path='/Adopterlogin' element={<Adopterlogin/>}/>
           <Route path='/sellerdashboard/Addpet' element={<Addpet />} />
-          <Route path='/sellerdashboard/sellerdash/:firstname'element={<Addpet/>}/>
+          <Route path='/sellerdashboard/sellerdash/:firstname' element={<Sellerdash />} />
         </Routes>
       </BrowserRouter>
     </>
