@@ -15,10 +15,10 @@ const SignupPage = () => {
 
   return (
     <div style={{ paddingTop: '150px', marginTop: '20px' }}>
-      <h1 className='main-sign' style={{ fontSize: '25px' }}>Let us know who you are !!</h1>
+      <h1 className='main-sign' style={{ fontSize: '25px',textAlign:'center' }}>Let us know who you are !!</h1>
       <div className="container">
         <div className='row'>
-          <div className='col-md-6'>
+          <div className='col-md-6 '>
             <Card className="text-center">
               <Card.Body>
                 <Link to="/seller">

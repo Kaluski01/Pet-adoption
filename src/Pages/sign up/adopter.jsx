@@ -3,6 +3,8 @@ import { Link } from 'react-router-dom';
 import Spinner from 'react-bootstrap/Spinner';
 import Toast from 'react-bootstrap/Toast';
 import './signup.css';
+import { BiShow, BiHide } from "react-icons/bi"
+
 
 export default function AdopterSignUp() {
   const [firstname, setFirstName] = useState('');
@@ -13,6 +15,7 @@ export default function AdopterSignUp() {
   const [password, setPassword] = useState('');
   const [spinner, setSpinner] = useState(false);
   const [showWelcomeMessage, setShowWelcomeMessage] = useState(false);
+  const [showPassword, setShowPassword] = useState(false);
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -128,15 +131,18 @@ export default function AdopterSignUp() {
                   onChange={handleChange}
                 />
               </div>
-              <div className="mb-3">
+              <div className="mb-3 ">
                 <label className="form-label" style={{ color: 'black' }}>Password:</label>
                 <input
-                  type="password"
+              type={showPassword ? "text" : "password"} 
                   className="form-control"
                   name="password"
                   value={password}
                   onChange={handleChange}
                 />
+                 <div className="show-password-icon" onClick={() => setShowPassword(!showPassword)}>
+                        {showPassword ? <BiHide /> : <BiShow />} {/* Show BiHide icon when password is visible */}
+              </div>
               </div>
               {spinner && <Spinner animation="border" variant='primary' className="mt-3" />}
               <div className="mb-3">
@@ -151,7 +157,7 @@ export default function AdopterSignUp() {
                   </button>
                 )}
               </div>
-              <Link to='/adopter-login' className="mt-3 d-block" style={{ color: 'black', textDecoration: 'none' }}>Already have an account? <span className='btn btn-link'> Log-in</span></Link>
+              <Link to='/Adopterlogin' className="mt-3 d-block" style={{ color: 'black', textDecoration: 'none' }}>Already have an account? <span className='btn btn-link'> Log-in</span></Link>
             </form>
           )}
         </div>

@@ -53,14 +53,16 @@ export default function StoredPets() {
               <p>Weight: {selectedPet.weight}</p>
               <p>Height: {selectedPet.height}</p>
               <p>Price: {selectedPet.price} </p>
+              <p>Owner Name: {selectedPet.ownerName}</p>
               <p>Owner Number: {selectedPet.ownerPhone}</p>
               {/* Add more details as needed */}
             </div>
           ) : (
             <p>  <Spinner animation='border' variant='primary' /></p>
           )}
+          <br />
         </div>
-        <div>
+        <div className='adopt'>
           <Link to='/'>
             <button className='adopt'>Back</button>
           </Link>

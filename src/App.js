@@ -17,6 +17,7 @@ import Adopter from './Pages/sign up/adopter';
 import Storedpets from './Pages/Header folder/Storedpets';
 import Login from './Pages/sign up/Login';
 import Addpet from './Pages/sellerdashboard/Addpet';
+import Adopterlogin from './Pages/sign up/adopterLogin';
 
 // Initialize Firebase
 const firebaseConfig = {
@@ -67,7 +68,9 @@ function App() {
           <Route path="Cat" element={<Cat />} /> 
           <Route path='/sellerdashboard/sellerdash' element={<Sellerdash addNewPet={addNewPet} />} />
           <Route path='/Login' element={<Login />} />
+          <Route path='/Adopterlogin' element={<Adopterlogin/>}/>
           <Route path='/sellerdashboard/Addpet' element={<Addpet />} />
+          <Route path='/sellerdashboard/sellerdash/:firstname'element={<Addpet/>}/>
         </Routes>
       </BrowserRouter>
     </>

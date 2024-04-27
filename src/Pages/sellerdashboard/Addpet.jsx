@@ -1,27 +1,17 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import Spinner from 'react-bootstrap/Spinner';
 import Toast from 'react-bootstrap/Toast';
-import firebase from 'firebase/compat/app'; // Import Firebase core module
-import 'firebase/compat/firestore'; // Import Firestore
-import 'firebase/compat/storage'; // Import Storage
-import { v4 as uuidv4 } from 'uuid'; // Import uuid
+import firebase from 'firebase/compat/app';
+import 'firebase/compat/firestore';
+import 'firebase/compat/storage';
+import { v4 as uuidv4 } from 'uuid';
 import { useNavigate } from 'react-router-dom';
-import { ref, uploadBytesResumable } from 'firebase/storage'; // Import storage functions
-// import { useNavigate } from 'react-router-dom'; // Import useNavigate
+import { getDoc, doc } from 'firebase/firestore';
+import { ref, uploadBytesResumable } from 'firebase/storage';
+import { useLocation } from 'react-router-dom';
 import './sellerdash.css';
 
-// Firebase configuration
-const firebaseConfig = {
-  apiKey: "AIzaSyA8R-6JStMc680KVXXQ_XGSRche5OQUtl4",
-  authDomain: "pet-adoption-project-99a08.firebaseapp.com",
-  projectId: "pet-adoption-project-99a08",
-  storageBucket: "pet-adoption-project-99a08.appspot.com",
-  messagingSenderId: "226601747265",
-  appId: "1:226601747265:web:24326e722ad314f751d7c0",
-  measurementId: "G-WJRCH01VP2"
-};
-
-const Addpet = () => {
+const Addpet = ({ updateNumberOfPets }) => { // Receive the updateNumberOfPets function as a prop
   const [petName, setPetName] = useState('');
   const [petDescription, setPetDescription] = useState('');
   const [petImage, setPetImage] = useState('');
@@ -35,16 +25,57 @@ const Addpet = () => {
   const [ownerPhone, setOwnerPhone] = useState('');
   const [spinner, setSpinner] = useState(false);
   const [success, setSuccess] = useState(false);
+  const location = useLocation();
+  const userFirstname = location.state?.propsFirstName || '';
   const navigate = useNavigate();
-  // const navigate = useNavigate(); // Initialize useNavigate
+
+  const firebaseConfig = {
+    apiKey: "AIzaSyA8R-6JStMc680KVXXQ_XGSRche5OQUtl4",
+    authDomain: "pet-adoption-project-99a08.firebaseapp.com",
+    projectId: "pet-adoption-project-99a08",
+    storageBucket: "pet-adoption-project-99a08.appspot.com",
+    messagingSenderId: "226601747265",
+    appId: "1:226601747265:web:24326e722ad314f751d7c0",
+    measurementId: "G-WJRCH01VP2"
+  };
+
+  useEffect(() => {
+    const fetchUserFirstname = async () => {
+      try {
+        firebase.auth().onAuthStateChanged(async (currentUser) => {
+          if (currentUser) {
+            const userId = currentUser.uid;
+            const userDoc = await getDoc(doc(firebase.firestore(), 'users', userId));
+            if (userDoc.exists()) {
+              // const userData = userDoc.data();
+              // setUserFirstname(userData.firstName);
+            } else {
+              console.error('No user data found');
+            }
+          } else {
+            console.error('No authenticated user found');
+          }
+        });
+      } catch (error) {
+        console.error('Error fetching user data:', error);
+      } finally {
+        // setLoading(false);
+      }
+    };
+    
+    fetchUserFirstname();
+  }, []);
+  
+  console.log("userFirstname:", userFirstname);
 
   const handleAddPet = async () => {
     if (!petName || !petAge || !petWeight || !petHeight || !petImage || !price || !ownerName || !ownerPhone || !sex || !specie) {
       alert('Please fill in all the fields before adding a pet.');
       return;
     }
+    
     setSpinner(true);
-
+  
     const newPet = {
       id: uuidv4(),
       name: petName,
@@ -58,19 +89,20 @@ const Addpet = () => {
       ownerName: ownerName,
       ownerPhone: ownerPhone,
     };
-
+  
     try {
-      // Initialize Firebase if not already initialized
       if (!firebase.apps.length) {
         firebase.initializeApp(firebaseConfig);
       }
-
+  
       const storageRef = ref(firebase.storage(), `petImages/${newPet.id}`);
       await uploadBytesResumable(storageRef, petImage);
-
+  
       await firebase.firestore().collection('pets').add(newPet);
-
-      // Reset form fields after successful submission
+  
+      // Call the updateNumberOfPets function to update the number of pets
+      // updateNumberOfPets((prevNumberOfPets) => prevNumberOfPets + 1);
+  
       setPetName('');
       setPetDescription('');
       setPetAge('');
@@ -81,18 +113,21 @@ const Addpet = () => {
       setSpecie('');
       setOwnerName('');
       setOwnerPhone('');
-
+      setPetImage('')
       setSuccess(true);
       setTimeout(() => {
-        // navigate('/success'); // Navigate to success page after a delay
-      }, 2000); // Adjust the delay as needed
+        setSuccess(false); // Reset success after a certain time
+        // navigate('/sellerdashboard/sellerdash', { state: { propsFirstName: userFirstname } });
+      }, 2000);
     } catch (error) {
       console.error('Error adding pet:', error);
+      alert('An error occurred while adding the pet. Please try again.');
+    } finally {
+      setSpinner(false); // Ensure the spinner is hidden even if an error occurs
     }
-
-    setSpinner(false);
   };
-
+  
+  
   const handleImageChange = (e) => {
     const file = e.target.files[0];
     if (file) {
@@ -102,8 +137,8 @@ const Addpet = () => {
     }
   };
   const handleClose = () => {
-    // Navigate back to the form page when the toast is closed
-    navigate('/');
+    navigate('/sellerdashboard/sellerdash', { state: { propsFirstName: userFirstname } });
+    console.log(userFirstname)
   };
 
   return (
@@ -112,9 +147,7 @@ const Addpet = () => {
         <div className="card-body">
           {success ? (
             <Toast onClick={handleClose}>
-              <Toast.Header>
-                {/* <strong className="me-auto">{firstname}</strong> */}
-              </Toast.Header>
+              <Toast.Header></Toast.Header>
               <Toast.Body>We have successfully added your pet. It can now be seen by possible adopters</Toast.Body>
             </Toast>
           ) : (
@@ -215,6 +248,7 @@ const Addpet = () => {
                   onChange={(e) => setOwnerPhone(e.target.value)}
                 />
               </div>
+              <br />
               <div className="form-group">
                 <label>Pet Image:</label>
                 <input
@@ -223,15 +257,21 @@ const Addpet = () => {
                   onChange={handleImageChange}
                 />
               </div>
-              {petImage && ( // Display image preview if petImage is not null
+              <br />
+              {petImage && (
                 <div className="form-group">
                   <label>Preview:</label>
-                  <img src={URL.createObjectURL(petImage)} alt="Pet Preview" style={{ width: '20%', height: '200px' }} />
+                  <img src={URL.createObjectURL(petImage)} alt="Pet Preview" style={{ width: '30%', height: '200px' }} />
                 </div>
               )}
+              <br />
               <button type="button" className="btn btn-primary" onClick={handleAddPet}>
                 Add Pet
               </button>
+              {/* <Link to={`/sellerdashboard/sellerdash/${userFirstname}`} className="btn btn-primary">Back</Link> */}
+
+
+
             </form>
           )}
           {spinner && <Spinner animation="grow" />}

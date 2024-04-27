@@ -14,11 +14,12 @@ section{
 }
 .adopt{
     width: 50%;
-    border-radius: 50px;
+    gap: 10px ;
+    border-radius: 20px;
 }
 .adopt:hover{
-    background-color: black;
-    color: white;
+    /* background-color: black; */
+    color: black;
 }
 
 .first{

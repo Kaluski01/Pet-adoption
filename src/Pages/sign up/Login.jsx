@@ -50,7 +50,7 @@ const Login = () => {
         setEmail('');
         setPassword('');
         setAcceptance('');
-      }, 5000);
+      }, 3000);
     }
 
     setSpinner(false);

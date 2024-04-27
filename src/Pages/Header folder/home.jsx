@@ -11,7 +11,7 @@ import IMG2 from '../assests/dog 1.png';
 import TestimonialCards from '../body/carousel';
 import Footer from '../footer/footer';
 // import Storycard from '../../story-card/Storycard';
-import Pets from './pet';
+// import Pets from './pet';
 
 export default function Home() {
   const [pets, setPets] = useState([]);
@@ -120,8 +120,8 @@ export default function Home() {
 
       )}
 
-    <Pets numberOfDogs={10} showFooter={false} />
-  <Pets numberOfCats={100} showFooter={false} />  
+    {/* <Pets numberOfDogs={10} showFooter={false} />
+  <Pets numberOfCats={100} showFooter={false} />   */}
   <TestimonialCards />
   <Footer />
     </>

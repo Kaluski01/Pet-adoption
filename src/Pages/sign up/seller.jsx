@@ -195,6 +195,7 @@ import { initializeApp } from 'firebase/app';
 import firebase from 'firebase/compat/app';
 import { createUserWithEmailAndPassword, getAuth } from 'firebase/auth';
 import 'firebase/compat/firestore'; // Import Firestore for Firebase v9
+import { BiShow, BiHide } from "react-icons/bi"
 
 const firebaseConfig = {
   apiKey: "AIzaSyA8R-6JStMc680KVXXQ_XGSRche5OQUtl4",
@@ -218,6 +219,7 @@ const Seller = () => {
   const [spinner, setSpinner] = useState(false);
   const [acceptance, setAcceptance] = useState(false);
   const [showWelcomeMessage, setShowWelcomeMessage] = useState(false);
+  const [showPassword, setShowPassword] = useState(false);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -296,7 +298,7 @@ const Seller = () => {
   return (
     <>
       <div className="container p-4">
-      <h1 className='mt-5'>Sign up as a Seller</h1>
+        <h1 className='mt-5'>Sign up as a Seller</h1>
         <div className='form-container mb-4'>
           {error && <p className="error-message">{error}</p>}
           {!showWelcomeMessage && (
@@ -354,12 +356,15 @@ const Seller = () => {
                   Password:
                 </label>
                 <input
-                  type="password"
+                 type={showPassword ? "text" : "password"} 
                   className="form-control"
                   name="password"
                   value={password}
                   onChange={handleChange}
                 />
+                 <div className="show-password-icon" onClick={() => setShowPassword(!showPassword)}>
+                        {showPassword ? <BiHide /> : <BiShow />} {/* Show BiHide icon when password is visible */}
+                      </div>
               </div>
               <div className="mb-3 form-check">
                 <input
@@ -384,13 +389,21 @@ const Seller = () => {
                   )}
                 </div>
               )}
-              <Link to='/Login' className="mt-3 d-block" style={{ color: 'white', textDecoration: 'none' }}>Already have an account? <span className='btn btn-link'> Log-in</span></Link>
+              <Link to='/Login' className="mt-3 d-block" style={{ color: 'black', textDecoration: 'none' }}>Already have an account? <span className='btn btn-link 'style={{textDecoration:'none', color:'black'}}><button className='btn btn-primary'>
+                      Log in
+                    </button> </span></Link>
             </form>
+          )}
+          {showWelcomeMessage && (
+            <div style={{color:'black'}} className="welcome-message">
+              <p>Welcome, {firstName}!</p>
+            </div>
           )}
         </div>
       </div>
     </>
   );
+  
 };
 
 export default Seller;

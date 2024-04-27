@@ -79,13 +79,15 @@ export default function SingleDog() {
                     <li className='dog-list'>Temparament: {dog?.breeds?.[0]?.temperament} </li>
                     <li className='dog-list'>BreedGrroup: {dog?.breeds?.[0]?.breed_group}</li>
                   </ul>
-                  <Link to='/Dog'>
+                <div className="adopt">
+                <Link to='/Dog'>
                     <button className='adopt'>Back</button>
                   </Link>
                   <button className='adopt' onClick={handleAdoptClick}>
                     Adopt me!
                   </button>
                   <DogCard showDogCard={showDogCard} setShowDogCard={setShowDogCard} />
+                </div>
                 </div>
               </div>
             ) : (

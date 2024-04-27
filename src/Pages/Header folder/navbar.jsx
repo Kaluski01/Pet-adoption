@@ -48,11 +48,6 @@ export default function BasicExample() {
                 <Button type="submit">Sign up</Button>
               </Nav.Link>
             </Nav.Item>
-            <Nav.Item className="ml-lg-2">
-              <Nav.Link as={Link} onClick={handleSelect} to='/Login' >
-                <Button type="submit">Log in</Button>
-              </Nav.Link>
-            </Nav.Item>
           </Nav>
         </Navbar.Collapse>
       </Container>

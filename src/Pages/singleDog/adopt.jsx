@@ -108,7 +108,7 @@ export default function DogCard({ showDogCard, setShowDogCard }) {
               <Form.Label>Do you have a fenced compound?</Form.Label>
               <Form.Control type="text" name="text" required />
             </Form.Group>
-
+            <br />
             <Button type="submit">Submit</Button>
           </Form>
         )}
