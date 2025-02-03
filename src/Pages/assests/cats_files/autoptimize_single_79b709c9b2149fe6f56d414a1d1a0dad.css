@@ -1,0 +1,1 @@
+.cat-image-gallery{display:grid;grid-template-columns:repeat(3,1fr);margin-bottom:2rem;gap:1rem;width:auto}.cat-image-gallery img{border-radius:1em}

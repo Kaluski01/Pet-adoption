@@ -1,0 +1,16 @@
+/**
+ * @file Manages the height for the iframe.
+ * @copyright adopets.com
+ * @author André Martins <andre@adopets.com>
+ * @version 1.0.0
+
+iframe url settings
+------------------------------
+@param {uuid} shelter_uuid - uuid of the shelter
+@param {uuid} specie_uuid - uuid of the specie to default filter and hide the others in th filter
+@param {number} [g=15] - Gutter of the cards
+@param {number} [p=15] - Page border padding
+@param {boolean} [t=false] - Transparent, passar true or false
+@param {boolean} [nb=false] - No show breed in filter
+ */
+function bindEvent(t,e,n){t.addEventListener?t.addEventListener(e,n,!1):t.attachEvent&&t.attachEvent("on"+e,n)}bindEvent(window,"message",t=>{isNaN(parseInt(t.data))||(document.getElementById("adopets-iframe").height=parseInt(t.data))});
