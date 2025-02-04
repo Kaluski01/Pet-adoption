@@ -887,7 +887,6 @@
   "bugs": {
     "url": "https://github.com/Kaluski01/Pet-adoption/issues"
   },
-  "homepage": "https://github.com/Kaluski01/Pet-adoption#readme",
   "browserslist": {
     "production": [
       ">0.2%",
