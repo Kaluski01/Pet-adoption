@@ -3,6 +3,12 @@
   "version": "1.0.0",
   "description": "This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).",
   "main": "index.js",
+  "scripts": {
+    "start": "react-scripts start",
+    "build": "react-scripts build",
+    "test": "react-scripts test",
+    "eject": "react-scripts eject"
+  },
   "dependencies": {
     "abab": "^2.0.6",
     "accepts": "^1.3.8",
@@ -872,9 +878,6 @@
     "yargs-parser": "^21.1.1",
     "yocto-queue": "^0.1.0"
   },
-  "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
-  },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/Kaluski01/Pet-adoption.git"
@@ -884,5 +887,17 @@
   "bugs": {
     "url": "https://github.com/Kaluski01/Pet-adoption/issues"
   },
-  "homepage": "https://github.com/Kaluski01/Pet-adoption#readme"
+  "homepage": "https://github.com/Kaluski01/Pet-adoption#readme",
+  "browserslist": {
+    "production": [
+      ">0.2%",
+      "not dead",
+      "not op_mini all"
+    ],
+    "development": [
+      "last 1 chrome version",
+      "last 1 firefox version",
+      "last 1 safari version"
+    ]
+  }
 }
