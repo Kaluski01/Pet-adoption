@@ -1,3 +1,78 @@
-version https://git-lfs.github.com/spec/v1
-oid sha256:771c95f2960ae7f21a39cd452146a7db2b38f4006ff08652edb10694aaa8d88a
-size 1221
+.container-fluid{
+    width: 80%;
+    color: gold;
+    height: 620px;
+}
+
+li{
+    list-style: none;
+    color: white;
+}
+.icons{
+    width:20%;
+    display: flex;
+    gap: 5px;
+}
+.logo{
+    border: 5px solid white;
+    border-radius: 5px;
+    width: 40px;
+    height: 40px;
+    background-color: white;
+}
+.p{
+    color: white;
+}
+.sign{
+    background-color: transparent;
+    color: white;
+    width: 100px;
+    border: 1px solid white;
+    border-radius: 360px;
+    height: 50px;
+}
+.sign:hover{
+    background-color: white;
+    color: black;
+}
+
+.logo:hover{
+    background-color: white;
+    border-radius: 10px;
+}
+
+@media (max-width: 767px) {
+    .icons{
+        display: flex;
+        flex-direction: column  ;
+        
+    }
+    .bro{
+        width: 340px;
+        display:flex;
+        /* flex-wrap: wrap; */
+        flex-direction: column;
+    }
+    .bro ul{
+        width: 50%;
+    }
+    .bros{
+        width: 100%;
+    }
+    .h{
+        display: none;
+    }
+    hr{
+        width: 100%;
+    }
+    .king{
+        width: 100%;
+    }
+    .king h5{
+        width: 100%;
+    }
+    .king p{
+        font-size: 15px;
+        width: 100%;
+    }
+  }

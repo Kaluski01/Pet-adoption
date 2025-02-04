@@ -1,3 +1,16 @@
-version https://git-lfs.github.com/spec/v1
-oid sha256:7e02bc88f2d514bffcdaf4bbd2d16009e3de816e0a6eaa25c69e3efa3e57a602
-size 267
+
+.first-texts{
+    /* width: 100%; */
+    /* background-color: blue; */
+    margin-top: 100px;
+}
+.firsts-h1{
+    color: #000;
+    font-family: Tahoma;
+    font-size: 30px;
+}
+.firsts-p{
+    color: black;
+    /* font-size: 10px; */
+    font-size: 20px;
+}

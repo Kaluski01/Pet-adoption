@@ -1,3 +1,9 @@
-version https://git-lfs.github.com/spec/v1
-oid sha256:918aedbc3b5ce014677a1875cf807133940ff3d3ead5928dd0ca5ff3418e71b0
-size 1055
+<svg width="1143" height="1024" viewBox="0 0 1143 1024" fill="none" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+  <defs>
+    <image id="image0_9_23" xlink:href="https://s3-alpha-sig.figma.com/img/83d5/7335/2c32d09b0c483df470298e1ecfe233a8?Expires=1705881600&Key-Pair-Id=APKAQ4GOSFWCVNEHN3O4&Signature=Uk8b6zuTXY-rS-2367~tpyGhkQKP9z6rWZQn8ixUM~vCbh1eH9MjxjxJwvpP8A6rDOp7JCzPBxPPBO6qfV5qPdMnPgS-vB1ja2f3TVCGizLKYme1Xh68ru0tuPiDio2zNhFXQPTpe0~qE1xb-0v2uciUxY46SAp6f93l8VxXxdctx5BmXxVI0GX0PlbT2GlEOShpAHSTcs6EuaEIQpdoRHX9YPuKJhwOE3Ml2Z4fOOciix4UyCt3mNEuxQSdnY4fjlOPMfyy2PbUVpyTcIVlL1wRYbNGZi5lAmOwr6C26Mj-VlRn7vNohtAnSxtWkwr8axcNziGk2b3QVz6HvvYVDw__" />
+    <pattern id="pattern0" patternContentUnits="objectBoundingBox" width="1" height="1">
+      <use xlink:href="#image0_9_23" transform="matrix(0.000244986 0 0 0.000266241 -0.0017308 0)" />
+    </pattern>
+  </defs>
+  <rect id="pngwing 2" x="427.837" y="-85" width="1052.21" height="968.212" transform="rotate(47.2375 427.837 -85)" fill="red" fill-opacity="0.1"/>
+</svg>

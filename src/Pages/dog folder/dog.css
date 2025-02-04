@@ -1,3 +1,66 @@
-version https://git-lfs.github.com/spec/v1
-oid sha256:e113129d4196b5a0a739eb7e96ff2ef171350653d6ad985ba5ed18bf76e08d47
-size 1177
+
+body{
+     /* font-family: "Spinnaker", sans-serif; */
+     font-family: "Barlow", sans-serif;
+     /* font-family: "Croissant One", serif; */
+  /* font-family: "Oxygen", sans-serif; */
+  /* font-family: "Montserrat Alternates", sans-serif; */
+}
+.dog-h1{
+    text-align: center;
+    margin-top: 20px;
+}
+article{
+    width: 100%;
+    /* display: flex; */
+}
+
+img{
+    height: 200px;
+    width: 50%;
+}
+
+.img-fluid{
+    height: 250px;
+    width: 100%;
+}
+
+.form{
+    border: none;
+    border-radius: 20px;
+    box-shadow: 1px;
+    width: 30%;
+    /* background-color: #FB7086; */
+}
+.link{
+    color: white;
+    text-decoration: none;
+    transform: scale(1); /* Initial state */
+    transition: transform 0.3s ease-in-out
+}
+link:hover{
+    background-color: #48556A;
+    transform: scale(1.1);
+}
+
+article h5{
+    color: black;
+    font-size: 20px;
+}
+article p{
+    color: black;
+    font-size: 15px;
+}
+.dog{
+    padding-top: 50px;
+}
+.dog-card {
+    transition: transform 0.3s, background-color 0.3s;
+  }
+  
+  .dog-card:hover {
+    transform: translateY(-10px);
+    background-color:#7C7D9F; 
+    color: white;
+  }
+  

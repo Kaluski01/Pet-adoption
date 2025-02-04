@@ -1,3 +1,20 @@
-version https://git-lfs.github.com/spec/v1
-oid sha256:4bde5fcd2fb5f6bfe321732431825949822f76da9c4f0248ca275f1420ec5fc8
-size 318
+.cat-h1{
+    text-align: center;
+    /* margin-top: 50px; */
+}
+
+.img-fluids{
+    height: 300px;
+    width: 100%;
+}
+
+.cat-card {
+    transition: transform 0.3s, background-color 0.3s;
+  }
+  
+  .cat-card:hover {
+    transform: translateY(-10px);
+    background-color:#7C7D9F; 
+    color: white;
+  }
+  

@@ -1,3 +1,49 @@
-version https://git-lfs.github.com/spec/v1
-oid sha256:99c2d57a4f127472b6c558796c2782719836e480587b64627df6435130d218f3
-size 1514
+import React, { useEffect } from 'react';
+import { Link } from 'react-router-dom';
+import { Button, Card } from 'react-bootstrap';
+
+const SignupPage = () => {
+  useEffect(() => {
+    // Check if user is already signed in
+    const storedUser = JSON.parse(localStorage.getItem('user'));
+    if (storedUser) {
+      // Implement logic for handling signed-in users
+      // For example:
+      // setIsSellerSignedIn(true);
+    }
+  }, []);
+
+  return (
+    <div style={{ paddingTop: '150px', marginTop: '20px' }}>
+      <h1 className='main-sign' style={{ fontSize: '25px',textAlign:'center' }}>Let us know who you are !!</h1>
+      <div className="container">
+        <div className='row'>
+          <div className='col-md-6 '>
+            <Card className="text-center">
+              <Card.Body>
+                <Link to="/seller">
+                  <Button variant="primary" block>
+                    Sign Up as Pet Seller
+                  </Button>
+                </Link>
+              </Card.Body>
+            </Card>
+          </div>
+          <div className='col-md-6'>
+            <Card className="text-center">
+              <Card.Body>
+                <Link to="/adopter">
+                  <Button variant="primary" block>
+                    Sign Up as Pet Adopter
+                  </Button>
+                </Link>
+              </Card.Body>
+            </Card>
+          </div>
+        </div>
+      </div>
+    </div>
+  );
+};
+
+export default SignupPage;
