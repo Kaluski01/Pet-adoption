@@ -1,0 +1,28 @@
+/* Navbar link hover effect */
+.navbar-nav .nav-link {
+  position: relative;
+  transition: color 0.3s ease, transform 0.3s ease;
+}
+
+/* Hover effect - change color and slightly move up */
+.navbar-nav .nav-link:hover {
+  color: #ffc107 !important; /* Bootstrap's warning color */
+  transform: translateY(-3px);
+}
+
+/* Optional: Underline effect on hover */
+.navbar-nav .nav-link::after {
+  content: '';
+  position: absolute;
+  width: 0;
+  height: 2px;
+  background-color: #ffc107;
+  bottom: 0;
+  left: 50%;
+  transition: width 0.3s ease, left 0.3s ease;
+}
+
+.navbar-nav .nav-link:hover::after {
+  width: 100%;
+  left: 0;
+}

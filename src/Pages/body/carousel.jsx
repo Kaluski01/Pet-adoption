@@ -4,6 +4,7 @@ import image1 from '../assests/mans.webp';
 import image2 from '../assests/lady.webp';
 import image3 from '../assests/last.webp';
 import image4 from '../assests/we.jpg';
+import './carousel.css';
 
 const TestimonialCards = () => {
   const testimonials = [
@@ -44,27 +45,20 @@ const TestimonialCards = () => {
   }, [testimonials.length]);
 
   return (
-    <div className="container-fluid bg-warning mb-5 w-100 p-5" style={{ paddingBottom: '50px' }}>
-      <h1 className="test text-center">Testimonials</h1>
-      <div className="row">
-        <div className="col-lg-7 col-12 mx-auto mt-5">
-          <Carousel controls={false} interval={10000} activeIndex={activeIndex} onSelect={() => {}}>
-            {testimonials.map((testimonial, index) => (
-              <Carousel.Item key={index}>
-                <img
-                  className="d-block w-100"
-                  src={testimonial.image}
-                  alt={`Fade ${index}`}
-                  style={{ height: '400px', objectFit: 'cover' }}
-                />
-                <Carousel.Caption>
-                  <h3>{testimonial.name}</h3>
-                  <p>{testimonial.content}</p>
-                </Carousel.Caption>
-              </Carousel.Item>
-            ))}
-          </Carousel>
-        </div>
+    <div className="testimonial-container bg-warning mt-5">
+      <h1 className="testimonial-title">Testimonials</h1>
+      <div className="carousel-wrapper">
+        <Carousel controls={false} interval={10000} activeIndex={activeIndex} onSelect={() => {}}>
+          {testimonials.map((testimonial, index) => (
+            <Carousel.Item key={index}>
+              <img className="testimonial-image" src={testimonial.image} alt={`Testimonial ${index}`} />
+              <Carousel.Caption className="testimonial-caption">
+                <h3 className="testimonial-name">{testimonial.name}</h3>
+                <p className="testimonial-content">{testimonial.content}</p>
+              </Carousel.Caption>
+            </Carousel.Item>
+          ))}
+        </Carousel>
       </div>
     </div>
   );

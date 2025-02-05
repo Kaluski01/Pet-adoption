@@ -9,6 +9,7 @@ const Sellerdash = () => {
   const location = useLocation();
   const [loading, setLoading] = useState(true);
   const [userFirstname, setUserFirstname] = useState('');
+  const [userEmail, setUserEmail] = useState();
   const [userPets, setUserPets] = useState([]);
 
   useEffect(() => {
@@ -16,121 +17,133 @@ const Sellerdash = () => {
       try {
         const auth = getAuth();
         const currentUser = auth.currentUser;
-  
+
         if (!currentUser) {
           throw new Error('No user found');
         }
-  
+
         const userId = currentUser.uid;
         const db = getFirestore();
         const usersCollectionRef = collection(db, 'users');
         const q = query(usersCollectionRef, where('uid', '==', userId));
         const querySnapshot = await getDocs(q);
-  
+
         querySnapshot.forEach((doc) => {
           const userData = doc.data();
           setUserFirstname(userData.firstName);
-          console.log("User data fetched:", userData.firstName); // Add this console log
+          setUserEmail(userData.email);
         });
       } catch (error) {
         console.error('Error fetching user data:', error);
       } finally {
-        setLoading(false); // Set loading to false after user data is fetched or an error occurs
+        setLoading(false);
       }
     };
-  
+
     fetchUserData();
   }, []);
-  
-  
+
   useEffect(() => {
     if (location.state && location.state.propsFirstName) {
       setUserFirstname(location.state.propsFirstName);
+      setUserEmail(location.state.propsEmail);
+      setLoading(false);
     }
   }, [location.state]);
-  
 
   useEffect(() => {
     const fetchUserPets = async () => {
       try {
-        // Check if userFirstname is not an empty string
-        if (userFirstname.trim() !== '') {
-          const auth = getAuth();
-          const currentUser = auth.currentUser;
-      
-          if (!currentUser) {
-            throw new Error('No user found');
-          }
-      
+        if (userEmail && userEmail.trim() !== '') {
           const db = getFirestore();
           const petsCollectionRef = collection(db, 'pets');
-          const q = query(petsCollectionRef, where('ownerName', '==', userFirstname));
+          const q = query(petsCollectionRef, where('ownerEmail', '==', userEmail));
           const querySnapshot = await getDocs(q);
           const petsData = [];
-    
+
           querySnapshot.forEach((doc) => {
-            const petData = doc.data();
             petsData.push({
               id: doc.id,
-              ...petData
+              ...doc.data(),
             });
           });
-    
+
           setUserPets(petsData);
         }
       } catch (error) {
         console.error('Error fetching user pets:', error);
       }
     };
-    
+
     fetchUserPets();
-  }, [userFirstname]); // Add userFirstname as a dependency
-  
+  }, [userEmail]);
 
   const handleLogout = () => {
-    navigate('/');
+    navigate('/signup/signup');
   };
 
   return (
-    <div className='bg-dark container' style={{ height: '500px', color: 'white', marginTop: '100px' }}>
-      <h5>Welcome to your Dashboard, {loading ? <Spinner animation="border" variant='primary' className="mt-3" /> : userFirstname}!</h5>
-      <div className="container">
-        <div className="row">
-          <div className="col-lg-12">
-            <div className="col-lg-12">
-            <Link to={{
-                pathname: "/sellerdashboard/Addpet",
-                state: { propsFirstName: userFirstname }
-              }}>
-                <button className='btn btn-primary'>Add pet</button>
-              </Link>
-              <br />
-              <br />
-            </div>
-            <table className="table table-striped">
-              <thead>
-                <tr>
-                  <th>Pet Name</th>
-                  <th>Age</th>
-                  <th>Breed</th>
-                  {/* Add more columns as needed */}
+    <div
+      className="container mt-5 p-4"
+      style={{ backgroundColor: '#f8f9fa', borderRadius: '10px', boxShadow: '0 4px 6px rgba(0, 0, 0, 0.1)' }}
+    >
+      <h2 className="text-center mb-4" style={{ color: '#333' }}>
+        Welcome to your Dashboard,{' '}
+        {loading ? (
+          <Spinner animation="border" variant="primary" size="sm" />
+        ) : (
+          <span style={{ color: '#007bff' }}>{userFirstname}</span>
+        )}
+        !
+      </h2>
+
+      <div className="text-center mb-4">
+        <h5>
+          Ready to add your pets?{' '}
+          <Link
+            to={{
+              pathname: '/sellerdashboard/Addpet',
+              state: { propsFirstName: userFirstname },
+            }}
+          >
+            <button className="btn btn-primary">Add Pet</button>
+          </Link>
+        </h5>
+      </div>
+
+      <div className="table-responsive">
+        <table className="table table-bordered table-hover">
+          <thead className="thead-dark">
+            <tr>
+              <th scope="col">Pet Name</th>
+              <th scope="col">Age</th>
+              <th scope="col">Breed</th>
+            </tr>
+          </thead>
+          <tbody>
+            {userPets.length > 0 ? (
+              userPets.map((pet) => (
+                <tr key={pet.id}>
+                  <td>{pet.name}</td>
+                  <td>{pet.age}</td>
+                  <td>{pet.specie}</td>
                 </tr>
-              </thead>
-              <tbody>
-                {userPets.map((pet) => (
-                  <tr key={pet.id}>
-                    <td>{pet.name}</td>
-                    <td>{pet.age}</td>
-                    <td>{pet.specie}</td> {/* Assuming specie represents the breed */}
-                    {/* Add more columns as needed */}
-                  </tr>
-                ))}
-              </tbody>
-            </table>
-            <button className='btn btn-danger' onClick={handleLogout}>Logout</button>
-            <br />
-          </div>
-        </div>
+              ))
+            ) : (
+              <tr>
+                <td colSpan="3" className="text-center">
+                  No pets added yet.
+                </td>
+              </tr>
+            )}
+          </tbody>
+        </table>
+      </div>
+
+      <div className="text-center mt-4">
+        <button className="btn btn-danger" onClick={handleLogout}>
+          Logout
+        </button>
       </div>
     </div>
   );

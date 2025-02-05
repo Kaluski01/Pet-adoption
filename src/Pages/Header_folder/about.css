@@ -1,16 +1,56 @@
+/* About page container */
+.about-container {
+  background-image: url('../assests/cute.jpg');
+  background-size: cover;
+  background-position: center;
+  background-attachment: fixed;
+  min-height: 100vh; /* Ensures it doesn't cut off content */
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: center;
+  padding: 20px; /* Adds padding for spacing */
+  box-sizing: border-box;
+  margin-bottom: 50px; /* Adds spacing to avoid overlap with the footer */
+}
 
-.first-texts{
-    /* width: 100%; */
-    /* background-color: blue; */
-    margin-top: 100px;
+/* Content wrapper for the main section */
+.content-wrapper {
+  background: rgba(0, 0, 0, 0.6); /* Semi-transparent overlay */
+  padding: 30px;
+  border-radius: 15px;
+  max-width: 800px; /* Restrict width for readability */
+  margin-bottom: 50px; /* Adds spacing below */
 }
-.firsts-h1{
-    color: #000;
-    font-family: Tahoma;
-    font-size: 30px;
+
+/* Features section */
+.content-wrapper h2,
+.content-wrapper h4 {
+  margin-top: 16px;
+  margin-bottom: 12px;
+  color: #fff; /* White color for headings */
 }
-.firsts-p{
-    color: black;
-    /* font-size: 10px; */
-    font-size: 20px;
+
+.content-wrapper p {
+  margin-bottom: 16px;
+  color: #ddd; /* Slightly lighter white for body text */
+}
+
+/* Ensure footer spacing */
+footer {
+  margin-top: 50px; /* Spacing between the content and footer */
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+  .content-wrapper {
+    padding: 20px;
+  }
+  .content-wrapper h1 {
+    font-size: 28px;
+  }
+  .content-wrapper p {
+    font-size: 16px;
+  }
 }

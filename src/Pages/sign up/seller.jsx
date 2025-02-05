@@ -1,210 +1,20 @@
-// import React, { useState } from 'react';
-// import Spinner from 'react-bootstrap/Spinner';
-// import { Link, useNavigate } from 'react-router-dom';
-// import {intialiazeApp} from 'firebase/app'
-// import {getAuth, createWithEmailAndPassword, signInWithEmailAndPassword } from 'firebase/auth'
-// import './seller.css';
-
-// const Seller = () => {
-//   const navigate = useNavigate();
-//   const [firstname, setFirstName] = useState('');
-//   const [number, setNumber] = useState('');
-//   const [email, setEmail] = useState('');
-//   const [error, setError] = useState('');
-//   const [address, setAddress] = useState('');
-//   const [password, setPassword] = useState('');
-//   const [spinner, setSpinner] = useState(false);
-//   const [acceptance, setAcceptance] = useState(false);
-//   const [showWelcomeMessage, setShowWelcomeMessage] = useState(false);
-
-//   const handleSubmit = (e) => {
-//     e.preventDefault();
-//     setSpinner(true);
-  
-//     setTimeout(() => {
-//       if (!firstname || !number || !email || !address || !password || !acceptance) {
-//         setError('Please fill in all required fields.');
-//         setSpinner(false);
-  
-//         // Clear error message after 5 seconds
-//         setTimeout(() => {
-//           setError('');
-//         }, 5000);
-//       } else {
-//         setError('');
-  
-//         const user = {
-//           firstname,
-//           number,
-//           email,
-//           address,
-//           password,
-//           acceptance,
-//         };
-//         localStorage.setItem('user', JSON.stringify(user));
-  
-//         // Clear form fields after successful submission
-//         setFirstName('');
-//         setNumber('');
-//         setEmail('');
-//         setAddress('');
-//         setPassword('');
-//         setAcceptance('');
-  
-//         // Set the welcome message
-//         setShowWelcomeMessage(true);
-  
-//         // Reset the welcome message after 5 seconds
-//         setTimeout(() => {
-//           setShowWelcomeMessage(false);
-//           navigate('/sellerdashboard/sellerdash', { state: { firstname } });
-//         }, 2000);
-//       }
-      
-//       // Always set spinner to false after submission attempt
-//       setSpinner(false);
-//     }, 1000);
-//   };
-  
-//       // Always set spinner to false after submission attempt
-//   const handleChange = (e) => {
-//     const { name, value, checked } = e.target;
-
-//     if (name === 'name') {
-//       setFirstName(value);
-//     } else if (name === 'number') {
-//       setNumber(value);
-//     } else if (name === 'email') {
-//       setEmail(value);
-//     } else if (name === 'address') {
-//       setAddress(value);
-//     } else if (name === 'password') {
-//       setPassword(value);
-//     } else if (name === 'acceptance') {
-//       setAcceptance(checked);
-//     }
-//   };
-
-//   return (
-//     <>
-//       <h1 className='main-sign mb-4'>Sign up</h1>
-//       <div className="container">
-//         <div className='form-container mb-4'>
-//             {error && <p className="error-message">{error}</p>}
-//           {!showWelcomeMessage && (
-//             <form className='form-hold' onSubmit={handleSubmit}>
-//               <div className="mb-3">
-//                 <label className="form-label">
-//                   Enter your name:
-//                 </label>
-//                 <input
-//                   type="text"
-//                   className="form-control"
-//                   name="name"
-//                   value={firstname}
-//                   onChange={handleChange}
-//                 />
-//               </div>
-//               <div className="mb-3">
-//                 <label className="form-label">
-//                   Phone number:
-//                 </label>
-//                 <input
-//                   type="number"
-//                   className="form-control"
-//                   name="number"
-//                   value={number}
-//                   onChange={handleChange}
-//                 />
-//               </div>
-//               <div className="mb-3">
-//                 <label className="form-label">
-//                   Please enter your email:
-//                 </label>
-//                 <input
-//                   type="email"
-//                   className="form-control"
-//                   name="email"
-//                   value={email}
-//                   onChange={handleChange}
-//                 />
-//               </div>
-//               <div className="mb-3">
-//                 <label className="form-label">
-//                   Address:
-//                 </label>
-//                 <input
-//                   type="text"
-//                   className="form-control"
-//                   name="address"
-//                   value={address}
-//                   onChange={handleChange}
-//                 />
-//               </div>
-//               <div className="mb-3">
-//                 <label className="form-label">
-//                   Password:
-//                 </label>
-//                 <input
-//                   type="password"
-//                   className="form-control"
-//                   name="password"
-//                   value={password}
-//                   onChange={handleChange}
-//                 />
-//               </div>
-//               <div className="mb-3 form-check">
-//                 <input
-//                   type="checkbox"
-//                   className="form-check-input"
-//                   name="acceptance"
-//                   checked={acceptance}
-//                   onChange={handleChange}
-//                 />
-//                 <label className="form-check-label">I understand and accept that my phone number may be shared with potential adopters.</label>
-//               </div>
-//               {spinner && <Spinner animation="border" variant='primary' className="mt-3" />}
-//               {showWelcomeMessage && (
-//                 <p className="welcome-message">Thank you for joining us</p>
-//               )}
-//               <div className='d-flex justify-content-between mt-3'>
-//                 <Link to='/signup/signup'>
-//                   <button className='btn btn-primary' type="button">Back</button>
-//                 </Link>
-//                 {!error && !spinner && !showWelcomeMessage && (
-//                   <button className='btn btn-primary' type="submit" value="Submit">
-//                     Submit
-//                   </button>
-//                 )}
-//               </div>
-//               <Link to='/Login' className="mt-3 d-block" style={{ color: 'white', textDecoration: 'none' }}>Already have an account? <span className='btn btn-link'> Log-in</span></Link>
-//             </form>
-//           )}
-//         </div>
-//       </div>
-//     </>
-//   );
-// };
-
-// export default Seller;
-import React, { useState } from 'react';
-// import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import Spinner from 'react-bootstrap/Spinner';
 import { Link, useNavigate } from 'react-router-dom';
 import { initializeApp } from 'firebase/app';
 import firebase from 'firebase/compat/app';
 import { createUserWithEmailAndPassword, getAuth } from 'firebase/auth';
-import 'firebase/compat/firestore'; // Import Firestore for Firebase v9
-import { BiShow, BiHide } from "react-icons/bi"
+import 'firebase/compat/firestore';
+import { BiShow, BiHide } from 'react-icons/bi';
 
 const firebaseConfig = {
-  apiKey: "AIzaSyA8R-6JStMc680KVXXQ_XGSRche5OQUtl4",
-  authDomain: "pet-adoption-project-99a08.firebaseapp.com",
-  projectId: "pet-adoption-project-99a08",
-  storageBucket: "pet-adoption-project-99a08.appspot.com",
-  messagingSenderId: "226601747265",
-  appId: "1:226601747265:web:24326e722ad314f751d7c0",
-  measurementId: "G-WJRCH01VP2"
+  apiKey: 'AIzaSyA8R-6JStMc680KVXXQ_XGSRche5OQUtl4',
+  authDomain: 'pet-adoption-project-99a08.firebaseapp.com',
+  projectId: 'pet-adoption-project-99a08',
+  storageBucket: 'pet-adoption-project-99a08.appspot.com',
+  messagingSenderId: '226601747265',
+  appId: '1:226601747265:web:24326e722ad314f751d7c0',
+  measurementId: 'G-WJRCH01VP2',
 };
 initializeApp(firebaseConfig);
 
@@ -213,199 +23,193 @@ const Seller = () => {
   const [firstName, setFirstName] = useState('');
   const [number, setNumber] = useState('');
   const [email, setEmail] = useState('');
-  const [error, setError] = useState('');
   const [address, setAddress] = useState('');
   const [password, setPassword] = useState('');
-  const [spinner, setSpinner] = useState(false);
   const [acceptance, setAcceptance] = useState(false);
-  const [showWelcomeMessage, setShowWelcomeMessage] = useState(false);
+  const [error, setError] = useState('');
+  const [spinner, setSpinner] = useState(false);
+  const [isFormDisabled, setIsFormDisabled] = useState(false);
   const [showPassword, setShowPassword] = useState(false);
+  const [isSubmitting, setIsSubmitting] = useState(false);
+
+  useEffect(() => {
+    if (error) {
+      const timer = setTimeout(() => {
+        setError('');
+      }, 3000);
+      return () => clearTimeout(timer);
+    }
+  }, [error]);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
     setSpinner(true);
+    setIsSubmitting(true);
 
-    try {
-      const auth = getAuth(); // Get the Auth object
-      // Create user with email and password in Firebase
-      await createUserWithEmailAndPassword(auth, email, password);
-
-      // Store additional user data in Firebase Firestore if needed
-      const userData = {
-        firstName,
-        number,
-        address,
-        acceptance,
-        email,
-        password,
-      };
-
-      // Here, you would typically store the user data in Firestore
-      // For simplicity, this example only logs the user data
-      console.log('User data:', userData.firstName);
-
-      // Add userData to Firestore
-      await firebase.firestore().collection('users').add(userData);
-
-      // Clear form fields after successful submission
-      setFirstName('');
-      setNumber('');
-      setEmail('');
-      setAddress('');
-      setPassword('');
-      setAcceptance('');
-
-      // Set the welcome message
-      setShowWelcomeMessage(true);
-
-      // Reset the welcome message after 5 seconds
-      setTimeout(() => {
-        console.log('stored credentials:',firstName,email)
-        setShowWelcomeMessage(true);
-        navigate('/sellerdashboard/sellerdash', { state: { propsFirstName: firstName } });
-
-      }, 2000);
-    } catch (error) {
-      setError(error.message);
-      // Clear error message after 5 seconds
-      setTimeout(() => {
-        setError('');
-      }, 5000);
-      console.error('Error signing up:', error);
+    if (!firstName || !number || !email || !address || !acceptance || !password) {
+      setError('Please fill out all the specified form fields');
+      setSpinner(false);
+      setIsSubmitting(false);
+      return;
     }
 
-    setSpinner(false);
+    try {
+      const auth = getAuth();
+      await createUserWithEmailAndPassword(auth, email, password);
+
+      const userData = { firstName, number, address, acceptance, email };
+      await firebase.firestore().collection('users').add(userData);
+
+      setIsFormDisabled(true);
+
+      setTimeout(() => {
+        navigate('/sellerdashboard/sellerdash', { state: { propsEmail: email, propsFirstName: firstName } });
+      }, 2000);
+    } catch (error) {
+      if (error.code === 'auth/email-already-in-use') {
+        setError('This email is already registered. Please use a different email.');
+      } else if (error.code === 'auth/weak-password') {
+        setError('Your password is too weak. Please use a stronger password.');
+      } else {
+        setError('An error occurred during signup. Please try again.');
+      }
+
+      setSpinner(false);
+      setIsSubmitting(false);
+    }
   };
 
   const handleChange = (e) => {
-    const { name, value, checked } = e.target;
-
-    if (name === 'name') {
-      setFirstName(value);
-    } else if (name === 'number') {
-      setNumber(value);
-    } else if (name === 'email') {
-      setEmail(value);
-    } else if (name === 'address') {
-      setAddress(value);
-    } else if (name === 'password') {
-      setPassword(value);
-    } else if (name === 'acceptance') {
-      setAcceptance(checked);
+    if (isFormDisabled) {
+      return;
     }
+    const { name, value, checked } = e.target;
+    if (name === 'name') setFirstName(value);
+    if (name === 'number') setNumber(value);
+    if (name === 'email') setEmail(value);
+    if (name === 'address') setAddress(value);
+    if (name === 'password') setPassword(value);
+    if (name === 'acceptance') setAcceptance(checked);
   };
 
   return (
-    <>
-      <div className="container p-4">
-        <h1 className='mt-5'>Sign up as a Seller</h1>
-        <div className='form-container mb-4'>
-          {error && <p className="error-message">{error}</p>}
-          {!showWelcomeMessage && (
-            <form className='form-hold' onSubmit={handleSubmit}>
+    <div className="container d-flex justify-content-center align-items-center" style={{ minHeight: '100vh' }}>
+      <div className="card shadow-lg p-4" style={{ width: '100%', maxWidth: '500px', borderRadius: '15px' }}>
+        {!isFormDisabled ? (
+          <>
+            <h2 className="text-center mb-4">Sign Up as a Seller</h2>
+            {error && (
+              <div className="alert alert-danger text-center" role="alert">
+                {error}
+              </div>
+            )}
+            <form onSubmit={handleSubmit}>
               <div className="mb-3">
-                <label className="form-label">
-                  Enter your name:
-                </label>
+                <label className="form-label">Name</label>
                 <input
                   type="text"
                   className="form-control"
                   name="name"
                   value={firstName}
                   onChange={handleChange}
+                  disabled={isSubmitting}
+                  required
                 />
               </div>
               <div className="mb-3">
-                <label className="form-label">
-                  Phone number:
-                </label>
+                <label className="form-label">Phone Number</label>
                 <input
                   type="number"
                   className="form-control"
                   name="number"
                   value={number}
                   onChange={handleChange}
+                  disabled={isSubmitting}
+                  required
                 />
               </div>
               <div className="mb-3">
-                <label className="form-label">
-                  Please enter your email:
-                </label>
+                <label className="form-label">Email</label>
                 <input
                   type="email"
                   className="form-control"
                   name="email"
                   value={email}
                   onChange={handleChange}
+                  disabled={isSubmitting}
+                  required
                 />
               </div>
               <div className="mb-3">
-                <label className="form-label">
-                  Address:
-                </label>
+                <label className="form-label">Address</label>
                 <input
                   type="text"
                   className="form-control"
                   name="address"
                   value={address}
                   onChange={handleChange}
+                  disabled={isFormDisabled}
+                  required
                 />
               </div>
               <div className="mb-3">
-                <label className="form-label">
-                  Password:
-                </label>
-                <input
-                 type={showPassword ? "text" : "password"} 
-                  className="form-control"
-                  name="password"
-                  value={password}
-                  onChange={handleChange}
-                />
-                 <div className="show-password-icon" onClick={() => setShowPassword(!showPassword)}>
-                        {showPassword ? <BiHide /> : <BiShow />} {/* Show BiHide icon when password is visible */}
-                      </div>
+                <label className="form-label">Password</label>
+                <div className="input-group">
+                  <input
+                    type={showPassword ? 'text' : 'password'}
+                    className="form-control"
+                    name="password"
+                    value={password}
+                    onChange={handleChange}
+                    disabled={isSubmitting}
+                    required
+                  />
+                  <button
+                    type="button"
+                    className="btn btn-outline-secondary"
+                    onClick={() => setShowPassword(!showPassword)}
+                  >
+                    {showPassword ? <BiHide /> : <BiShow />}
+                  </button>
+                </div>
               </div>
-              <div className="mb-3 form-check">
+              <div className="form-check mb-3">
                 <input
                   type="checkbox"
                   className="form-check-input"
                   name="acceptance"
                   checked={acceptance}
                   onChange={handleChange}
+                  disabled={isSubmitting}
+                  required
                 />
-                <label className="form-check-label">I understand and accept that my phone number may be shared with potential adopters.</label>
+                <label className="form-check-label">I agree to share my phone number with potential adopters.</label>
               </div>
-              {spinner && <Spinner animation="border" variant='primary' className="mt-3" />}
-              {!showWelcomeMessage && (
-                <div className='d-flex justify-content-between mt-3'>
-                  <Link to='/signup/signup'>
-                    <button className='btn btn-primary' type="button">Back</button>
-                  </Link>
-                  {!error && !spinner && (
-                    <button className='btn btn-primary' type="submit" value="Submit">
-                      Submit
-                    </button>
-                  )}
-                </div>
-              )}
-              <Link to='/Login' className="mt-3 d-block" style={{ color: 'black', textDecoration: 'none' }}>Already have an account? <span className='btn btn-link 'style={{textDecoration:'none', color:'black'}}><button className='btn btn-primary'>
-                      Log in
-                    </button> </span></Link>
+              <div className="d-flex justify-content-between align-items-center">
+                <Link to="/signup/signup" className="btn btn-outline-primary">
+                  Back
+                </Link>
+                <button className="btn btn-primary" type="submit" disabled={spinner || isSubmitting}>
+                  {spinner ? <Spinner animation="border" size="sm" /> : 'Submit'}
+                </button>
+              </div>
+              <div className="text-center mt-3">
+                Already have an account?{' '}
+                <Link to="/Login" className="text-primary">
+                  Log in
+                </Link>
+              </div>
             </form>
-          )}
-          {showWelcomeMessage && (
-            <div style={{color:'black'}} className="welcome-message">
-              <p>Welcome, {firstName}!</p>
-            </div>
-          )}
-        </div>
+          </>
+        ) : (
+          <div className="alert alert-success text-center">
+            <h4>Welcome, {firstName}!</h4>
+            <p>Redirecting to your dashboard...</p>
+          </div>
+        )}
       </div>
-    </>
+    </div>
   );
-  
 };
 
 export default Seller;
-
-

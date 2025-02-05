@@ -1,78 +1,122 @@
-.container-fluid{
-    width: 80%;
-    color: gold;
-    height: 620px;
+.container-fluid {
+  width: 80%;
+  color: gold;
+  height: 620px;
 }
 
-li{
-    list-style: none;
-    color: white;
+li {
+  list-style: none;
+  color: white;
 }
-.icons{
-    width:20%;
-    display: flex;
-    gap: 5px;
+.icons {
+  width: 20%;
+  display: flex;
+  gap: 5px;
 }
-.logo{
-    border: 5px solid white;
-    border-radius: 5px;
-    width: 40px;
-    height: 40px;
-    background-color: white;
+.logo {
+  border: 5px solid white;
+  border-radius: 5px;
+  width: 40px;
+  height: 40px;
+  background-color: white;
 }
-.p{
-    color: white;
+.p {
+  color: white;
 }
-.sign{
-    background-color: transparent;
-    color: white;
-    width: 100px;
-    border: 1px solid white;
-    border-radius: 360px;
-    height: 50px;
+.sign {
+  background-color: transparent;
+  color: white;
+  width: 100px;
+  border: 1px solid white;
+  border-radius: 360px;
+  height: 50px;
 }
-.sign:hover{
-    background-color: white;
-    color: black;
+.sign:hover {
+  background-color: white;
+  color: black;
 }
 
-.logo:hover{
-    background-color: white;
-    border-radius: 10px;
+.logo:hover {
+  background-color: white;
+  border-radius: 10px;
 }
 
 @media (max-width: 767px) {
-    .icons{
-        display: flex;
-        flex-direction: column  ;
-        
-    }
-    .bro{
-        width: 340px;
-        display:flex;
-        /* flex-wrap: wrap; */
-        flex-direction: column;
-    }
-    .bro ul{
-        width: 50%;
-    }
-    .bros{
-        width: 100%;
-    }
-    .h{
-        display: none;
-    }
-    hr{
-        width: 100%;
-    }
-    .king{
-        width: 100%;
-    }
-    .king h5{
-        width: 100%;
-    }
-    .king p{
-        font-size: 15px;
-        width: 100%;
-    }
+  .icons {
+    display: flex;
+    flex-direction: column;
   }
+  .bro {
+    width: 340px;
+    display: flex;
+    /* flex-wrap: wrap; */
+    flex-direction: column;
+  }
+  .bro ul {
+    width: 50%;
+  }
+  .bros {
+    width: 100%;
+  }
+  .h {
+    display: none;
+  }
+  hr {
+    width: 100%;
+  }
+  .king {
+    width: 100%;
+  }
+  .king h5 {
+    width: 100%;
+  }
+  .king p {
+    font-size: 15px;
+    width: 100%;
+  }
+}
+/* Footer Background and Text */
+.footer {
+  background-color: #000;
+  color: #ddd;
+  font-size: 0.95rem;
+}
+
+.footer h4,
+.footer h2 {
+  font-weight: bold;
+}
+
+.footer a.footer-link {
+  color: #ccc;
+  text-decoration: none;
+  transition: color 0.3s ease;
+}
+
+.footer a.footer-link:hover {
+  color: #ffc107; /* Bootstrap warning color for hover effect */
+  text-decoration: underline;
+}
+
+/* Social Media Icons */
+.social-icon {
+  width: 30px;
+  height: 30px;
+  filter: brightness(0) invert(1); /* Make icons white */
+  transition: transform 0.3s ease, filter 0.3s ease;
+}
+
+.social-icon:hover {
+  transform: scale(1.2);
+  filter: brightness(0.8) invert(1) sepia(1) hue-rotate(45deg); /* Slight color tint */
+}
+
+/* Button Customization */
+.footer button {
+  transition: background-color 0.3s ease, transform 0.3s ease;
+}
+
+.footer button:hover {
+  background-color: #e0a800; /* Darker warning color */
+  transform: translateY(-2px);
+}

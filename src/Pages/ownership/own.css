@@ -1,0 +1,88 @@
+/* General styles for the educational section */
+.educational-section {
+  background-color: #f8f9fa; /* Light background */
+  padding: 50px 20px; /* Spacious padding */
+}
+
+/* Title */
+.section-title {
+  text-align: center;
+  font-size: 2.5rem;
+  color: #007bff;
+  font-weight: bold;
+  margin-bottom: 40px;
+}
+
+/* Cards row */
+.cards-row {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 20px; /* Space between cards */
+}
+
+/* Card styles */
+.custom-card {
+  max-width: 300px;
+  width: 100%;
+  border: none;
+  border-radius: 12px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+  background: white;
+}
+
+.custom-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
+}
+
+/* Card image */
+.card-image {
+  border-top-left-radius: 12px;
+  border-top-right-radius: 12px;
+  height: 200px;
+  object-fit: cover;
+}
+
+/* Card text */
+.custom-card .card-title {
+  font-size: 1.25rem;
+  font-weight: bold;
+  color: #343a40;
+}
+
+.custom-card .card-text {
+  font-size: 0.95rem;
+  color: #6c757d;
+}
+
+/* Button */
+.custom-card button {
+  background-color: #007bff;
+  border: none;
+  font-weight: bold;
+  padding: 8px 16px;
+  border-radius: 8px;
+  transition: background-color 0.2s ease;
+}
+
+.custom-card button:hover {
+  background-color: #0056b3;
+  color: white;
+}
+
+/* Responsive styles */
+@media (max-width: 768px) {
+  .section-title {
+    font-size: 2rem;
+  }
+
+  .cards-row {
+    gap: 15px;
+  }
+
+  .custom-card {
+    max-width: 100%;
+  }
+}
