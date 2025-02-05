@@ -4,12 +4,14 @@
   width: 100%;
   justify-content: center;
 }
+
 .large p {
   font-size: 30px;
   font-weight: bold;
   padding-top: 50px;
   text-align: center;
 }
+
 .icon {
   width: 6%;
   height: 148px;
@@ -18,42 +20,54 @@
 .home-body {
   color: white;
 }
+
 .home-h {
   color: #000;
-  font-family: Garamond;
+  font-family: Garamond, serif;
   font-size: 53px;
   font-style: normal;
   font-weight: 700;
   line-height: normal;
+  text-align: center;
 }
+
 .home-bodies {
   background-color: #6b34ff;
   color: white;
   height: 600px;
+  padding: 20px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  border-radius: 15px;
 }
+
 .contained {
   width: 100%;
   display: flex;
   justify-content: space-between;
   align-items: center;
-  animation: fadeIn 1.2s ease-in-out; /* Add animation on load */
+  animation: fadeIn 1.2s ease-in-out;
+  gap: 20px;
+  flex-wrap: wrap;
 }
+
 .con {
   width: 50%;
 }
 
-/* Fade-in animation */
 .animated-section {
   opacity: 0;
   transform: translateY(20px);
   transition: opacity 1s ease-in-out, transform 1s ease-in-out;
 }
+
 .animated-section.fade-in {
   opacity: 1;
   transform: translateY(0);
 }
 
-/* Styling for number animations */
 .subtext {
   color: white;
   font-size: 1.2rem;
@@ -63,74 +77,132 @@
 .main-image {
   width: 150px;
   border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 }
 
 .lll {
   box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
   padding: 20px;
+  border-radius: 15px;
+  background: #fff;
 }
+
 .contianeds {
   display: flex;
   justify-content: space-between;
   align-items: center;
 }
+
 .home-textss {
   width: 100%;
   display: flex;
   flex-wrap: wrap;
   gap: 30px;
   text-align: center;
-}
-.home-texts {
-  display: flex;
-  flex-direction: column; /* Stack numbers vertically */
-  align-items: center; /* Center the numbers horizontally */
-  gap: 20px; /* Add space between numbers */
-  text-align: center; /* Align text to the center */
-  width: 100%; /* Ensure full width for responsive alignment */
+  justify-content: center;
 }
 
-/* Adding subtle number counting animation styles */
+.home-hero {
+  background: linear-gradient(135deg, #f8fafc, #e2e8f0);
+  border-bottom: 4px solid #0d6efd;
+  padding: 40px 20px;
+  text-align: center;
+}
+
+.pet-card {
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  border-radius: 15px;
+  overflow: hidden;
+  background: #fff;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.pet-card:hover {
+  transform: translateY(-10px) scale(1.03);
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
+}
+
+.pet-img {
+  height: 250px;
+  object-fit: cover;
+  border-bottom: 2px solid #f0f0f0;
+}
+
+.stats-card {
+  background: #f9f9f9;
+  padding: 20px;
+  border-radius: 15px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+.stats-card div {
+  margin: 15px;
+  padding: 15px;
+  background: white;
+  border-radius: 10px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  min-width: 150px;
+}
+
+.hover-zoom:hover {
+  cursor: pointer;
+  transition: all 0.3s ease-in-out;
+}
+
+.text-muted {
+  font-size: 0.9rem;
+}
+
+.home-texts {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 20px;
+  text-align: center;
+  width: 100%;
+}
+
 .home-texts .card-title {
   font-size: 2rem;
   font-weight: bold;
-  /* color: #333; */
   transition: transform 0.3s ease;
 }
 
 .home-texts .card-title:hover {
-  transform: scale(1.1); /* Small hover effect for numbers */
+  transform: scale(1.1);
 }
 
-/* Media queries for responsiveness */
 @media (max-width: 767px) {
   .home-bodies {
     width: 100%;
-    height: 750px;
+    height: auto;
+    padding: 20px;
   }
+
   .contained {
-    display: flex;
     flex-wrap: wrap;
+    gap: 20px;
   }
+
   .con {
     width: 100%;
   }
+
   .home-h {
-    width: 100%;
     font-size: 30px;
+    text-align: center;
   }
+
   .contianeds {
-    display: flex;
     flex-wrap: wrap;
     justify-content: space-around;
-    align-items: center;
   }
+
   .lll {
     width: 100%;
   }
 }
 
-/* Keyframes for fade-in animation */
 @keyframes fadeIn {
   from {
     opacity: 0;

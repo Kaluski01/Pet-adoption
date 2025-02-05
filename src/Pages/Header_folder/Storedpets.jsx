@@ -1,18 +1,33 @@
 import React, { useEffect, useState } from 'react';
-import { useParams, Link } from 'react-router-dom';
+import { useParams, useNavigate } from 'react-router-dom';
 import DogCard from '../singleDog/adopt';
-import firebase from 'firebase/compat/app'; // Import Firebase core module
-import 'firebase/compat/firestore'; // Import Firestore
-import { getDownloadURL, ref } from 'firebase/storage'; // Import Storage functions
-import Spinner from 'react-bootstrap/Spinner'
+import firebase from 'firebase/compat/app';
+import 'firebase/compat/firestore';
+import { getDownloadURL, ref } from 'firebase/storage';
+import Spinner from 'react-bootstrap/Spinner';
 
 export default function StoredPets() {
   const { name } = useParams();
+  const navigate = useNavigate();
   const [selectedPet, setSelectedPet] = useState(null);
   const [showDogCard, setShowDogCard] = useState(false);
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const [spinner, setSpinner] = useState(false);
 
   const handleAdoptClick = () => {
-    setShowDogCard(true);
+    setSpinner(true);
+    setTimeout(() => {
+      setShowDogCard(true);
+      setSpinner(false);
+    }, 2000); // Simulating a delay (e.g., API call)
+  };
+
+  const handleBackClick = () => {
+    setIsSubmitting(true);
+    setTimeout(() => {
+      navigate('/');
+      setIsSubmitting(false);
+    }, 1500); // Simulating a delay
   };
 
   useEffect(() => {
@@ -22,11 +37,8 @@ export default function StoredPets() {
         if (!petSnapshot.empty) {
           const petDoc = petSnapshot.docs[0];
           const petData = petDoc.data();
-          // Get the image URL from Firebase Storage
           const imageUrl = await getDownloadURL(ref(firebase.storage(), `petImages/${petData.id}`));
-          // Add the image URL to the pet data
-          const petWithImageUrl = { ...petData, imageUrl };
-          setSelectedPet(petWithImageUrl);
+          setSelectedPet({ ...petData, imageUrl });
         } else {
           setSelectedPet(null);
         }
@@ -40,38 +52,70 @@ export default function StoredPets() {
   }, [name]);
 
   return (
-    <div className='container mt-5 p-5'>
-      <div className="row">
-        <div className="col-lg-12 col-sm-6">
-          <h1 style={{ color: 'black' }}>Pet Information</h1>
-          {selectedPet ? (
-            <div>
-                <div className=''>     <img src={selectedPet.imageUrl} alt={selectedPet.name} className="w-50 h-50" /></div>
-              <p>Name: {selectedPet.name}</p>
-              <p>Description: {selectedPet.description}</p>
-              <p>Age: {selectedPet.age}</p>
-              <p>Weight: {selectedPet.weight}</p>
-              <p>Height: {selectedPet.height}</p>
-              <p>Price: {selectedPet.price} </p>
-              <p>Owner Name: {selectedPet.ownerName}</p>
-              <p>Owner Number: {selectedPet.ownerPhone}</p>
-              {/* Add more details as needed */}
-            </div>
-          ) : (
-            <p>  <Spinner animation='border' variant='primary' /></p>
-          )}
-          <br />
+    <div className="container mx-auto p-5">
+      <h1 className="text-3xl font-bold text-center text-gray-800 mb-6 mt-5">🐾 Pet Information 🐾</h1>
+
+      {selectedPet ? (
+        <div className="bg-white shadow-lg rounded-lg p-6 max-w-2xl mx-auto">
+          <img
+            src={selectedPet.imageUrl}
+            alt={selectedPet.name}
+            className="w-full col-lg-7 col-12 h-64 object-cover rounded-md mb-4"
+          />
+
+          <div className="space-y-2 text-gray-700">
+            <p>
+              <strong>Name:</strong> {selectedPet.name}
+            </p>
+            <p>
+              <strong>Description:</strong> {selectedPet.description}
+            </p>
+            <p>
+              <strong>Age:</strong> {selectedPet.age} years
+            </p>
+            <p>
+              <strong>Weight:</strong> {selectedPet.weight} kg
+            </p>
+            <p>
+              <strong>Height:</strong> {selectedPet.height} cm
+            </p>
+            <p>
+              <strong>Price:</strong> ${selectedPet.price}
+            </p>
+            <p>
+              <strong>Owner:</strong> {selectedPet.ownerName} 📞 {selectedPet.ownerPhone}
+            </p>
+          </div>
+
+          <div className="flex justify-between mt-6">
+            <button
+              className="btn btn-secondary fw-bold px-4 py-2 rounded-pill shadow-sm"
+              type="button"
+              disabled={isSubmitting}
+              onClick={handleBackClick}
+            >
+              {isSubmitting ? <Spinner animation="border" size="sm" /> : '⬅️ Back'}
+            </button>
+
+            <button
+              className="btn btn-success fw-bold px-4 py-2 rounded-pill shadow-sm"
+              type="button"
+              disabled={spinner}
+              onClick={handleAdoptClick}
+            >
+              {spinner ? <Spinner animation="border" size="sm" /> : '🐾 Adopt Me! 🐶'}
+            </button>
+          </div>
         </div>
-        <div className='adopt'>
-          <Link to='/'>
-            <button className='adopt'>Back</button>
-          </Link>
-          <button className='adopt' onClick={handleAdoptClick}>
-            Adopt me!
-          </button>
+      ) : (
+        <div className="d-flex justify-center items-center h-40">
+          <h4>
+            Loading <Spinner animation="grow" variant="primary" />
+          </h4>
         </div>
-        <DogCard showDogCard={showDogCard} setShowDogCard={setShowDogCard} />
-      </div>
+      )}
+
+      <DogCard showDogCard={showDogCard} setShowDogCard={setShowDogCard} />
     </div>
   );
 }

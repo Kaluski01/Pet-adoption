@@ -1,0 +1,70 @@
+.signup-container {
+  padding-top: 150px;
+  margin-top: 20px;
+  text-align: center;
+  font-family: 'Arial', sans-serif;
+}
+
+.main-sign {
+  font-size: 30px;
+  font-weight: 700;
+  color: #6b34ff;
+  margin-bottom: 50px;
+}
+
+.card-container {
+  display: flex;
+  justify-content: center;
+  gap: 30px;
+  flex-wrap: wrap;
+}
+
+.signup-card {
+  flex: 1 1 300px; /* Ensures cards are responsive and not too large */
+  max-width: 350px; /* Limits the card width */
+  margin-bottom: 20px;
+}
+
+.custom-card {
+  border-radius: 10px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+  transition: box-shadow 0.3s ease, transform 0.3s ease;
+}
+
+.custom-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 8px 15px rgba(0, 0, 0, 0.15);
+}
+
+.signup-btn {
+  width: 100%;
+  padding: 15px;
+  font-size: 18px;
+  font-weight: bold;
+  border-radius: 50px;
+  transition: background-color 0.3s ease;
+}
+
+.signup-btn:hover {
+  background-color: #4a1cc4; /* Slightly darker shade for hover */
+  border-color: #4a1cc4;
+}
+
+@media (max-width: 767px) {
+  .signup-container {
+    padding-top: 120px;
+  }
+
+  .main-sign {
+    font-size: 24px;
+  }
+
+  .card-container {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .signup-card {
+    width: 90%; /* Adjust card width for smaller screens */
+  }
+}

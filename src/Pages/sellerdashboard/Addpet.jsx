@@ -12,7 +12,8 @@ import { ref, uploadBytesResumable } from 'firebase/storage';
 import { useLocation } from 'react-router-dom';
 import './sellerdash.css';
 
-const Addpet = ({ updateNumberOfPets }) => { // Receive the updateNumberOfPets function as a prop
+const Addpet = ({ updateNumberOfPets }) => {
+  // Receive the updateNumberOfPets function as a prop
   const [petName, setPetName] = useState('');
   const [petDescription, setPetDescription] = useState('');
   const [petImage, setPetImage] = useState('');
@@ -31,13 +32,13 @@ const Addpet = ({ updateNumberOfPets }) => { // Receive the updateNumberOfPets f
   const navigate = useNavigate();
 
   const firebaseConfig = {
-    apiKey: "AIzaSyA8R-6JStMc680KVXXQ_XGSRche5OQUtl4",
-    authDomain: "pet-adoption-project-99a08.firebaseapp.com",
-    projectId: "pet-adoption-project-99a08",
-    storageBucket: "pet-adoption-project-99a08.appspot.com",
-    messagingSenderId: "226601747265",
-    appId: "1:226601747265:web:24326e722ad314f751d7c0",
-    measurementId: "G-WJRCH01VP2"
+    apiKey: 'AIzaSyA8R-6JStMc680KVXXQ_XGSRche5OQUtl4',
+    authDomain: 'pet-adoption-project-99a08.firebaseapp.com',
+    projectId: 'pet-adoption-project-99a08',
+    storageBucket: 'pet-adoption-project-99a08.appspot.com',
+    messagingSenderId: '226601747265',
+    appId: '1:226601747265:web:24326e722ad314f751d7c0',
+    measurementId: 'G-WJRCH01VP2',
   };
 
   useEffect(() => {
@@ -63,20 +64,31 @@ const Addpet = ({ updateNumberOfPets }) => { // Receive the updateNumberOfPets f
         // setLoading(false);
       }
     };
-    
+
     fetchUserFirstname();
   }, []);
-  
-  console.log("userFirstname:", userFirstname);
+
+  console.log('userFirstname:', userFirstname);
 
   const handleAddPet = async () => {
-    if (!petName || !petAge || !petWeight || !petHeight || !petImage || !price || !ownerName || !ownerPhone || !sex || !specie) {
+    if (
+      !petName ||
+      !petAge ||
+      !petWeight ||
+      !petHeight ||
+      !petImage ||
+      !price ||
+      !ownerName ||
+      !ownerPhone ||
+      !sex ||
+      !specie
+    ) {
       alert('Please fill in all the fields before adding a pet.');
       return;
     }
-    
+
     setSpinner(true);
-  
+
     const newPet = {
       id: uuidv4(),
       name: petName,
@@ -90,20 +102,20 @@ const Addpet = ({ updateNumberOfPets }) => { // Receive the updateNumberOfPets f
       ownerName: ownerName,
       ownerPhone: ownerPhone,
     };
-  
+
     try {
       if (!firebase.apps.length) {
         firebase.initializeApp(firebaseConfig);
       }
-  
+
       const storageRef = ref(firebase.storage(), `petImages/${newPet.id}`);
       await uploadBytesResumable(storageRef, petImage);
-  
+
       await firebase.firestore().collection('pets').add(newPet);
-  
+
       // Call the updateNumberOfPets function to update the number of pets
       // updateNumberOfPets((prevNumberOfPets) => prevNumberOfPets + 1);
-  
+
       setPetName('');
       setPetDescription('');
       setPetAge('');
@@ -114,7 +126,7 @@ const Addpet = ({ updateNumberOfPets }) => { // Receive the updateNumberOfPets f
       setSpecie('');
       setOwnerName('');
       setOwnerPhone('');
-      setPetImage('')
+      setPetImage('');
       setSuccess(true);
       setTimeout(() => {
         setSuccess(false); // Reset success after a certain time
@@ -127,8 +139,7 @@ const Addpet = ({ updateNumberOfPets }) => { // Receive the updateNumberOfPets f
       setSpinner(false); // Ensure the spinner is hidden even if an error occurs
     }
   };
-  
-  
+
   const handleImageChange = (e) => {
     const file = e.target.files[0];
     if (file) {
@@ -139,7 +150,7 @@ const Addpet = ({ updateNumberOfPets }) => { // Receive the updateNumberOfPets f
   };
   const handleClose = () => {
     navigate('/sellerdashboard/sellerdash', { state: { propsFirstName: userFirstname } });
-    console.log(userFirstname)
+    console.log(userFirstname);
   };
 
   return (
@@ -199,20 +210,11 @@ const Addpet = ({ updateNumberOfPets }) => { // Receive the updateNumberOfPets f
               </div>
               <div className="form-group">
                 <label>Price:</label>
-                <input
-                  type="text"
-                  className="form-control"
-                  value={price}
-                  onChange={(e) => setPrice(e.target.value)}
-                />
+                <input type="text" className="form-control" value={price} onChange={(e) => setPrice(e.target.value)} />
               </div>
               <div className="form-group">
                 <label>Sex:</label>
-                <select
-                  className="form-control"
-                  value={sex}
-                  onChange={(e) => setSex(e.target.value)}
-                >
+                <select className="form-control" value={sex} onChange={(e) => setSex(e.target.value)}>
                   <option value="">Select</option>
                   <option value="male">Male</option>
                   <option value="female">Female</option>
@@ -220,11 +222,7 @@ const Addpet = ({ updateNumberOfPets }) => { // Receive the updateNumberOfPets f
               </div>
               <div className="form-group">
                 <label>Specie:</label>
-                <select
-                  className="form-control"
-                  value={specie}
-                  onChange={(e) => setSpecie(e.target.value)}
-                >
+                <select className="form-control" value={specie} onChange={(e) => setSpecie(e.target.value)}>
                   <option value="">Select</option>
                   <option value="dog">Dog</option>
                   <option value="cat">Cat</option>
@@ -252,17 +250,17 @@ const Addpet = ({ updateNumberOfPets }) => { // Receive the updateNumberOfPets f
               <br />
               <div className="form-group">
                 <label>Pet Image:</label>
-                <input
-                  type="file"
-                  className="form-control-file"
-                  onChange={handleImageChange}
-                />
+                <input type="file" className="form-control-file" onChange={handleImageChange} />
               </div>
               <br />
               {petImage && (
                 <div className="form-group">
                   <label>Preview:</label>
-                  <img src={URL.createObjectURL(petImage)} alt="Pet Preview" style={{ width: '30%', height: '200px' }} />
+                  <img
+                    src={URL.createObjectURL(petImage)}
+                    alt="Pet Preview"
+                    style={{ width: '30%', height: '200px' }}
+                  />
                 </div>
               )}
               <br />
@@ -273,10 +271,6 @@ const Addpet = ({ updateNumberOfPets }) => { // Receive the updateNumberOfPets f
     pathname: "/sellerdashboard/sellerdash",
     state: { propsFirstName: userFirstname }
 }} className="btn btn-primary">Back</Link> */}
-
-
-
-
             </form>
           )}
           {spinner && <Spinner animation="grow" />}

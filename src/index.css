@@ -1,6 +1,5 @@
-body {
+* {
+  padding: 0;
   margin: 0;
-  font-family: "Montserrat Alternates", sans-serif;
-  /* background-color: #6504B5 /; */
-  
+  box-sizing: border-box;
 }

@@ -1,6 +1,7 @@
 import React, { useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { Button, Card } from 'react-bootstrap';
+import './signup.css'; // Import the custom styles
 
 const SignupPage = () => {
   useEffect(() => {
@@ -14,32 +15,30 @@ const SignupPage = () => {
   }, []);
 
   return (
-    <div style={{ paddingTop: '150px', marginTop: '20px' }}>
-      <h1 className='main-sign' style={{ fontSize: '25px',textAlign:'center' }}>Let us know who you are !!</h1>
-      <div className="container">
-        <div className='row'>
-          <div className='col-md-6 '>
-            <Card className="text-center">
-              <Card.Body>
-                <Link to="/seller">
-                  <Button variant="primary" block>
-                    Sign Up as Pet Seller
-                  </Button>
-                </Link>
-              </Card.Body>
-            </Card>
-          </div>
-          <div className='col-md-6'>
-            <Card className="text-center">
-              <Card.Body>
-                <Link to="/adopter">
-                  <Button variant="primary" block>
-                    Sign Up as Pet Adopter
-                  </Button>
-                </Link>
-              </Card.Body>
-            </Card>
-          </div>
+    <div className="signup-container">
+      <h1 className="main-sign">Let us know who you are !!</h1>
+      <div className="card-container">
+        <div className="signup-card">
+          <Card className="text-center custom-card">
+            <Card.Body>
+              <Link to="/seller">
+                <Button variant="primary" className="signup-btn">
+                  Sign Up as Pet Seller
+                </Button>
+              </Link>
+            </Card.Body>
+          </Card>
+        </div>
+        <div className="signup-card">
+          <Card className="text-center custom-card">
+            <Card.Body>
+              <Link to="/adopter">
+                <Button variant="primary" className="signup-btn">
+                  Sign Up as Pet Adopter
+                </Button>
+              </Link>
+            </Card.Body>
+          </Card>
         </div>
       </div>
     </div>

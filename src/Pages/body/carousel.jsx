@@ -45,16 +45,16 @@ const TestimonialCards = () => {
   }, [testimonials.length]);
 
   return (
-    <div className="testimonial-container bg-warning mt-5">
+    <div className="testimonial-container bg-warning mt-4">
       <h1 className="testimonial-title">Testimonials</h1>
       <div className="carousel-wrapper">
         <Carousel controls={false} interval={10000} activeIndex={activeIndex} onSelect={() => {}}>
           {testimonials.map((testimonial, index) => (
-            <Carousel.Item key={index}>
+            <Carousel.Item key={index} className="">
               <img className="testimonial-image" src={testimonial.image} alt={`Testimonial ${index}`} />
-              <Carousel.Caption className="testimonial-caption">
+              <Carousel.Caption className="testimonial-caption  col-10 mt-5">
                 <h3 className="testimonial-name">{testimonial.name}</h3>
-                <p className="testimonial-content">{testimonial.content}</p>
+                <p className="testimonial-content w-100">{testimonial.content}</p>
               </Carousel.Caption>
             </Carousel.Item>
           ))}

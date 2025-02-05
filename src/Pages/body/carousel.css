@@ -8,26 +8,28 @@
   text-align: center;
   font-size: 2.5rem;
   font-weight: bold;
-  margin-bottom: 30px;
+  /* margin-bottom: 30px; */
 }
 
 .carousel-wrapper {
   max-width: 800px;
   margin: 0 auto;
+  margin-top: 20px;
 }
 
 .testimonial-image {
   width: 100%;
   height: 400px;
-  object-fit: cover;
+  /* object-fit: cover; */
   border-radius: 10px;
 }
 
 .testimonial-caption {
   background: rgba(0, 0, 0, 0.5);
-  padding: 20px;
+  /* padding: 20px; */
   border-radius: 10px;
   text-align: center;
+  margin-top: 50px;
   animation: fadeIn 1s ease-in-out;
 }
 
@@ -39,7 +41,7 @@
 
 .testimonial-content {
   font-size: 1.2rem;
-  line-height: 1.5;
+  /* line-height: 1.5; */
   font-style: italic;
 }
 
@@ -69,5 +71,8 @@
 
   .testimonial-content {
     font-size: 1rem;
+  }
+  .carousel-wrapper {
+    margin-top: 50px;
   }
 }
