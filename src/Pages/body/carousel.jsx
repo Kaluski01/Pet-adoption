@@ -52,7 +52,7 @@ const TestimonialCards = () => {
           {testimonials.map((testimonial, index) => (
             <Carousel.Item key={index} className="">
               <img className="testimonial-image" src={testimonial.image} alt={`Testimonial ${index}`} />
-              <Carousel.Caption className="testimonial-caption  col-10 mt-5">
+              <Carousel.Caption className="testimonial-caption  col-10">
                 <h3 className="testimonial-name">{testimonial.name}</h3>
                 <p className="testimonial-content w-100">{testimonial.content}</p>
               </Carousel.Caption>
