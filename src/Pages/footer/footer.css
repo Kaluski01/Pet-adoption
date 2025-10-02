@@ -1,122 +1,71 @@
-.container-fluid {
-  width: 80%;
-  color: gold;
-  height: 620px;
-}
-
-li {
-  list-style: none;
-  color: white;
-}
-.icons {
-  width: 20%;
+/* signup.css */
+.signup-container {
   display: flex;
-  gap: 5px;
-}
-.logo {
-  border: 5px solid white;
-  border-radius: 5px;
-  width: 40px;
-  height: 40px;
-  background-color: white;
-}
-.p {
-  color: white;
-}
-.sign {
-  background-color: transparent;
-  color: white;
-  width: 100px;
-  border: 1px solid white;
-  border-radius: 360px;
-  height: 50px;
-}
-.sign:hover {
-  background-color: white;
-  color: black;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  min-height: 100vh;
+  background: linear-gradient(135deg, #ffd580, #ffb347, #ff7e5f); /* Warm gradient */
+  padding: 30px;
 }
 
-.logo:hover {
-  background-color: white;
-  border-radius: 10px;
-}
-
-@media (max-width: 767px) {
-  .icons {
-    display: flex;
-    flex-direction: column;
-  }
-  .bro {
-    width: 340px;
-    display: flex;
-    /* flex-wrap: wrap; */
-    flex-direction: column;
-  }
-  .bro ul {
-    width: 50%;
-  }
-  .bros {
-    width: 100%;
-  }
-  .h {
-    display: none;
-  }
-  hr {
-    width: 100%;
-  }
-  .king {
-    width: 100%;
-  }
-  .king h5 {
-    width: 100%;
-  }
-  .king p {
-    font-size: 15px;
-    width: 100%;
-  }
-}
-/* Footer Background and Text */
-.footer {
-  background-color: #000;
-  color: #ddd;
-  font-size: 0.95rem;
-}
-
-.footer h4,
-.footer h2 {
+.main-sign {
+  font-size: 2.5rem;
   font-weight: bold;
+  margin-bottom: 40px;
+  text-align: center;
+  color: #4b2e2e; /* deep warm brown for contrast */
 }
 
-.footer a.footer-link {
-  color: #ccc;
+.card-container {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
+  justify-content: center;
+}
+
+.signup-card {
+  flex: 1 1 300px;
+  max-width: 320px;
+}
+
+.custom-card {
+  background: #fff3e0; /* soft warm beige */
+  border-radius: 15px;
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
+  transition: transform 0.2s ease-in-out, box-shadow 0.2s ease-in-out;
+}
+
+.custom-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+}
+
+.signup-btn {
+  background-color: #ff7043 !important; /* warm orange */
+  border: none;
+  font-size: 1.2rem;
+  padding: 12px 20px;
+  border-radius: 30px;
+  transition: background-color 0.3s ease-in-out;
+}
+
+.signup-btn:hover {
+  background-color: #e64a19 !important; /* deeper warm orange */
+  color: #fff;
+}
+
+.footer {
+  margin-top: 50px;
+  text-align: center;
+  color: #4b2e2e;
+}
+
+.footer a {
+  color: #ff7043;
   text-decoration: none;
-  transition: color 0.3s ease;
 }
 
-.footer a.footer-link:hover {
-  color: #ffc107; /* Bootstrap warning color for hover effect */
-  text-decoration: underline;
-}
-
-/* Social Media Icons */
-.social-icon {
-  width: 30px;
-  height: 30px;
-  filter: brightness(0) invert(1); /* Make icons white */
-  transition: transform 0.3s ease, filter 0.3s ease;
-}
-
-.social-icon:hover {
-  transform: scale(1.2);
-  filter: brightness(0.8) invert(1) sepia(1) hue-rotate(45deg); /* Slight color tint */
-}
-
-/* Button Customization */
-.footer button {
-  transition: background-color 0.3s ease, transform 0.3s ease;
-}
-
-.footer button:hover {
-  background-color: #e0a800; /* Darker warning color */
-  transform: translateY(-2px);
+.footer a:hover {
+  color: #e64a19;
 }

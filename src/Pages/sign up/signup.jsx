@@ -1,46 +1,47 @@
 import React, { useEffect } from 'react';
 import { Link } from 'react-router-dom';
-import { Button, Card } from 'react-bootstrap';
-import './signup.css'; // Import the custom styles
+import { Button, Card, Container, Row, Col } from 'react-bootstrap';
+import './signup.css';
 
 const SignupPage = () => {
   useEffect(() => {
-    // Check if user is already signed in
     const storedUser = JSON.parse(localStorage.getItem('user'));
     if (storedUser) {
-      // Implement logic for handling signed-in users
-      // For example:
-      // setIsSellerSignedIn(true);
+      // Add logic if needed for already signed-in users
     }
   }, []);
 
   return (
-    <div className="signup-container">
-      <h1 className="main-sign">Let us know who you are !!</h1>
-      <div className="card-container">
-        <div className="signup-card">
-          <Card className="text-center custom-card">
-            <Card.Body>
-              <Link to="/seller">
-                <Button variant="primary" className="signup-btn">
-                  Sign Up as Pet Seller
-                </Button>
-              </Link>
-            </Card.Body>
-          </Card>
-        </div>
-        <div className="signup-card">
-          <Card className="text-center custom-card">
-            <Card.Body>
-              <Link to="/adopter">
-                <Button variant="primary" className="signup-btn">
-                  Sign Up as Pet Adopter
-                </Button>
-              </Link>
-            </Card.Body>
-          </Card>
-        </div>
-      </div>
+    <div className="signup-wrapper d-flex align-items-center justify-content-center min-vh-100">
+      <Container>
+        <h1 className="text-center mb-5 main-sign">🐾 Let us know who you are !!</h1>
+        <Row className="justify-content-center g-4">
+          <Col md={5} sm={12}>
+            <Card className="custom-card shadow-lg border-0">
+              <Card.Body className="d-flex flex-column align-items-center">
+                <h4 className="mb-3 fw-bold text-dark">Pet Seller</h4>
+                <Link to="/seller">
+                  <Button variant="warning" className="signup-btn px-4 py-2">
+                    Sign Up as Seller
+                  </Button>
+                </Link>
+              </Card.Body>
+            </Card>
+          </Col>
+          <Col md={5} sm={12}>
+            <Card className="custom-card shadow-lg border-0">
+              <Card.Body className="d-flex flex-column align-items-center">
+                <h4 className="mb-3 fw-bold text-dark">Pet Adopter</h4>
+                <Link to="/adopter">
+                  <Button variant="danger" className="signup-btn px-4 py-2">
+                    Sign Up as Adopter
+                  </Button>
+                </Link>
+              </Card.Body>
+            </Card>
+          </Col>
+        </Row>
+      </Container>
     </div>
   );
 };

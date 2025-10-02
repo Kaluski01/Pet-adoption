@@ -1,114 +1,152 @@
 import React, { useState } from 'react';
-import { Link, useNavigate } from 'react-router-dom';
 import Spinner from 'react-bootstrap/Spinner';
-import Toast from 'react-bootstrap/Toast';
+import { Link, useNavigate } from 'react-router-dom';
+import { BiShow, BiHide } from 'react-icons/bi';
+import { getAuth, signInWithEmailAndPassword } from 'firebase/auth';
+import { getFirestore, collection, query, where, getDocs } from 'firebase/firestore';
 import './seller.css';
-import { BiShow, BiHide } from "react-icons/bi"
 
-export default function Adopterlogin() {
+const AdopterLogin = () => {
   const navigate = useNavigate();
-  const [firstname, setFirstName] = useState('');
+  const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
+  const [acceptance, setAcceptance] = useState(false);
   const [error, setError] = useState('');
   const [spinner, setSpinner] = useState(false);
   const [showWelcomeMessage, setShowWelcomeMessage] = useState(false);
+  const [firstname, setFirstname] = useState('');
   const [showPassword, setShowPassword] = useState(false);
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
     setSpinner(true);
+    setError('');
 
-    setTimeout(() => {
-      const storedUsers = localStorage.getItem('users');
-      const usersArray = storedUsers ? JSON.parse(storedUsers) : [];
-      const user = usersArray.find(u => u.name === firstname && u.password === password);
+    try {
+      const auth = getAuth();
+      await signInWithEmailAndPassword(auth, email, password);
 
-      if (!user) {
-        // Set error message and show it for 1 second
-        setError('Invalid name or password.');
-        setSpinner(false);
-        setTimeout(() => {
-          setError('');
-        }, 1000);
-      } else {
-        // Show welcome message for 1 second before redirecting
-        setShowWelcomeMessage(true);
-        setTimeout(() => {
-          setShowWelcomeMessage(false);
-          navigate('/', { replace: true }); // Redirect to the home page
-        }, 2000);
-      }
-    }, 1000);
+      // Fetch user's data from Firestore
+      const db = getFirestore();
+      const usersCollectionRef = collection(db, 'adopters');
+      const q = query(usersCollectionRef, where('email', '==', email));
+      const querySnapshot = await getDocs(q);
+
+      let fetchedFirstname = '';
+      querySnapshot.forEach((doc) => {
+        const userData = doc.data();
+        fetchedFirstname = userData.firstName;
+        setFirstname(fetchedFirstname);
+      });
+
+      setShowWelcomeMessage(true);
+      setTimeout(() => {
+        navigate('/adopterdashboard', { state: { propsFirstName: fetchedFirstname } });
+      }, 2000);
+    } catch (error) {
+      setError('Invalid email or password.');
+      console.error('Login error:', error.message);
+    } finally {
+      setSpinner(false);
+    }
   };
 
   const handleChange = (e) => {
-    const { name, value } = e.target;
+    const { name, value, checked } = e.target;
 
-    if (name === 'name') {
-      setFirstName(value);
+    if (name === 'email') {
+      setEmail(value);
     } else if (name === 'password') {
       setPassword(value);
+    } else if (name === 'acceptance') {
+      setAcceptance(checked);
     }
   };
 
   return (
-    <>
-      <div className="container p-5">
-      <h1 className='mt-5' style={{}}>Login as Adopter</h1>
-        <div className='form-container mb-4'>
-          {error && <p className="error-message">{error}</p>}
-          {showWelcomeMessage && (
-            <Toast className='w-100' onClose={() => setShowWelcomeMessage(false)} show={showWelcomeMessage} autohide>
-              <Toast.Header>
-                <strong className="me-auto">Success</strong>
-              </Toast.Header>
-              <Toast.Body>Welcome, {firstname}! Redirecting...</Toast.Body>
-            </Toast>
-          )}
-          {!showWelcomeMessage && (
-            <form className='form-hold' onSubmit={handleSubmit}>
-              <div className="mb-3">
-                <label className="form-label" style={{ color: 'black' }}>Enter your name:</label>
-                <input
-                  type="text"
-                  className="form-control"
-                  name="name"
-                  value={firstname}
-                  onChange={handleChange}
-                />
-              </div>
-              <div className="mb-3">
-                <label className="form-label" style={{ color: 'black' }}>Password:</label>
-                <input
-                  type={showPassword ? "text" : "password"} 
-                  className="form-control"
-                  name="password"
-                  value={password}
-                  onChange={handleChange}
-                  
-                />
-                  <div className="show-password-icon" onClick={() => setShowPassword(!showPassword)}>
-                        {showPassword ? <BiHide /> : <BiShow />} {/* Show BiHide icon when password is visible */}
-                      </div>
-              </div>
-              {spinner && <Spinner animation="border" variant='primary' className="mt-3" />}
-              <div className="mb-3">
-                <Link to="/login">
-                  <button className='btn btn-primary me-4'>
-                    Back
-                  </button>
-                </Link>
-                {!spinner && !showWelcomeMessage && (
-                  <button className='btn btn-primary' type="submit" value="Submit">
-                    Submit
-                  </button>
-                )}
-              </div>
-              <Link to='/signup/signup' className="mt-3 d-block" style={{ color: 'black', textDecoration: 'none' }}>Don't have an account? <span className='btn btn-link'> Sign up</span></Link>
-            </form>
-          )}
+    <div className="login-page mt-5 p-5 d-flex justify-content-center align-items-center">
+      <div className="login-card p-4 shadow-lg rounded">
+        <h1 className="text-center mb-4" style={{ color: '#e67e22' }}>
+          🐾 Adopter Login
+        </h1>
+
+        {error && <p className="error-message text-center">{error}</p>}
+        {spinner && <Spinner animation="border" variant="warning" className="d-block mx-auto mb-3" />}
+        {showWelcomeMessage && <p className="welcome-message text-center">Welcome, {firstname}!</p>}
+
+        <form onSubmit={handleSubmit}>
+          <div className="mb-3">
+            <label className="form-label fw-bold" style={{ color: '#d35400' }}>
+              Email
+            </label>
+            <input
+              type="email"
+              className="form-control"
+              name="email"
+              value={email}
+              onChange={handleChange}
+              placeholder="Enter your email"
+              required
+            />
+          </div>
+
+          <div className="mb-3">
+            <label className="form-label fw-bold" style={{ color: '#d35400' }}>
+              Password
+            </label>
+            <div className="password-input d-flex">
+              <input
+                type={showPassword ? 'text' : 'password'}
+                className="form-control"
+                name="password"
+                value={password}
+                onChange={handleChange}
+                placeholder="Enter your password"
+                required
+              />
+              <button
+                type="button"
+                className="btn btn-outline-warning ms-2"
+                onClick={() => setShowPassword(!showPassword)}
+              >
+                {showPassword ? <BiHide /> : <BiShow />}
+              </button>
+            </div>
+          </div>
+
+          <div className="mb-3 form-check">
+            <input
+              type="checkbox"
+              className="form-check-input"
+              name="acceptance"
+              checked={acceptance}
+              onChange={handleChange}
+            />
+            <label className="form-check-label" style={{ color: '#d35400' }}>
+              I accept the terms and conditions
+            </label>
+          </div>
+
+          <div className="d-flex justify-content-between">
+            <Link to="/signup/signup">
+              <button className="btn btn-outline-warning" type="button">
+                Back
+              </button>
+            </Link>
+            <button className="btn btn-warning text-white" type="submit" disabled={spinner}>
+              {spinner ? 'Logging in...' : 'Login'}
+            </button>
+          </div>
+        </form>
+
+        <div className="text-center mt-3">
+          <Link to="/signup/signup" style={{ textDecoration: 'none', color: '#e67e22' }}>
+            Don’t have an account? <span className="fw-bold">Sign up</span>
+          </Link>
         </div>
       </div>
-    </>
+    </div>
   );
-}
+};
+
+export default AdopterLogin;

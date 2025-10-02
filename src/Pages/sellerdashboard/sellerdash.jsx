@@ -18,9 +18,7 @@ const Sellerdash = () => {
         const auth = getAuth();
         const currentUser = auth.currentUser;
 
-        if (!currentUser) {
-          throw new Error('No user found');
-        }
+        if (!currentUser) throw new Error('No user found');
 
         const userId = currentUser.uid;
         const db = getFirestore();
@@ -62,10 +60,7 @@ const Sellerdash = () => {
           const petsData = [];
 
           querySnapshot.forEach((doc) => {
-            petsData.push({
-              id: doc.id,
-              ...doc.data(),
-            });
+            petsData.push({ id: doc.id, ...doc.data() });
           });
 
           setUserPets(petsData);
@@ -85,14 +80,18 @@ const Sellerdash = () => {
   return (
     <div
       className="container mt-5 p-4"
-      style={{ backgroundColor: '#f8f9fa', borderRadius: '10px', boxShadow: '0 4px 6px rgba(0, 0, 0, 0.1)' }}
+      style={{
+        backgroundColor: '#FFF8E7', // warm cream background
+        borderRadius: '12px',
+        boxShadow: '0 6px 12px rgba(0, 0, 0, 0.1)',
+      }}
     >
-      <h2 className="text-center mb-4" style={{ color: '#333' }}>
+      <h2 className="text-center mb-4" style={{ color: '#A0522D' }}>
         Welcome to your Dashboard,{' '}
         {loading ? (
-          <Spinner animation="border" variant="primary" size="sm" />
+          <Spinner animation="border" variant="warning" size="sm" />
         ) : (
-          <span style={{ color: '#007bff' }}>{userFirstname}</span>
+          <span style={{ color: '#FF7F50' }}>{userFirstname}</span> // coral highlight
         )}
         !
       </h2>
@@ -106,14 +105,26 @@ const Sellerdash = () => {
               state: { propsFirstName: userFirstname },
             }}
           >
-            <button className="btn btn-primary">Add Pet</button>
+            <button
+              className="btn"
+              style={{
+                backgroundColor: '#FFD700', // golden button
+                color: '#333',
+                fontWeight: 'bold',
+                borderRadius: '25px',
+                padding: '0.5rem 1.5rem',
+                boxShadow: '0 4px 8px rgba(0,0,0,0.15)',
+              }}
+            >
+              Add Pet
+            </button>
           </Link>
         </h5>
       </div>
 
       <div className="table-responsive">
         <table className="table table-bordered table-hover">
-          <thead className="thead-dark">
+          <thead style={{ backgroundColor: '#FFDEAD', color: '#5C4033' }}>
             <tr>
               <th scope="col">Pet Name</th>
               <th scope="col">Age</th>
@@ -131,7 +142,7 @@ const Sellerdash = () => {
               ))
             ) : (
               <tr>
-                <td colSpan="3" className="text-center">
+                <td colSpan="3" className="text-center text-muted">
                   No pets added yet.
                 </td>
               </tr>
@@ -141,7 +152,18 @@ const Sellerdash = () => {
       </div>
 
       <div className="text-center mt-4">
-        <button className="btn btn-danger" onClick={handleLogout}>
+        <button
+          className="btn"
+          onClick={handleLogout}
+          style={{
+            backgroundColor: '#FF6347', // tomato red
+            color: '#fff',
+            fontWeight: 'bold',
+            borderRadius: '25px',
+            padding: '0.5rem 1.5rem',
+            boxShadow: '0 4px 10px rgba(0,0,0,0.2)',
+          }}
+        >
           Logout
         </button>
       </div>

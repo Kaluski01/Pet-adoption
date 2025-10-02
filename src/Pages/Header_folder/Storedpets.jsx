@@ -19,7 +19,7 @@ export default function StoredPets() {
     setTimeout(() => {
       setShowDogCard(true);
       setSpinner(false);
-    }, 2000); // Simulating a delay (e.g., API call)
+    }, 2000);
   };
 
   const handleBackClick = () => {
@@ -27,7 +27,11 @@ export default function StoredPets() {
     setTimeout(() => {
       navigate('/');
       setIsSubmitting(false);
-    }, 1500); // Simulating a delay
+    }, 1500);
+  };
+
+  const handleChatClick = () => {
+    navigate(`/chat/${selectedPet.ownerId}`);
   };
 
   useEffect(() => {
@@ -52,66 +56,67 @@ export default function StoredPets() {
   }, [name]);
 
   return (
-    <div className="container mx-auto p-5">
-      <h1 className="text-3xl font-bold text-center text-gray-800 mb-6 mt-5">🐾 Pet Information 🐾</h1>
+    <div className="container py-5">
+      <h1 className="display-5 fw-bold text-center text-dark mt-5">🐾 Meet Your New Friend 🐾</h1>
 
       {selectedPet ? (
-        <div className="bg-white shadow-lg rounded-lg p-6 max-w-2xl mx-auto">
+        <div className="card shadow-lg border-0 rounded-4 mx-auto p-4" style={{ maxWidth: '700px' }}>
           <img
             src={selectedPet.imageUrl}
             alt={selectedPet.name}
-            className="w-full col-lg-7 col-12 h-64 object-cover rounded-md mb-4"
+            className="card-img-top rounded-4 object-fit-cover"
+            style={{ height: '350px', objectFit: 'cover' }}
           />
 
-          <div className="space-y-2 text-gray-700">
-            <p>
-              <strong>Name:</strong> {selectedPet.name}
-            </p>
-            <p>
-              <strong>Description:</strong> {selectedPet.description}
-            </p>
-            <p>
-              <strong>Age:</strong> {selectedPet.age} years
-            </p>
-            <p>
-              <strong>Weight:</strong> {selectedPet.weight} kg
-            </p>
-            <p>
-              <strong>Height:</strong> {selectedPet.height} cm
-            </p>
-            <p>
-              <strong>Price:</strong> ${selectedPet.price}
-            </p>
-            <p>
-              <strong>Owner:</strong> {selectedPet.ownerName} 📞 {selectedPet.ownerPhone}
-            </p>
+          <div className="card-body text-dark">
+            <h3 className="fw-bold mb-3">{selectedPet.name}</h3>
+
+            <ul className="list-unstyled text-muted">
+              <p>
+                <strong>Description:</strong> {selectedPet.description}
+              </p>
+              <p>
+                <strong>Age:</strong> {selectedPet.age}
+              </p>
+              <p>
+                <strong>Weight:</strong> {selectedPet.weight}
+              </p>
+              <p>
+                <strong>Height:</strong> {selectedPet.height}
+              </p>
+              <p>
+                <strong>Price:</strong> <span className="fw-bold text-success">${selectedPet.price}</span>
+              </p>
+              <p>
+                <strong>Owner:</strong> {selectedPet.ownerName} 📞 {selectedPet.ownerPhone}
+              </p>
+            </ul>
           </div>
 
-          <div className="flex justify-between mt-6">
+          {/* Buttons */}
+          <div className="d-flex flex-wrap gap-3 mt-4">
             <button
-              className="btn btn-secondary fw-bold px-4 py-2 rounded-pill shadow-sm"
+              className="btn btn-outline-secondary fw-bold px-4 py-2 rounded-pill"
               type="button"
               disabled={isSubmitting}
               onClick={handleBackClick}
             >
               {isSubmitting ? <Spinner animation="border" size="sm" /> : '⬅️ Back'}
             </button>
-
             <button
-              className="btn btn-success fw-bold px-4 py-2 rounded-pill shadow-sm"
+              className="btn btn-success fw-bold px-4 py-2 rounded-pill"
               type="button"
               disabled={spinner}
               onClick={handleAdoptClick}
             >
-              {spinner ? <Spinner animation="border" size="sm" /> : '🐾 Adopt Me! 🐶'}
+              {spinner ? <Spinner animation="border" size="sm" /> : '🐶 Adopt Me'}
             </button>
           </div>
         </div>
       ) : (
-        <div className="d-flex justify-center items-center h-40">
-          <h4>
-            Loading <Spinner animation="grow" variant="primary" />
-          </h4>
+        <div className="text-center mt-5">
+          <Spinner animation="border" variant="primary" />
+          <p className="mt-3 fw-semibold">Loading pet information...</p>
         </div>
       )}
 

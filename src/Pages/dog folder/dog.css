@@ -1,66 +1,64 @@
-
-body{
-     /* font-family: "Spinnaker", sans-serif; */
-     font-family: "Barlow", sans-serif;
-     /* font-family: "Croissant One", serif; */
+body {
+  /* font-family: "Spinnaker", sans-serif; */
+  font-family: 'Barlow', sans-serif;
+  /* font-family: "Croissant One", serif; */
   /* font-family: "Oxygen", sans-serif; */
   /* font-family: "Montserrat Alternates", sans-serif; */
 }
-.dog-h1{
-    text-align: center;
-    margin-top: 20px;
+.dog-h1 {
+  text-align: center;
+  margin-top: 20px;
 }
-article{
-    width: 100%;
-    /* display: flex; */
-}
-
-img{
-    height: 200px;
-    width: 50%;
+article {
+  width: 100%;
+  /* display: flex; */
 }
 
-.img-fluid{
-    height: 250px;
-    width: 100%;
+img {
+  height: 200px;
+  width: 50%;
 }
 
-.form{
-    border: none;
-    border-radius: 20px;
-    box-shadow: 1px;
-    width: 30%;
-    /* background-color: #FB7086; */
-}
-.link{
-    color: white;
-    text-decoration: none;
-    transform: scale(1); /* Initial state */
-    transition: transform 0.3s ease-in-out
-}
-link:hover{
-    background-color: #48556A;
-    transform: scale(1.1);
+.img-fluid {
+  height: 250px;
+  width: 100%;
 }
 
-article h5{
-    color: black;
-    font-size: 20px;
+.form {
+  border: none;
+  border-radius: 20px;
+  box-shadow: 1px;
+  width: 30%;
+  /* background-color: #FB7086; */
 }
-article p{
-    color: black;
-    font-size: 15px;
+.link {
+  color: white;
+  text-decoration: none;
+  transform: scale(1); /* Initial state */
+  transition: transform 0.3s ease-in-out;
 }
-.dog{
-    padding-top: 50px;
+link:hover {
+  background-color: #48556a;
+  transform: scale(1.1);
+}
+
+article h5 {
+  color: black;
+  font-size: 20px;
+}
+article p {
+  color: black;
+  font-size: 15px;
+}
+.dog {
+  padding-top: 50px;
 }
 .dog-card {
-    transition: transform 0.3s, background-color 0.3s;
-  }
-  
-  .dog-card:hover {
-    transform: translateY(-10px);
-    background-color:#7C7D9F; 
-    color: white;
-  }
-  
+  transition: transform 0.3s, background-color 0.3s;
+}
+
+.dog-card:hover {
+  transform: translateY(-10px);
+  background-color: #7c7d9f;
+  color: white;
+}

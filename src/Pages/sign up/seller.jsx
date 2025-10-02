@@ -93,19 +93,37 @@ const Seller = () => {
   };
 
   return (
-    <div className="container d-flex justify-content-center align-items-center" style={{ minHeight: '100vh' }}>
-      <div className="card shadow-lg p-4" style={{ width: '100%', maxWidth: '500px', borderRadius: '15px' }}>
+    <div
+      className="container d-flex justify-content-center align-items-center"
+      style={{
+        minHeight: '100vh', // warm background gradient
+      }}
+    >
+      <div
+        className="card shadow-lg p-4"
+        style={{
+          width: '100%',
+          maxWidth: '500px',
+          borderRadius: '15px',
+          border: 'none',
+          backgroundColor: '#fff3e0', // soft warm cream
+        }}
+      >
         {!isFormDisabled ? (
           <>
-            <h2 className="text-center mb-4">Sign Up as a Seller</h2>
+            <h2 className="text-center mb-4" style={{ color: '#e65100' }}>
+              🐾 Sign Up as a Seller
+            </h2>
             {error && (
               <div className="alert alert-danger text-center" role="alert">
                 {error}
               </div>
             )}
             <form onSubmit={handleSubmit}>
-              <div className="mb-3">
-                <label className="form-label">Name</label>
+              <div className="mt-5">
+                <label className="form-label" style={{ color: '#bf360c' }}>
+                  Name
+                </label>
                 <input
                   type="text"
                   className="form-control"
@@ -117,7 +135,9 @@ const Seller = () => {
                 />
               </div>
               <div className="mb-3">
-                <label className="form-label">Phone Number</label>
+                <label className="form-label" style={{ color: '#bf360c' }}>
+                  Phone Number
+                </label>
                 <input
                   type="number"
                   className="form-control"
@@ -129,7 +149,9 @@ const Seller = () => {
                 />
               </div>
               <div className="mb-3">
-                <label className="form-label">Email</label>
+                <label className="form-label" style={{ color: '#bf360c' }}>
+                  Email
+                </label>
                 <input
                   type="email"
                   className="form-control"
@@ -141,7 +163,9 @@ const Seller = () => {
                 />
               </div>
               <div className="mb-3">
-                <label className="form-label">Address</label>
+                <label className="form-label" style={{ color: '#bf360c' }}>
+                  Address
+                </label>
                 <input
                   type="text"
                   className="form-control"
@@ -153,7 +177,9 @@ const Seller = () => {
                 />
               </div>
               <div className="mb-3">
-                <label className="form-label">Password</label>
+                <label className="form-label" style={{ color: '#bf360c' }}>
+                  Password
+                </label>
                 <div className="input-group">
                   <input
                     type={showPassword ? 'text' : 'password'}
@@ -166,7 +192,7 @@ const Seller = () => {
                   />
                   <button
                     type="button"
-                    className="btn btn-outline-secondary"
+                    className="btn btn-outline-warning"
                     onClick={() => setShowPassword(!showPassword)}
                   >
                     {showPassword ? <BiHide /> : <BiShow />}
@@ -183,26 +209,37 @@ const Seller = () => {
                   disabled={isSubmitting}
                   required
                 />
-                <label className="form-check-label">I agree to share my phone number with potential adopters.</label>
+                <label className="form-check-label" style={{ color: '#bf360c' }}>
+                  I agree to share my phone number with potential adopters.
+                </label>
               </div>
               <div className="d-flex justify-content-between align-items-center">
-                <Link to="/signup/signup" className="btn btn-outline-primary">
+                <Link to="/signup/signup" className="btn btn-outline-warning">
                   Back
                 </Link>
-                <button className="btn btn-primary" type="submit" disabled={spinner || isSubmitting}>
+                <button
+                  className="btn"
+                  type="submit"
+                  disabled={spinner || isSubmitting}
+                  style={{
+                    backgroundColor: '#ff7043',
+                    color: 'white',
+                    border: 'none',
+                  }}
+                >
                   {spinner ? <Spinner animation="border" size="sm" /> : 'Submit'}
                 </button>
               </div>
               <div className="text-center mt-3">
                 Already have an account?{' '}
-                <Link to="/Login" className="text-primary">
+                <Link to="/Login" style={{ color: '#e64a19', fontWeight: 'bold' }}>
                   Log in
                 </Link>
               </div>
             </form>
           </>
         ) : (
-          <div className="alert alert-success text-center">
+          <div className="alert alert-success text-center" style={{ backgroundColor: '#ffe0b2', color: '#e65100' }}>
             <h4>Welcome, {firstName}!</h4>
             <p>Redirecting to your dashboard...</p>
           </div>

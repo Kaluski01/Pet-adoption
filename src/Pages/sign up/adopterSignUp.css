@@ -1,0 +1,45 @@
+.signup-page {
+  background: linear-gradient(135deg, #fff3e0, #ffe0b2);
+  min-height: 100vh;
+}
+
+.signup-card {
+  max-width: 450px;
+  background: #fffdf9;
+  border-radius: 15px;
+}
+
+.warm-title {
+  color: #e76f51;
+  font-weight: bold;
+}
+
+.btn-warm {
+  background: linear-gradient(90deg, #f4a261, #e76f51);
+  border: none;
+  color: white;
+  font-weight: bold;
+  transition: 0.3s ease;
+}
+
+.btn-warm:hover {
+  opacity: 0.9;
+}
+
+.link-warm {
+  color: #e76f51;
+  font-weight: 600;
+  text-decoration: none;
+}
+
+.error-message {
+  color: #d62828;
+  background: #ffe6e6;
+  padding: 10px;
+  border-radius: 8px;
+}
+
+.success-toast {
+  background: #fefae0;
+  border-left: 5px solid #e9c46a;
+}

@@ -23,51 +23,100 @@ export default function BasicExample() {
   };
 
   return (
-    <Navbar expanded={expanded} expand="lg" bg="dark" variant="dark" fixed="top" className="shadow-lg py-3">
+    <Navbar
+      expanded={expanded}
+      expand="lg"
+      style={{ backgroundColor: '#FFF5E1' }} // warm cream
+      fixed="top"
+      className="shadow-lg py-3"
+    >
       <Container>
-        <Navbar.Brand as={Link} to="/" onClick={handleSelect} className="d-flex align-items-center gap-2 text-warning">
-          <FaPaw size={28} />
+        {/* Brand */}
+        <Navbar.Brand
+          as={Link}
+          to="/"
+          onClick={handleSelect}
+          className="d-flex align-items-center gap-2"
+          style={{ color: '#A0522D', fontWeight: 'bold' }} // warm brown text
+        >
+          <FaPaw size={28} color="#FF7F50" /> {/* warm coral paw */}
           <span className="fw-bold fs-4">PET FINDER</span>
         </Navbar.Brand>
+
+        {/* Toggle */}
         <Navbar.Toggle aria-controls="basic-navbar-nav" onClick={handleToggle} className="border-0" />
+
         <Navbar.Collapse id="basic-navbar-nav" className="mt-3 mt-lg-0">
+          {/* Links */}
           <Nav className="mx-auto gap-4 text-uppercase fw-semibold" onSelect={handleSelect}>
-            <Nav.Link as={Link} to="/" onClick={handleSelect} className="text-light hover:text-warning">
+            <Nav.Link as={Link} to="/" onClick={handleSelect} style={{ color: '#8B5E3C' }}>
               Home
             </Nav.Link>
-            <Nav.Link as={Link} to="/about" onClick={handleSelect} className="text-light hover:text-warning">
+            <Nav.Link as={Link} to="/about" onClick={handleSelect} style={{ color: '#8B5E3C' }}>
               About Us
             </Nav.Link>
-            <Nav.Link as={Link} to="/dogs" onClick={handleSelect} className="text-light hover:text-warning">
+            <Nav.Link as={Link} to="/dogs" onClick={handleSelect} style={{ color: '#8B5E3C' }}>
               Pets
             </Nav.Link>
-            <Nav.Link as={Link} to="/own" onClick={handleSelect} className="text-light hover:text-warning">
+            <Nav.Link as={Link} to="/own" onClick={handleSelect} style={{ color: '#8B5E3C' }}>
               Paw-ssentials
             </Nav.Link>
           </Nav>
+
+          {/* Buttons */}
           <Nav onSelect={handleSelect} className="d-flex align-items-center gap-3 position-relative">
             <Button
-              variant="outline-light"
               onClick={toggleLoginOptions}
-              className="fw-bold px-4 py-2 rounded-pill shadow-sm position-relative"
+              style={{
+                backgroundColor: '#FF7F50',
+                border: 'none',
+                color: '#fff',
+                fontWeight: 'bold',
+                padding: '0.5rem 1.5rem',
+                borderRadius: '50px',
+                boxShadow: '0 4px 10px rgba(0,0,0,0.2)',
+              }}
             >
               Log In
             </Button>
+
             {showLoginOptions && (
               <div
-                className="position-absolute bg-dark p-2 rounded shadow"
-                style={{ top: '100%', right: 0, zIndex: 1000 }}
+                className="position-absolute p-2 rounded shadow"
+                style={{ top: '100%', right: 0, zIndex: 1000, backgroundColor: '#FFF5E1' }}
               >
-                <Button as={Link} to="/Login" onClick={handleSelect} variant="warning" className="w-100 mb-2">
+                <Button
+                  as={Link}
+                  to="/Login"
+                  onClick={handleSelect}
+                  style={{ backgroundColor: '#FFD700', border: 'none', marginBottom: '0.5rem' }}
+                  className="w-100"
+                >
                   As Seller
                 </Button>
-                <Button as={Link} to="/Adopterlogin" onClick={handleSelect} variant="warning" className="w-100">
+                <Button
+                  as={Link}
+                  to="/Adopterlogin"
+                  onClick={handleSelect}
+                  style={{ backgroundColor: '#FFD700', border: 'none' }}
+                  className="w-100"
+                >
                   As Adopter
                 </Button>
               </div>
             )}
+
             <Nav.Link as={Link} to="/signup/signup" onClick={handleSelect}>
-              <Button variant="warning" className="fw-bold px-4 py-2 rounded-pill shadow-sm">
+              <Button
+                style={{
+                  backgroundColor: '#FFD700',
+                  border: 'none',
+                  fontWeight: 'bold',
+                  padding: '0.5rem 1.5rem',
+                  borderRadius: '50px',
+                  boxShadow: '0 4px 10px rgba(0,0,0,0.2)',
+                }}
+              >
                 Sign Up
               </Button>
             </Nav.Link>

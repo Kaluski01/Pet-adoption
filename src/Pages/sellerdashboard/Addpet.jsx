@@ -6,14 +6,12 @@ import 'firebase/compat/firestore';
 import 'firebase/compat/storage';
 import 'firebase/compat/auth';
 import { v4 as uuidv4 } from 'uuid';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, useLocation } from 'react-router-dom';
 import { getDoc, doc } from 'firebase/firestore';
 import { ref, uploadBytesResumable } from 'firebase/storage';
-import { useLocation } from 'react-router-dom';
 import './sellerdash.css';
 
 const Addpet = ({ updateNumberOfPets }) => {
-  // Receive the updateNumberOfPets function as a prop
   const [petName, setPetName] = useState('');
   const [petDescription, setPetDescription] = useState('');
   const [petImage, setPetImage] = useState('');
@@ -41,35 +39,6 @@ const Addpet = ({ updateNumberOfPets }) => {
     measurementId: 'G-WJRCH01VP2',
   };
 
-  useEffect(() => {
-    const fetchUserFirstname = async () => {
-      try {
-        firebase.auth().onAuthStateChanged(async (currentUser) => {
-          if (currentUser) {
-            const userId = currentUser.uid;
-            const userDoc = await getDoc(doc(firebase.firestore(), 'users', userId));
-            if (userDoc.exists()) {
-              // const userData = userDoc.data();
-              // setUserFirstname(userData.firstName);
-            } else {
-              console.error('No user data found');
-            }
-          } else {
-            console.error('No authenticated user found');
-          }
-        });
-      } catch (error) {
-        console.error('Error fetching user data:', error);
-      } finally {
-        // setLoading(false);
-      }
-    };
-
-    fetchUserFirstname();
-  }, []);
-
-  console.log('userFirstname:', userFirstname);
-
   const handleAddPet = async () => {
     if (
       !petName ||
@@ -83,7 +52,7 @@ const Addpet = ({ updateNumberOfPets }) => {
       !sex ||
       !specie
     ) {
-      alert('Please fill in all the fields before adding a pet.');
+      alert('⚠️ Please fill in all the fields before adding a pet.');
       return;
     }
 
@@ -96,11 +65,11 @@ const Addpet = ({ updateNumberOfPets }) => {
       age: petAge,
       weight: petWeight,
       height: petHeight,
-      price: price,
-      sex: sex,
-      specie: specie,
-      ownerName: ownerName,
-      ownerPhone: ownerPhone,
+      price,
+      sex,
+      specie,
+      ownerName,
+      ownerPhone,
     };
 
     try {
@@ -112,9 +81,6 @@ const Addpet = ({ updateNumberOfPets }) => {
       await uploadBytesResumable(storageRef, petImage);
 
       await firebase.firestore().collection('pets').add(newPet);
-
-      // Call the updateNumberOfPets function to update the number of pets
-      // updateNumberOfPets((prevNumberOfPets) => prevNumberOfPets + 1);
 
       setPetName('');
       setPetDescription('');
@@ -128,152 +94,197 @@ const Addpet = ({ updateNumberOfPets }) => {
       setOwnerPhone('');
       setPetImage('');
       setSuccess(true);
+
       setTimeout(() => {
-        setSuccess(false); // Reset success after a certain time
-        // navigate('/sellerdashboard/sellerdash', { state: { propsFirstName: userFirstname } });
+        setSuccess(false);
+        navigate('/sellerdashboard/sellerdash', { state: { propsFirstName: userFirstname } });
       }, 2000);
     } catch (error) {
       console.error('Error adding pet:', error);
-      alert('An error occurred while adding the pet. Please try again.');
+      alert('❌ An error occurred while adding the pet. Please try again.');
     } finally {
-      setSpinner(false); // Ensure the spinner is hidden even if an error occurs
+      setSpinner(false);
     }
   };
 
   const handleImageChange = (e) => {
     const file = e.target.files[0];
-    if (file) {
-      setPetImage(file);
-    } else {
-      setPetImage('');
-    }
-  };
-  const handleClose = () => {
-    navigate('/sellerdashboard/sellerdash', { state: { propsFirstName: userFirstname } });
-    console.log(userFirstname);
+    if (file) setPetImage(file);
+    else setPetImage('');
   };
 
   return (
-    <div className="container mt-5 p-4 bg-dark">
-      <div className="card">
-        <div className="card-body">
+    <div
+      className="container mt-5 p-4"
+      style={{
+        background: 'linear-gradient(135deg, #FFF8E7, #FFDAB9)',
+        borderRadius: '15px',
+        boxShadow: '0 6px 12px rgba(0,0,0,0.1)',
+      }}
+    >
+      <div className="card border-0 shadow-lg" style={{ borderRadius: '15px' }}>
+        <div className="card-body p-5">
           {success ? (
-            <Toast onClick={handleClose}>
-              <Toast.Header></Toast.Header>
-              <Toast.Body>We have successfully added your pet. It can now be seen by possible adopters</Toast.Body>
+            <Toast
+              onClick={() => navigate('/sellerdashboard/sellerdash', { state: { propsFirstName: userFirstname } })}
+            >
+              <Toast.Header className="bg-success text-white fw-bold">Success</Toast.Header>
+              <Toast.Body>🎉 Your pet has been added! Possible adopters can now view it.</Toast.Body>
             </Toast>
           ) : (
             <form>
-              <div className="form-group">
-                <label>Pet Name:</label>
-                <input
-                  type="text"
-                  className="form-control"
-                  value={petName}
-                  onChange={(e) => setPetName(e.target.value)}
-                />
-              </div>
-              <div className="form-group">
-                <label>Pet Description:</label>
-                <textarea
-                  className="form-control"
-                  value={petDescription}
-                  onChange={(e) => setPetDescription(e.target.value)}
-                />
-              </div>
-              <div className="form-group">
-                <label>Age:</label>
-                <input
-                  type="text"
-                  className="form-control"
-                  value={petAge}
-                  onChange={(e) => setPetAge(e.target.value)}
-                />
-              </div>
-              <div className="form-group">
-                <label>Weight:</label>
-                <input
-                  type="text"
-                  className="form-control"
-                  value={petWeight}
-                  onChange={(e) => setPetWeight(e.target.value)}
-                />
-              </div>
-              <div className="form-group">
-                <label>Height:</label>
-                <input
-                  type="text"
-                  className="form-control"
-                  value={petHeight}
-                  onChange={(e) => setPetHeight(e.target.value)}
-                />
-              </div>
-              <div className="form-group">
-                <label>Price:</label>
-                <input type="text" className="form-control" value={price} onChange={(e) => setPrice(e.target.value)} />
-              </div>
-              <div className="form-group">
-                <label>Sex:</label>
-                <select className="form-control" value={sex} onChange={(e) => setSex(e.target.value)}>
-                  <option value="">Select</option>
-                  <option value="male">Male</option>
-                  <option value="female">Female</option>
-                </select>
-              </div>
-              <div className="form-group">
-                <label>Specie:</label>
-                <select className="form-control" value={specie} onChange={(e) => setSpecie(e.target.value)}>
-                  <option value="">Select</option>
-                  <option value="dog">Dog</option>
-                  <option value="cat">Cat</option>
-                  <option value="other">Other</option>
-                </select>
-              </div>
-              <div className="form-group">
-                <label>Owner Name:</label>
-                <input
-                  type="text"
-                  className="form-control"
-                  value={ownerName}
-                  onChange={(e) => setOwnerName(e.target.value)}
-                />
-              </div>
-              <div className="form-group">
-                <label>Owner Phone:</label>
-                <input
-                  type="text"
-                  className="form-control"
-                  value={ownerPhone}
-                  onChange={(e) => setOwnerPhone(e.target.value)}
-                />
-              </div>
-              <br />
-              <div className="form-group">
-                <label>Pet Image:</label>
-                <input type="file" className="form-control-file" onChange={handleImageChange} />
-              </div>
-              <br />
-              {petImage && (
-                <div className="form-group">
-                  <label>Preview:</label>
-                  <img
-                    src={URL.createObjectURL(petImage)}
-                    alt="Pet Preview"
-                    style={{ width: '30%', height: '200px' }}
+              <h3 className="text-center mb-4 fw-bold" style={{ color: '#A0522D' }}>
+                🐾 Add Your Pet
+              </h3>
+
+              <div className="row g-3">
+                <div className="col-md-6">
+                  <label className="form-label">Pet Name:</label>
+                  <input
+                    type="text"
+                    className="form-control"
+                    value={petName}
+                    onChange={(e) => setPetName(e.target.value)}
+                    placeholder="e.g. Bella"
                   />
                 </div>
-              )}
-              <br />
-              <button type="button" className="btn btn-primary" onClick={handleAddPet}>
-                Add Pet
-              </button>
-              {/* <Link to={{
-    pathname: "/sellerdashboard/sellerdash",
-    state: { propsFirstName: userFirstname }
-}} className="btn btn-primary">Back</Link> */}
+
+                <div className="col-md-6">
+                  <label className="form-label">Age:</label>
+                  <input
+                    type="text"
+                    className="form-control"
+                    value={petAge}
+                    onChange={(e) => setPetAge(e.target.value)}
+                    placeholder="e.g. 2 years"
+                  />
+                </div>
+
+                <div className="col-md-6">
+                  <label className="form-label">Weight:</label>
+                  <input
+                    type="text"
+                    className="form-control"
+                    value={petWeight}
+                    onChange={(e) => setPetWeight(e.target.value)}
+                    placeholder="e.g. 10kg"
+                  />
+                </div>
+
+                <div className="col-md-6">
+                  <label className="form-label">Height:</label>
+                  <input
+                    type="text"
+                    className="form-control"
+                    value={petHeight}
+                    onChange={(e) => setPetHeight(e.target.value)}
+                    placeholder="e.g. 30cm"
+                  />
+                </div>
+
+                <div className="col-md-6">
+                  <label className="form-label">Price:</label>
+                  <input
+                    type="text"
+                    className="form-control"
+                    value={price}
+                    onChange={(e) => setPrice(e.target.value)}
+                    placeholder="e.g. $100 or Free"
+                  />
+                </div>
+
+                <div className="col-md-6">
+                  <label className="form-label">Sex:</label>
+                  <select className="form-control" value={sex} onChange={(e) => setSex(e.target.value)}>
+                    <option value="">Select</option>
+                    <option value="male">Male</option>
+                    <option value="female">Female</option>
+                  </select>
+                </div>
+
+                <div className="col-md-6">
+                  <label className="form-label">Specie:</label>
+                  <select className="form-control" value={specie} onChange={(e) => setSpecie(e.target.value)}>
+                    <option value="">Select</option>
+                    <option value="dog">Dog</option>
+                    <option value="cat">Cat</option>
+                    <option value="other">Other</option>
+                  </select>
+                </div>
+
+                <div className="col-md-6">
+                  <label className="form-label">Owner Name:</label>
+                  <input
+                    type="text"
+                    className="form-control"
+                    value={ownerName}
+                    onChange={(e) => setOwnerName(e.target.value)}
+                    placeholder="Your full name"
+                  />
+                </div>
+
+                <div className="col-md-6">
+                  <label className="form-label">Owner Phone:</label>
+                  <input
+                    type="text"
+                    className="form-control"
+                    value={ownerPhone}
+                    onChange={(e) => setOwnerPhone(e.target.value)}
+                    placeholder="e.g. +234 812 345 6789"
+                  />
+                </div>
+
+                <div className="col-12">
+                  <label className="form-label">Pet Description:</label>
+                  <textarea
+                    className="form-control"
+                    rows="3"
+                    value={petDescription}
+                    onChange={(e) => setPetDescription(e.target.value)}
+                    placeholder="Tell adopters about your pet's personality, habits, and needs..."
+                  ></textarea>
+                </div>
+
+                <div className="col-12 mt-3">
+                  <label className="form-label">Pet Image:</label>
+                  <input type="file" className="form-control" onChange={handleImageChange} />
+                </div>
+
+                {petImage && (
+                  <div className="col-12 mt-3 text-center">
+                    <label className="form-label d-block">Preview:</label>
+                    <img
+                      src={URL.createObjectURL(petImage)}
+                      alt="Pet Preview"
+                      style={{
+                        width: '200px',
+                        height: '200px',
+                        objectFit: 'cover',
+                        borderRadius: '12px',
+                        border: '3px solid #FFD700',
+                      }}
+                    />
+                  </div>
+                )}
+              </div>
+
+              <div className="text-center mt-4">
+                <button
+                  type="button"
+                  className="btn fw-bold px-4 py-2"
+                  style={{
+                    backgroundColor: '#FF7F50',
+                    color: 'white',
+                    borderRadius: '30px',
+                    boxShadow: '0 4px 10px rgba(0,0,0,0.2)',
+                  }}
+                  onClick={handleAddPet}
+                >
+                  {spinner ? <Spinner animation="border" size="sm" /> : 'Add Pet'}
+                </button>
+              </div>
             </form>
           )}
-          {spinner && <Spinner animation="grow" />}
         </div>
       </div>
     </div>

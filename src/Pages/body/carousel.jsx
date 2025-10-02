@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React from 'react';
 import Carousel from 'react-bootstrap/Carousel';
 import image1 from '../assests/mans.webp';
 import image2 from '../assests/lady.webp';
@@ -11,13 +11,13 @@ const TestimonialCards = () => {
     {
       name: 'John Doe',
       content:
-        '"I adopted my furry friend from this wonderful pet store, and it has brought so much joy to my life. The staff was helpful, and the process was smooth. Highly recommended!"',
+        'I adopted my furry friend from this wonderful pet store, and it has brought so much joy to my life. The staff was helpful, and the process was smooth. Highly recommended!',
       image: image1,
     },
     {
       name: 'Jane Smith',
       content:
-        'Rescuing my pet from here was a life-changing experience. The dedication of the staff to find loving homes for animals in need is commendable. My pet has become an inseparable part of our family."',
+        'Rescuing my pet from here was a life-changing experience. The dedication of the staff to find loving homes for animals in need is commendable. My pet has become an inseparable part of our family.',
       image: image2,
     },
     {
@@ -34,28 +34,28 @@ const TestimonialCards = () => {
     },
   ];
 
-  const [activeIndex, setActiveIndex] = useState(0);
-
-  useEffect(() => {
-    const intervalId = setInterval(() => {
-      setActiveIndex((prevIndex) => (prevIndex + 1) % testimonials.length);
-    }, 3000);
-
-    return () => clearInterval(intervalId);
-  }, [testimonials.length]);
-
   return (
-    <div className="testimonial-container bg-warning mt-4">
-      <h1 className="testimonial-title">Testimonials</h1>
-      <div className="carousel-wrapper">
-        <Carousel controls={false} interval={10000} activeIndex={activeIndex} onSelect={() => {}}>
+    <div className="testimonial-container bg-warning py-5">
+      <h1 className="testimonial-title text-center mb-4 fw-bold">What Our Adopters Say</h1>
+      <div className="carousel-wrapper container">
+        <Carousel controls={false} indicators={true} interval={5000} pause={false}>
           {testimonials.map((testimonial, index) => (
-            <Carousel.Item key={index} className="">
-              <img className="testimonial-image" src={testimonial.image} alt={`Testimonial ${index}`} />
-              <Carousel.Caption className="testimonial-caption  col-10">
-                <h3 className="testimonial-name">{testimonial.name}</h3>
-                <p className="testimonial-content w-100">{testimonial.content}</p>
-              </Carousel.Caption>
+            <Carousel.Item key={index}>
+              <div className="d-flex flex-column align-items-center text-center">
+                {/* Profile Image */}
+                <img
+                  className="testimonial-image rounded-circle mb-3 shadow"
+                  src={testimonial.image}
+                  alt={testimonial.name}
+                  style={{ width: '120px', height: '120px', objectFit: 'cover' }}
+                />
+
+                {/* Testimonial Text */}
+                <div className="bg-light rounded p-4 shadow w-75 mx-auto">
+                  <h3 className="testimonial-name fw-bold">{testimonial.name}</h3>
+                  <p className="testimonial-content fst-italic mb-0">"{testimonial.content}"</p>
+                </div>
+              </div>
             </Carousel.Item>
           ))}
         </Carousel>

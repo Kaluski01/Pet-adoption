@@ -1,0 +1,28 @@
+{
+  "files": {
+    "main.css": "/static/css/main.03a03549.css",
+    "main.js": "/static/js/main.f362b6f7.js",
+    "static/media/dog 1.png": "/static/media/dog 1.838329d79d8e6e155dac.png",
+    "static/media/fun.webp": "/static/media/fun.8708d71400c4faa8a12e.webp",
+    "static/media/lady.webp": "/static/media/lady.15b161105a9e8621e55c.webp",
+    "static/media/mans.webp": "/static/media/mans.938ae7454a0baf59d526.webp",
+    "static/media/paw-removebg-preview.png": "/static/media/paw-removebg-preview.1f4f5c6fb422bafd5d5b.png",
+    "static/media/we.jpg": "/static/media/we.7d04283c7ca2ea323905.jpg",
+    "static/media/last.webp": "/static/media/last.53db2ea4e5bfdb31f2bc.webp",
+    "static/media/catss.webp": "/static/media/catss.87769cd20602bcd3dded.webp",
+    "static/media/dogs.avif": "/static/media/dogs.c7ced8661e5d238cb732.avif",
+    "static/media/well.webp": "/static/media/well.c54df0b00bf62ec92ef0.webp",
+    "index.html": "/index.html",
+    "static/media/instagram.svg": "/static/media/instagram.448198b22019bf2f0b71355b8346c675.svg",
+    "static/media/mdi_paw.svg": "/static/media/mdi_paw.022e76fde7a16f56fd547464e31d960a.svg",
+    "static/media/whatsapp.svg": "/static/media/whatsapp.17112172df21e518376d04f5814c11d8.svg",
+    "static/media/facebook.svg": "/static/media/facebook.4172f094907a6837b8f36d120b55601b.svg",
+    "static/media/twitter-x.svg": "/static/media/twitter-x.59f61548d71b77b5144f030f0b705a72.svg",
+    "main.03a03549.css.map": "/static/css/main.03a03549.css.map",
+    "main.f362b6f7.js.map": "/static/js/main.f362b6f7.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.03a03549.css",
+    "static/js/main.f362b6f7.js"
+  ]
+}

@@ -1,5 +1,5 @@
 .testimonial-container {
-  background: linear-gradient(135deg, #6b34ff, #9a6bff);
+  background: #ffc107;
   color: white;
   padding: 50px 20px;
 }
@@ -37,12 +37,14 @@
   font-size: 1.8rem;
   font-weight: bold;
   margin-bottom: 10px;
+  color: black;
 }
 
 .testimonial-content {
   font-size: 1.2rem;
   /* line-height: 1.5; */
   font-style: italic;
+  color: black;
 }
 
 @keyframes fadeIn {
