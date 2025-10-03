@@ -48,7 +48,7 @@ export default function PetsPage({ showFooter = true }) {
         {loading ? (
           <div className="text-center d-flex mt-5 p-5">
             <Spinner animation="grow" variant="primary" />
-            <p className="">Loading pets...</p>
+            <h3 className="load">Loading pets...</h3>
           </div>
         ) : error ? (
           <div className="text-center m-5 text-danger">
