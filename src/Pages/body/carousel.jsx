@@ -35,7 +35,7 @@ const TestimonialCards = () => {
   ];
 
   return (
-    <div className="testimonial-container bg-warning py-5">
+    <div className="testimonial-container  py-5">
       <h1 className="testimonial-title text-center mb-4 fw-bold">What Our Adopters Say</h1>
       <div className="carousel-wrapper container">
         <Carousel controls={false} indicators={true} interval={5000} pause={false}>

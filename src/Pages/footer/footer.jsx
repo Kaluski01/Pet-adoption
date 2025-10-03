@@ -9,44 +9,45 @@ import whatsapp from '../assests/whatsapp.svg';
 
 export default function Footer() {
   return (
-    <footer className="footer bg-dark text-light py-4">
+    <footer className="footer py-5">
       <div className="container text-center">
         {/* Logo + Title */}
-        <div className="d-flex justify-content-center align-items-center mb-3">
-          <img src={logo} alt="Pet Finder Logo" style={{ width: '40px', height: '40px' }} />
-          <h3 className="ms-2 mb-0 text-warning">Pet Finder</h3>
+        <div className="d-flex justify-content-center align-items-center mb-4">
+          <img src={logo} alt="Pet Finder Logo" className="footer-logo" />
+          <h3 className="ms-3 mb-0 footer-title">Pet Finder</h3>
         </div>
 
         {/* Quick Links */}
-        <ul className="list-inline mb-3">
-          <li className="list-inline-item mx-2">
+        <ul className="list-inline mb-4 footer-links">
+          <li className="list-inline-item mx-3">
             <Link to="/contact" className="footer-link">
               Contact
             </Link>
           </li>
-          <li className="list-inline-item mx-2">
+          <li className="list-inline-item mx-3">
             <Link to="/donate" className="footer-link">
               Donate
             </Link>
           </li>
-          <li className="list-inline-item mx-2">
+          <li className="list-inline-item mx-3">
             <Link to="/rehoming" className="footer-link">
               Rehoming
             </Link>
           </li>
-          <li className="list-inline-item mx-2">
+          <li className="list-inline-item mx-3">
             <Link to="/privacy" className="footer-link">
               Privacy
             </Link>
           </li>
         </ul>
 
-        {/* Socials */}
-        <div className="d-flex justify-content-center gap-3 mb-3">
-          <img src={facebook} alt="Facebook" className="social-icon" />
-          <img src={twitter} alt="Twitter" className="social-icon" />
-          <img src={instagram} alt="Instagram" className="social-icon" />
-          <img src={whatsapp} alt="WhatsApp" className="social-icon" />
+        {/* Social Icons */}
+        <div className="d-flex justify-content-center gap-4 mb-4 social-icons">
+          {[facebook, twitter, instagram, whatsapp].map((icon, i) => (
+            <a href="#" key={i}>
+              <img src={icon} alt="social-icon" className="social-icon" />
+            </a>
+          ))}
         </div>
 
         {/* Contact + Copyright */}
@@ -56,7 +57,7 @@ export default function Footer() {
             nzedivine55@gmail.com
           </a>
         </p>
-        <small className="text-muted">&copy; 2025 Nze Divine Onyeadikachi</small>
+        <p className="small">&copy; 2025 Nze Divine Onyeadikachi</p>
       </div>
     </footer>
   );

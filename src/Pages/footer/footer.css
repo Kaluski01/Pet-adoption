@@ -1,71 +1,73 @@
-/* signup.css */
-.signup-container {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  min-height: 100vh;
-  background: linear-gradient(135deg, #ffd580, #ffb347, #ff7e5f); /* Warm gradient */
-  padding: 30px;
-}
-
-.main-sign {
-  font-size: 2.5rem;
-  font-weight: bold;
-  margin-bottom: 40px;
-  text-align: center;
-  color: #4b2e2e; /* deep warm brown for contrast */
-}
-
-.card-container {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 20px;
-  justify-content: center;
-}
-
-.signup-card {
-  flex: 1 1 300px;
-  max-width: 320px;
-}
-
-.custom-card {
-  background: #fff3e0; /* soft warm beige */
-  border-radius: 15px;
-  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
-  transition: transform 0.2s ease-in-out, box-shadow 0.2s ease-in-out;
-}
-
-.custom-card:hover {
-  transform: translateY(-5px);
-  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
-}
-
-.signup-btn {
-  background-color: #ff7043 !important; /* warm orange */
-  border: none;
-  font-size: 1.2rem;
-  padding: 12px 20px;
-  border-radius: 30px;
-  transition: background-color 0.3s ease-in-out;
-}
-
-.signup-btn:hover {
-  background-color: #e64a19 !important; /* deeper warm orange */
-  color: #fff;
-}
-
+/* Base Footer */
 .footer {
-  margin-top: 50px;
-  text-align: center;
-  color: #4b2e2e;
+  background-color: #492c04; /* deep warm brown */
+  color: #fff1e6; /* light cream */
+  font-family: 'Segoe UI', sans-serif;
 }
 
-.footer a {
-  color: #ff7043;
+/* Logo */
+.footer-logo {
+  width: 50px;
+  height: 50px;
+  transition: transform 0.3s;
+}
+
+.footer-logo:hover {
+  transform: scale(1.1);
+}
+
+/* Title */
+.footer-title {
+  font-weight: 700;
+  letter-spacing: 1px;
+  color: #ffb347; /* warm gold/orange */
+}
+
+/* Quick Links */
+.footer-links .footer-link {
+  color: #ffd8a8; /* soft warm yellow */
   text-decoration: none;
+  transition: color 0.3s;
+  font-weight: 500;
 }
 
-.footer a:hover {
-  color: #e64a19;
+.footer-links .footer-link:hover {
+  color: #ff6f3c; /* warm orange/red on hover */
+}
+
+/* Social Icons */
+.social-icons .social-icon {
+  width: 35px;
+  height: 35px;
+  transition: transform 0.3s, filter 0.3s;
+  cursor: pointer;
+  filter: brightness(0.9);
+  /* color: white; */
+}
+
+.social-icons .social-icon:hover {
+  transform: scale(1.2);
+  filter: brightness(1.2);
+  color: white;
+}
+
+/* Contact + small text */
+.footer a.footer-link {
+  color: #ffd8a8;
+}
+
+.footer a.footer-link:hover {
+  color: #ff6f3c;
+}
+
+/* Responsive adjustments */
+@media (max-width: 576px) {
+  .footer-links .list-inline-item {
+    display: block;
+    margin: 5px 0;
+  }
+
+  .social-icons {
+    gap: 15px;
+  }
 }

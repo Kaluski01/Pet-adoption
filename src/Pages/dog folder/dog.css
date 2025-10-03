@@ -13,6 +13,9 @@ article {
   width: 100%;
   /* display: flex; */
 }
+.load {
+  color: black;
+}
 
 img {
   height: 200px;
