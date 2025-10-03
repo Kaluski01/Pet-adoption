@@ -40,13 +40,20 @@ const Login = () => {
       setShowWelcomeMessage(true);
       navigate('/sellerdashboard/sellerdash', { state: { propsFirstName: fetchedFirstname } });
     } catch (error) {
-      setError(error.message);
+      // setError(error.message);
+      // Set human-readable error
+      setError('Wrong email or password, please retry');
+
+      // Optionally log the original Firebase error
+      console.error(error.message);
+      setError('Wrong email or password, Please retry ');
       setTimeout(() => {
-        setError('');
         setEmail('');
         setPassword('');
+        setError('');
         setAcceptance(false);
-      }, 3000);
+      }, 5000);
+      // setError('Wrong email or password, Please retry ');
     }
 
     setSpinner(false);
